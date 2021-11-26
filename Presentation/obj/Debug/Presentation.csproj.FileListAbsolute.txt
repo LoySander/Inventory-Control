@@ -1,0 +1,7 @@
+C:\Users\37529\source\repos\WarehouseAccountingSystem\Presentation\bin\Debug\Presentation.dll.config
+C:\Users\37529\source\repos\WarehouseAccountingSystem\Presentation\bin\Debug\Presentation.dll
+C:\Users\37529\source\repos\WarehouseAccountingSystem\Presentation\bin\Debug\Presentation.pdb
+C:\Users\37529\source\repos\WarehouseAccountingSystem\Presentation\obj\Debug\Presentation.csproj.AssemblyReference.cache
+C:\Users\37529\source\repos\WarehouseAccountingSystem\Presentation\obj\Debug\Presentation.csproj.CoreCompileInputs.cache
+C:\Users\37529\source\repos\WarehouseAccountingSystem\Presentation\obj\Debug\Presentation.dll
+C:\Users\37529\source\repos\WarehouseAccountingSystem\Presentation\obj\Debug\Presentation.pdb
