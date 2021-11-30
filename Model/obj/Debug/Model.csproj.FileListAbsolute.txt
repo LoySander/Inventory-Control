@@ -1,0 +1,6 @@
+C:\Users\37529\source\repos\WarehouseAccountingSystem\Model\bin\Debug\Model.dll
+C:\Users\37529\source\repos\WarehouseAccountingSystem\Model\bin\Debug\Model.pdb
+C:\Users\37529\source\repos\WarehouseAccountingSystem\Model\obj\Debug\Model.csproj.AssemblyReference.cache
+C:\Users\37529\source\repos\WarehouseAccountingSystem\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
+C:\Users\37529\source\repos\WarehouseAccountingSystem\Model\obj\Debug\Model.dll
+C:\Users\37529\source\repos\WarehouseAccountingSystem\Model\obj\Debug\Model.pdb

@@ -519,5 +519,15 @@ namespace WarehouseAccountingSystem
         {
 
         }
+
+        private void CatalogLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
     }
 }

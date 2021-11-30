@@ -1,6 +1,5 @@
 C:\Users\37529\source\repos\WarehouseAccountingSystem\View\obj\Debug\View.csproj.AssemblyReference.cache
 C:\Users\37529\source\repos\WarehouseAccountingSystem\View\obj\Debug\WarehouseAccountingSystem.Form1.resources
-C:\Users\37529\source\repos\WarehouseAccountingSystem\View\obj\Debug\View.Input.resources
 C:\Users\37529\source\repos\WarehouseAccountingSystem\View\obj\Debug\View.Properties.Resources.resources
 C:\Users\37529\source\repos\WarehouseAccountingSystem\View\obj\Debug\View.csproj.GenerateResource.cache
 C:\Users\37529\source\repos\WarehouseAccountingSystem\View\obj\Debug\View.csproj.CoreCompileInputs.cache
@@ -13,3 +12,6 @@ C:\Users\37529\source\repos\WarehouseAccountingSystem\View\bin\Debug\Presentatio
 C:\Users\37529\source\repos\WarehouseAccountingSystem\View\bin\Debug\Presentation.pdb
 C:\Users\37529\source\repos\WarehouseAccountingSystem\View\bin\Debug\Presentation.dll.config
 C:\Users\37529\source\repos\WarehouseAccountingSystem\View\obj\Debug\View.csproj.CopyComplete
+C:\Users\37529\source\repos\WarehouseAccountingSystem\View\bin\Debug\Model.dll
+C:\Users\37529\source\repos\WarehouseAccountingSystem\View\bin\Debug\Model.pdb
+C:\Users\37529\source\repos\WarehouseAccountingSystem\View\obj\Debug\WarehouseAccountingSystem.Input.resources

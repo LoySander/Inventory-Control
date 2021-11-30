@@ -12,12 +12,9 @@ namespace WarehouseAccountingSystem
     class Program
     {
         private Presenter presenter;
-
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>
-        
-   
         static void Main()
         {
             Application.EnableVisualStyles();

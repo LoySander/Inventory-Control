@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -56,7 +57,9 @@
     <Compile Include="Input.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Input.Designer.cs" />
+    <Compile Include="Input.Designer.cs">
+      <DependentUpon>Input.cs</DependentUpon>
+    </Compile>
     <Compile Include="Manufacture.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="Product.cs" />
@@ -65,7 +68,9 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Input.resx" />
+    <EmbeddedResource Include="Input.resx">
+      <DependentUpon>Input.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -92,10 +97,6 @@
     <ProjectReference Include="..\Presentation\Presentation.csproj">
       <Project>{caa92f2b-6b35-4aae-9213-541123a7098b}</Project>
       <Name>Presentation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WarehouseAccountingSystem\WarehouseAccountingSystem.csproj">
-      <Project>{c5fde76b-76ad-49c5-83e7-319e61a18680}</Project>
-      <Name>WarehouseAccountingSystem</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

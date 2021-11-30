@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Presentation.Common;
 
 
-namespace Model
+
+namespace Presentation.Presenters
 {
-    public class Model
+    class MainPresenter
     {
+       
+
     }
 }

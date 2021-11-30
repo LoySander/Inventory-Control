@@ -416,6 +416,7 @@ namespace WarehouseAccountingSystem
             this.CatalogLabel.TabIndex = 0;
             this.CatalogLabel.Text = "Каталог товаров";
             this.CatalogLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.CatalogLabel.Click += new System.EventHandler(this.CatalogLabel_Click);
             // 
             // groupBox1
             // 
@@ -921,6 +922,7 @@ namespace WarehouseAccountingSystem
             this.statusStrip1.Size = new System.Drawing.Size(943, 22);
             this.statusStrip1.TabIndex = 31;
             this.statusStrip1.Text = "statusStrip1";
+            this.statusStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.statusStrip1_ItemClicked);
             // 
             // Form1
             // 

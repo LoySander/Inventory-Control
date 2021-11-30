@@ -5,3 +5,6 @@ C:\Users\37529\source\repos\WarehouseAccountingSystem\Presentation\obj\Debug\Pre
 C:\Users\37529\source\repos\WarehouseAccountingSystem\Presentation\obj\Debug\Presentation.csproj.CoreCompileInputs.cache
 C:\Users\37529\source\repos\WarehouseAccountingSystem\Presentation\obj\Debug\Presentation.dll
 C:\Users\37529\source\repos\WarehouseAccountingSystem\Presentation\obj\Debug\Presentation.pdb
+C:\Users\37529\source\repos\WarehouseAccountingSystem\Presentation\bin\Debug\Model.dll
+C:\Users\37529\source\repos\WarehouseAccountingSystem\Presentation\bin\Debug\Model.pdb
+C:\Users\37529\source\repos\WarehouseAccountingSystem\Presentation\obj\Debug\Presentation.csproj.CopyComplete

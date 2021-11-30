@@ -46,17 +46,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\IPresenter.cs" />
+    <Compile Include="Common\IViewOpenClose.cs" />
+    <Compile Include="Common\IViewRole.cs" />
     <Compile Include="Presenter.cs" />
+    <Compile Include="Presenters\LoginPresenter.cs" />
+    <Compile Include="Presenters\MainPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\ILoginView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WarehouseAccountingSystem\WarehouseAccountingSystem.csproj">
-      <Project>{c5fde76b-76ad-49c5-83e7-319e61a18680}</Project>
-      <Name>WarehouseAccountingSystem</Name>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{97654757-4517-4ffb-b437-0fa2fc8bdfa3}</Project>
+      <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
