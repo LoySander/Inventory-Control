@@ -49,7 +49,6 @@
     <Compile Include="Common\IPresenter.cs" />
     <Compile Include="Common\IViewOpenClose.cs" />
     <Compile Include="Common\IViewRole.cs" />
-    <Compile Include="Presenter.cs" />
     <Compile Include="Presenters\LoginPresenter.cs" />
     <Compile Include="Presenters\MainPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

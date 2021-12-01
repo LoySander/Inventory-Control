@@ -13,6 +13,6 @@ namespace Presentation.Views
         string Password { get; }
 
         string ClientName { get;}
-        void Error();
+        void ShowMessage(string message);
     }
 }

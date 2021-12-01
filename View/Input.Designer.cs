@@ -38,7 +38,7 @@ namespace WarehouseAccountingSystem
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
+            this.InputClientButton = new System.Windows.Forms.Button();
             this.name_customer = new System.Windows.Forms.TextBox();
             this.add_customer = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -133,7 +133,7 @@ namespace WarehouseAccountingSystem
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.InputClientButton);
             this.panel1.Controls.Add(this.name_customer);
             this.panel1.Controls.Add(this.add_customer);
             this.panel1.Controls.Add(this.label2);
@@ -143,16 +143,16 @@ namespace WarehouseAccountingSystem
             this.panel1.Size = new System.Drawing.Size(386, 333);
             this.panel1.TabIndex = 2;
             // 
-            // button2
+            // InputClientButton
             // 
-            this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(102, 281);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(109, 40);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "Войти";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.InputClientButton.Enabled = false;
+            this.InputClientButton.Location = new System.Drawing.Point(102, 281);
+            this.InputClientButton.Name = "InputClientButton";
+            this.InputClientButton.Size = new System.Drawing.Size(109, 40);
+            this.InputClientButton.TabIndex = 6;
+            this.InputClientButton.Text = "Войти";
+            this.InputClientButton.UseVisualStyleBackColor = true;
+            this.InputClientButton.Click += new System.EventHandler(this.InputClientButton_Click);
             // 
             // name_customer
             // 
@@ -229,7 +229,7 @@ namespace WarehouseAccountingSystem
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ComboBox Customer;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button InputClientButton;
         private System.Windows.Forms.TextBox name_customer;
         private System.Windows.Forms.Button add_customer;
         private System.Windows.Forms.Panel panel2;

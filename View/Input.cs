@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Presentation.Presenters;
 using Presentation.Views;
+using Model.Services;
 
 
 namespace WarehouseAccountingSystem
@@ -18,24 +19,14 @@ namespace WarehouseAccountingSystem
 
         private LoginPresenter presenter;
 
-        //string name = "";
-        
-        //public void SetName(string name)
-        //{
-        //    this.name = name;
-        //}
-        //public string GetName()
-        //{
-        //    return this.name;
-        //}
         public Input()
         {
             InitializeComponent();
-            presenter = new LoginPresenter(this);
-            presenter.Start();
+            presenter = new LoginPresenter(this,new AuthorizationService());
+            //presenter.Start();
         }
         //пока работаем с одним пользователем
-        public string ClientName { get { return Customer.SelectedItem.ToString(); } }
+        public string ClientName { get { return Customer.SelectedItem.ToString(); } set { name_customer.Text.ToString(); } }
 
         public string Username { get { return textLoginBox.Text; } }
         public string Password { get { return textPasswordBox.Text; } }
@@ -46,22 +37,19 @@ namespace WarehouseAccountingSystem
         private void Customer_SelectedIndexChanged(object sender, EventArgs e)
         {
             //SetName(Customer.SelectedItem.ToString());
-            string selectedState = Customer.SelectedItem.ToString();
-            button2.Enabled = true;
+            //string selectedState = Customer.SelectedItem.ToString();
+            InputClientButton.Enabled = true;
         }
 
         private void add_customer_Click(object sender, EventArgs e)
         {
-            Customer.Items.Add(name_customer.Text);
+            //Customer.Items.Add(name_customer.Text);
+            presenter.AddClient();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void InputClientButton_Click(object sender, EventArgs e)
         {
-           // обязательно изменить
             presenter.ClientLogin();
-            Form1 z = new Form1(this);
-            MessageBox.Show("Вы вошли в систему как " + ClientName);
-            z.Show();
         }
 
 
@@ -70,9 +58,9 @@ namespace WarehouseAccountingSystem
             presenter.Login();
         }
 
-        public void Error()
+        public void ShowMessage(string message)
         {
-            MessageBox.Show("Ошибка, проверьте логин или пароль");
+            MessageBox.Show(message);
         }
 
          public new void Show()
@@ -81,6 +69,7 @@ namespace WarehouseAccountingSystem
             z.Show();
         }
 
-       
+
+        
     }
 }

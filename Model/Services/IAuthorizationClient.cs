@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-namespace Model
+namespace Model.Services
 {
-    public class Class
+    public interface IAuthorizationClient
     {
+       string UserName { get; set; }
     }
 }

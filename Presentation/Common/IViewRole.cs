@@ -10,5 +10,6 @@ namespace Presentation.Common
     {
         bool PurchasingManager { get; set; }
         bool AccountManager { get; set; }
+
     }
 }
