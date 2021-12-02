@@ -14,14 +14,13 @@ namespace Presentation.Presenters
     {
         private ILoginView _view;
         private IAuthorizationCustomer _loginUser;
+        private IAuthorizationClient _client;
        
-
-       
-        public LoginPresenter(ILoginView view,IAuthorizationCustomer loginUser)
+        public LoginPresenter(ILoginView view,IAuthorizationCustomer loginUser, IAuthorizationClient client)
         {
             this._view = view;
             this._loginUser = loginUser;
-            
+            this._client = client;
         }
 
         public void Start()
@@ -33,30 +32,16 @@ namespace Presentation.Presenters
         {
             Start();
             _view.ShowMessage("Вы вошли в систему как " + _view.ClientName);
-
         }
       
         public void Login()
         {
-            //if (_view.Password == "123" && _view.Username == "PM")
-            //{
 
-            //    _view.PurchasingManager = true;
-            //    Start();
-            //}
-
-            //else if (_view.Password == "321" && _view.Username == "AM")
-            //{
-            //    _view.AccountManager = true;
-            //    Start();
-            //}
             _loginUser.Password = _view.Password;
             _loginUser.UserName = _view.Username;
             if (_loginUser.Authorization(this._loginUser))
             {
                 _loginUser.CheckRole(this._loginUser);
-                _view.PurchasingManager = _loginUser.PurchasingManager;
-                _view.AccountManager = _loginUser.AccountManager;
                 Start();
             }
             else
@@ -67,7 +52,8 @@ namespace Presentation.Presenters
 
         public void AddClient()
         {
-            Client client = new Client(_view.ClientName);
+            _client.UserName = _view.ClientName;
         }
+     
     }
 }

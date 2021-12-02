@@ -15,8 +15,10 @@ namespace Model.Services
 
         public string UserName { get; set; }
         public string Password { get; set; }
-        public bool PurchasingManager { get; set; }
-        public bool AccountManager { get; set; }
+
+        // нужно перенести роли в кастомера
+        public bool PurchasingManager { get { return Customer.AccountManager; } set { } }
+        public bool AccountManager { get { return Customer.AccountManager; } set { } }
 
         public bool Authorization(IAuthorizationCustomer loginUser)
         {
@@ -37,11 +39,14 @@ namespace Model.Services
             {
                 if (loginUser.UserName == "AM")
                 {
+                    // здесь поменять
                     AccountManager = true;
+                    Customer.AccountManager = true;
                 }
                 else if(loginUser.UserName == "PM")
                 {
                     PurchasingManager = true;
+                    Customer.PurchasingManager = true;
                 }
 
             }

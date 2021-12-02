@@ -13,7 +13,9 @@ namespace Model.Repositories
 
         public string UserName { get; set; }
         public string Password { get; set; }
-      
+        public static bool PurchasingManager { get; set; }
+        public static bool AccountManager { get; set; }
+
         public Customer() { }
         public Customer(string userName, string password)
         {
@@ -32,7 +34,5 @@ namespace Model.Repositories
         }
 
         List<Customer> list = Customer.GetUsers();
-
-
     }
 }

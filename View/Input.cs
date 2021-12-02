@@ -17,16 +17,16 @@ namespace WarehouseAccountingSystem
     public partial class Input : Form, ILoginView
     {
 
-        private LoginPresenter presenter;
+        private LoginPresenter loginPresenter;
 
         public Input()
         {
             InitializeComponent();
-            presenter = new LoginPresenter(this,new AuthorizationService());
+            loginPresenter = new LoginPresenter(this,new AuthorizationService(),new );
             //presenter.Start();
         }
         //пока работаем с одним пользователем
-        public string ClientName { get { return Customer.SelectedItem.ToString(); } set { name_customer.Text.ToString(); } }
+        public string ClientName { get { return Customer.SelectedItem.ToString(); } set { } }
 
         public string Username { get { return textLoginBox.Text; } }
         public string Password { get { return textPasswordBox.Text; } }
@@ -37,25 +37,25 @@ namespace WarehouseAccountingSystem
         private void Customer_SelectedIndexChanged(object sender, EventArgs e)
         {
             //SetName(Customer.SelectedItem.ToString());
-            //string selectedState = Customer.SelectedItem.ToString();
+            string selectedState = Customer.SelectedItem.ToString();
             InputClientButton.Enabled = true;
         }
 
         private void add_customer_Click(object sender, EventArgs e)
         {
-            //Customer.Items.Add(name_customer.Text);
-            presenter.AddClient();
+            Customer.Items.Add(name_customer.Text);
+            //presenter.AddClient();
         }
 
         private void InputClientButton_Click(object sender, EventArgs e)
         {
-            presenter.ClientLogin();
+            loginPresenter.ClientLogin();
         }
 
 
         private void inputEmployee_Click(object sender, EventArgs e)
         {
-            presenter.Login();
+            loginPresenter.Login();
         }
 
         public void ShowMessage(string message)
@@ -68,7 +68,6 @@ namespace WarehouseAccountingSystem
             Form1 z = new Form1(this);
             z.Show();
         }
-
 
         
     }
