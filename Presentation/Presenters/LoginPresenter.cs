@@ -22,7 +22,6 @@ namespace Presentation.Presenters
             this._loginUser = loginUser;
             this._client = client;
         }
-
         public void Start()
         {
             _view.Show();
@@ -52,7 +51,8 @@ namespace Presentation.Presenters
 
         public void AddClient()
         {
-            _client.UserName = _view.ClientName;
+            _client.Add(_view.ClientName);
+            _view.AddCustomer(_client.ClientName);
         }
      
     }

@@ -8,6 +8,7 @@ namespace WarehouseAccountingSystem
 {
     public class Order
     {
+        public long Id { get; set; }
         public string NameProduct { get; set; }
         public int CostProduct { get; set; }
         public int IdProduct { get; set; }

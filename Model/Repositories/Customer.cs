@@ -33,6 +33,6 @@ namespace Model.Repositories
             return listUsers;
         }
 
-        List<Customer> list = Customer.GetUsers();
+        //List<Customer> list = Customer.GetUsers();
     }
 }

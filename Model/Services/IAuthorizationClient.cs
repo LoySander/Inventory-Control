@@ -8,6 +8,8 @@ namespace Model.Services
 {
     public interface IAuthorizationClient
     {
-       string UserName { get; set; }
+       string ClientName { get; set; }
+        int IdClient { get; set; }
+         void Add(string clientName);
     }
 }

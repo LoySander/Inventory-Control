@@ -9,7 +9,23 @@ namespace Model.Repositories
 {
     class OrderDB
     {
-        MySqlConnection connection = new MySqlConnection("server = localhost;port=3306;username=root;password=root;database = orderclient");
+        private MySqlConnection connection = new MySqlConnection("server = localhost;port=3306;username=root;password=root;database = orderclient");
+
+        private static OrderDB INSTANCE;
+
+        public static OrderDB getInstance()
+        {
+            if (INSTANCE == null)
+            {
+                INSTANCE = new OrderDB();
+            }
+            return INSTANCE;
+        }
+
+        private OrderDB()
+        {
+
+        }
 
         public void OpenDB()
         {

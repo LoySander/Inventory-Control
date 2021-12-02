@@ -22,11 +22,11 @@ namespace WarehouseAccountingSystem
         public Input()
         {
             InitializeComponent();
-            loginPresenter = new LoginPresenter(this,new AuthorizationService(),new );
+            loginPresenter = new LoginPresenter(this,new AuthorizationService(),new AddClientService());
             //presenter.Start();
         }
         //пока работаем с одним пользователем
-        public string ClientName { get { return Customer.SelectedItem.ToString(); } set { } }
+        public string ClientName { get { return name_customer.Text; } set {  } }
 
         public string Username { get { return textLoginBox.Text; } }
         public string Password { get { return textPasswordBox.Text; } }
@@ -41,10 +41,14 @@ namespace WarehouseAccountingSystem
             InputClientButton.Enabled = true;
         }
 
+        public void AddCustomer(string clientName)
+        {
+            Customer.Items.Add(clientName);
+        }
         private void add_customer_Click(object sender, EventArgs e)
         {
             Customer.Items.Add(name_customer.Text);
-            //presenter.AddClient();
+            loginPresenter.AddClient();
         }
 
         private void InputClientButton_Click(object sender, EventArgs e)

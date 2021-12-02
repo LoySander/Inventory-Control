@@ -13,6 +13,7 @@ namespace Presentation.Views
         string Password { get; }
 
         string ClientName { get;}
+        void AddCustomer(string name);
         void ShowMessage(string message);
     }
 }

@@ -12,8 +12,6 @@ namespace WarehouseAccountingSystem
         public int  WeightProduct { get; set; }
         public int CostProduct { get; set; }
         public string CountryProduct { get; set; }
-
         public int IdProduct{ get; set;}
-
     }
 }

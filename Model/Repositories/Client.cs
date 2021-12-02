@@ -7,20 +7,24 @@ using Model.Services;
 
 namespace Model.Repositories
 {
-    public class Client:IAuthorizationClient
+    public class Client
     {
-        public string UserName { get; set; }
+        public string  ClientName{ get; set; }
 
-        public string IdClient { get; set; }
+        public int IdClient { get; set; }
 
+        private static List<Client> listClients = new List<Client>();
         public Client()
         {
-
         }
+        //public Client (string userName)
+        //{
+        //    ClientName = userName;
+        //}
 
-        public Client (string userName)
+        static public List<Client> GetClient()
         {
-            UserName = userName;
+            return listClients;
         }
     }
 
