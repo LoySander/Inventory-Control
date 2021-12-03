@@ -14,7 +14,7 @@ using Model.Services;
 
 namespace WarehouseAccountingSystem
 {
-    public partial class Form1 : Form, IMainView
+    public partial class MainForm : Form, IMainView
     {
         //public List<Product> Items { get; set; }
         private MainPresenter presenter;
@@ -38,14 +38,14 @@ namespace WarehouseAccountingSystem
         //ToolStripLabel timeLabel;
         //ToolStripLabel infoLabel;
         //Timer timer;
-        public Form1(Input x)
+        public MainForm(Input x)
         {  
             InitializeComponent();
 
             Items1 = GetItems1();
             Items2 = GetItems2();
             Orders = GetOrders();
-            
+
             // часики
             //infoLabel = new ToolStripLabel();
             //infoLabel.Text = "Текущие дата и время:";
@@ -64,7 +64,8 @@ namespace WarehouseAccountingSystem
             //Input x = new Input();
             //label1.Text = x.GetName();
 
-            presenter = new MainPresenter(this,new AuthorizationService());
+           presenter = new MainPresenter(this, new AuthorizationService());
+            presenter.GetRoles();
 
         }
 
@@ -75,6 +76,8 @@ namespace WarehouseAccountingSystem
         // здесь происходит установка ролей
         public void SetWindowFromRole()
         {
+
+    
             if (PurchasingManager == true)
             {
                 // нужно с маленькой буквы прописать

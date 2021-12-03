@@ -31,7 +31,7 @@ namespace WarehouseAccountingSystem
         {
             this.login = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.inputEmployee = new System.Windows.Forms.Button();
+            this.InputEmployee = new System.Windows.Forms.Button();
             this.textPasswordBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.textLoginBox = new System.Windows.Forms.TextBox();
@@ -40,7 +40,7 @@ namespace WarehouseAccountingSystem
             this.panel1 = new System.Windows.Forms.Panel();
             this.InputClientButton = new System.Windows.Forms.Button();
             this.name_customer = new System.Windows.Forms.TextBox();
-            this.add_customer = new System.Windows.Forms.Button();
+            this.AddClient = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.Customer = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -65,7 +65,7 @@ namespace WarehouseAccountingSystem
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.Info;
-            this.panel2.Controls.Add(this.inputEmployee);
+            this.panel2.Controls.Add(this.InputEmployee);
             this.panel2.Controls.Add(this.textPasswordBox);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.textLoginBox);
@@ -76,16 +76,16 @@ namespace WarehouseAccountingSystem
             this.panel2.Size = new System.Drawing.Size(415, 333);
             this.panel2.TabIndex = 3;
             // 
-            // inputEmployee
+            // InputEmployee
             // 
-            this.inputEmployee.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.inputEmployee.Location = new System.Drawing.Point(126, 187);
-            this.inputEmployee.Name = "inputEmployee";
-            this.inputEmployee.Size = new System.Drawing.Size(172, 38);
-            this.inputEmployee.TabIndex = 11;
-            this.inputEmployee.Text = "Войти";
-            this.inputEmployee.UseVisualStyleBackColor = true;
-            this.inputEmployee.Click += new System.EventHandler(this.inputEmployee_Click);
+            this.InputEmployee.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.InputEmployee.Location = new System.Drawing.Point(126, 187);
+            this.InputEmployee.Name = "InputEmployee";
+            this.InputEmployee.Size = new System.Drawing.Size(172, 38);
+            this.InputEmployee.TabIndex = 11;
+            this.InputEmployee.Text = "Войти";
+            this.InputEmployee.UseVisualStyleBackColor = true;
+            this.InputEmployee.Click += new System.EventHandler(this.InputEmployee_Click);
             // 
             // textPasswordBox
             // 
@@ -135,7 +135,7 @@ namespace WarehouseAccountingSystem
             this.panel1.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.panel1.Controls.Add(this.InputClientButton);
             this.panel1.Controls.Add(this.name_customer);
-            this.panel1.Controls.Add(this.add_customer);
+            this.panel1.Controls.Add(this.AddClient);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.Customer);
             this.panel1.Location = new System.Drawing.Point(4, 117);
@@ -161,16 +161,16 @@ namespace WarehouseAccountingSystem
             this.name_customer.Size = new System.Drawing.Size(115, 20);
             this.name_customer.TabIndex = 5;
             // 
-            // add_customer
+            // AddClient
             // 
-            this.add_customer.Font = new System.Drawing.Font("Wide Latin", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.add_customer.Location = new System.Drawing.Point(178, 240);
-            this.add_customer.Name = "add_customer";
-            this.add_customer.Size = new System.Drawing.Size(81, 20);
-            this.add_customer.TabIndex = 4;
-            this.add_customer.Text = "Добавить";
-            this.add_customer.UseVisualStyleBackColor = true;
-            this.add_customer.Click += new System.EventHandler(this.add_customer_Click);
+            this.AddClient.Font = new System.Drawing.Font("Wide Latin", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddClient.Location = new System.Drawing.Point(178, 240);
+            this.AddClient.Name = "AddClient";
+            this.AddClient.Size = new System.Drawing.Size(81, 20);
+            this.AddClient.TabIndex = 4;
+            this.AddClient.Text = "Добавить";
+            this.AddClient.UseVisualStyleBackColor = true;
+            this.AddClient.Click += new System.EventHandler(this.AddClient_Click);
             // 
             // label2
             // 
@@ -231,10 +231,10 @@ namespace WarehouseAccountingSystem
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button InputClientButton;
         private System.Windows.Forms.TextBox name_customer;
-        private System.Windows.Forms.Button add_customer;
+        private System.Windows.Forms.Button AddClient;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button inputEmployee;
+        private System.Windows.Forms.Button InputEmployee;
         private System.Windows.Forms.TextBox textPasswordBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textLoginBox;

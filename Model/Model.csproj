@@ -53,13 +53,12 @@
     <Compile Include="Repositories\DAO\ListProductDao.cs" />
     <Compile Include="Repositories\Order.cs" />
     <Compile Include="Repositories\OrderDB.cs" />
-    <Compile Include="Repositories\Customer.cs" />
+    <Compile Include="Repositories\Employee.cs" />
     <Compile Include="Repositories\Product.cs" />
-    <Compile Include="Services\AddClientService.cs" />
+    <Compile Include="Services\ClientService.cs" />
     <Compile Include="Services\AuthorizationService.cs" />
     <Compile Include="Services\IAuthorizationClient.cs" />
     <Compile Include="Services\IAuthorizationCustomer.cs" />
-    <Compile Include="Services\IRoleCustomer.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

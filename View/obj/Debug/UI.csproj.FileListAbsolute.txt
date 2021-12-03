@@ -7,7 +7,6 @@ C:\Users\37529\source\repos\WarehouseAccountingSystem\View\bin\Debug\Presentatio
 C:\Users\37529\source\repos\WarehouseAccountingSystem\View\bin\Debug\Presentation.dll.config
 C:\Users\37529\source\repos\WarehouseAccountingSystem\View\bin\Debug\Model.pdb
 C:\Users\37529\source\repos\WarehouseAccountingSystem\View\obj\Debug\UI.csproj.AssemblyReference.cache
-C:\Users\37529\source\repos\WarehouseAccountingSystem\View\obj\Debug\WarehouseAccountingSystem.Form1.resources
 C:\Users\37529\source\repos\WarehouseAccountingSystem\View\obj\Debug\WarehouseAccountingSystem.Input.resources
 C:\Users\37529\source\repos\WarehouseAccountingSystem\View\obj\Debug\View.Properties.Resources.resources
 C:\Users\37529\source\repos\WarehouseAccountingSystem\View\obj\Debug\UI.csproj.GenerateResource.cache
@@ -28,3 +27,4 @@ C:\Users\37529\source\repos\WarehouseAccountingSystem\View\bin\Debug\K4os.Hash.x
 C:\Users\37529\source\repos\WarehouseAccountingSystem\View\bin\Debug\System.Numerics.Vectors.dll
 C:\Users\37529\source\repos\WarehouseAccountingSystem\View\bin\Debug\MySql.Data.xml
 C:\Users\37529\source\repos\WarehouseAccountingSystem\View\obj\Debug\View.exe.config
+C:\Users\37529\source\repos\WarehouseAccountingSystem\View\obj\Debug\WarehouseAccountingSystem.MainForm.resources

@@ -7,7 +7,7 @@ using Model.Repositories;
 
 namespace Model.Services
 {
-   public class AddClientService : IAuthorizationClient
+    public class ClientService : IAuthorizationClient
     {
         public string ClientName { get; set; }
         public int IdClient { get; set; }
@@ -21,6 +21,11 @@ namespace Model.Services
             this.ClientName = clientName;
             list.Add(new Client() { ClientName = clientName, IdClient = id });
             id++;
+        }
+
+        public Client Get(int id)
+        {
+            return list.Where(client => client.IdClient == id).FirstOrDefault(null);
         }
     }
 }

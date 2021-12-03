@@ -18,26 +18,25 @@ namespace WarehouseAccountingSystem
     {
 
         private LoginPresenter loginPresenter;
+        
 
         public Input()
         {
             InitializeComponent();
-            loginPresenter = new LoginPresenter(this,new AuthorizationService(),new AddClientService());
+        
+            loginPresenter = new LoginPresenter(this,new AuthorizationService(),new ClientService());
             //presenter.Start();
         }
         //пока работаем с одним пользователем
-        public string ClientName { get { return name_customer.Text; } set {  } }
+        public string ClientName { get { return Customer.SelectedItem.ToString(); } set {  } }
 
         public string Username { get { return textLoginBox.Text; } }
         public string Password { get { return textPasswordBox.Text; } }
 
-        public bool PurchasingManager { get; set; }
-        public bool AccountManager { get; set; }
-
         private void Customer_SelectedIndexChanged(object sender, EventArgs e)
         {
             //SetName(Customer.SelectedItem.ToString());
-            string selectedState = Customer.SelectedItem.ToString();
+            //string selectedState = Customer.SelectedItem.ToString();
             InputClientButton.Enabled = true;
         }
 
@@ -45,21 +44,11 @@ namespace WarehouseAccountingSystem
         {
             Customer.Items.Add(clientName);
         }
-        private void add_customer_Click(object sender, EventArgs e)
-        {
-            Customer.Items.Add(name_customer.Text);
-            loginPresenter.AddClient();
-        }
+      
 
         private void InputClientButton_Click(object sender, EventArgs e)
         {
             loginPresenter.ClientLogin();
-        }
-
-
-        private void inputEmployee_Click(object sender, EventArgs e)
-        {
-            loginPresenter.Login();
         }
 
         public void ShowMessage(string message)
@@ -69,10 +58,19 @@ namespace WarehouseAccountingSystem
 
          public new void Show()
         {
-            Form1 z = new Form1(this);
+            MainForm z = new MainForm(this);
             z.Show();
         }
 
-        
+        private void AddClient_Click(object sender, EventArgs e)
+        {
+            //Customer.Items.Add(name_customer.Text);
+            loginPresenter.AddClient(name_customer.Text);
+        }
+
+        private void InputEmployee_Click(object sender, EventArgs e)
+        {
+            loginPresenter.Login();
+        }
     }
 }

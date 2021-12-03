@@ -16,7 +16,7 @@ namespace Presentation.Presenters
     {
         private IMainView _view;
         private IAuthorizationCustomer _role;
-        private Customer customer;
+        private Employee employee;
         public MainPresenter(IMainView view, IAuthorizationCustomer role)
         {
             this._view = view;
@@ -29,8 +29,8 @@ namespace Presentation.Presenters
 
         public void GetRoles()
         {
-            _view.AccountManager = Customer.AccountManager;
-            _view.PurchasingManager = Customer.PurchasingManager;
+            _view.AccountManager = _role.AccountManager;
+            _view.PurchasingManager = _role.PurchasingManager;
             _view.SetWindowFromRole();
         }
 

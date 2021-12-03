@@ -7,7 +7,7 @@ using Presentation.Common;
 
 namespace Presentation.Views
 {
-     public interface ILoginView: IViewOpenClose,IViewRole
+     public interface ILoginView: IViewOpenClose
     {
         string Username { get; }
         string Password { get; }

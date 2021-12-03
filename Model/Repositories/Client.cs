@@ -14,14 +14,7 @@ namespace Model.Repositories
         public int IdClient { get; set; }
 
         private static List<Client> listClients = new List<Client>();
-        public Client()
-        {
-        }
-        //public Client (string userName)
-        //{
-        //    ClientName = userName;
-        //}
-
+      
         static public List<Client> GetClient()
         {
             return listClients;

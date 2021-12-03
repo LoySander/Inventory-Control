@@ -49,9 +49,9 @@ namespace Presentation.Presenters
             }
         }
 
-        public void AddClient()
+        public void AddClient(string name)
         {
-            _client.Add(_view.ClientName);
+            _client.Add(name);
             _view.AddCustomer(_client.ClientName);
         }
      
