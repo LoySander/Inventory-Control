@@ -14,16 +14,10 @@ namespace Model.Repositories
         public string UserName { get; set; }
         public string Password { get; set; }
 
-       EmployeeType employeeType { get; set; }
+        public EmployeeType employeeType { get; set; }
 
         public static bool PurchasingManager = false;
         public static bool AccountManager = false;
-
-        public  enum EmployeeType
-        {
-            PurchasingManager,
-            AccountManager
-        }
 
         public Employee() { }
         public Employee(string userName, string password)
@@ -43,5 +37,11 @@ namespace Model.Repositories
         }
 
         //List<Customer> list = Customer.GetUsers();
+    }
+
+    public enum EmployeeType
+    {
+        PurchasingManager,
+        AccountManager
     }
 }

@@ -7,7 +7,7 @@ using WarehouseAccountingSystem;
 
 namespace Model.Repositories.DAO
 {
-    internal class ListProductDao : IProductDao
+    public class ListProductDao : IProductDao
     {
         private List<Product> productList;
         private static ListProductDao INSTANCE;
@@ -23,6 +23,35 @@ namespace Model.Repositories.DAO
         {
             productList = new List<Product>();
             //прописать здесь тестовые продукты
+            productList.Add(new Product { 
+                NameProduct = "Телевизор, он же TV", 
+                CostProduct = 500, 
+                CountryProduct = "Беларусь", 
+                DescriptionProduct = "Норм",
+                IdProduct = 111,
+                WeightProduct = 10,
+                  type = ProductType.Manufacture});
+            productList.Add(new Product
+            {
+                NameProduct = "Компьютер",
+                CostProduct = 1000,
+                CountryProduct = "Тайвань",
+                DescriptionProduct = "Геймерский",
+                IdProduct = 1333,
+                WeightProduct = 10,
+                type = ProductType.Manufacture
+            });
+            productList.Add(new Product
+            {
+                NameProduct = "Хлеб",
+                CostProduct = 10,
+                CountryProduct = "Беларусь",
+                DescriptionProduct = "Черствый",
+                IdProduct = 222,
+                WeightProduct = 1,
+                type = ProductType.Food
+            });
+
         }
 
         public void addProduct(Product product)
@@ -42,7 +71,7 @@ namespace Model.Repositories.DAO
 
         public Product GetProduct(long id)
         {
-            return productList.Where(product => product.IdProduct == id).FirstOrDefault(null);
+            return productList.Where(product => product.IdProduct == id).First();
         }
     }
 }

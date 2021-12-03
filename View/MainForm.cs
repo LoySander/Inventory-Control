@@ -11,64 +11,37 @@ using Presentation.Common;
 using Presentation.Presenters;
 using Presentation.Views;
 using Model.Services;
+using Model.Repositories.DAO;
+
 
 namespace WarehouseAccountingSystem
 {
     public partial class MainForm : Form, IMainView
     {
-        //public List<Product> Items { get; set; }
-        private MainPresenter presenter;
-        public List<Manufacture> Items1 { get; set; }
-        public List<Foodstuffs> Items2 { get; set; }
-        public List<Product> Items3 { get; set; }
-        public List<Order> Orders { get; set; }
-       // пароли и юзернейм не нужен
-       public string ClientName {get;}
-
-       // нам не нужен set
+       
+       private MainPresenter presenter;
+       public List<Foodstuffs> Items2 { get; set; }
+       public List<Product> Items3 { get; set; }
+       public List<Order> Orders { get; set; }
+       public string ClientName { get; set; }
        public bool PurchasingManager { get; set; }
        public bool AccountManager { get; set; }
-
-       public bool check = false;
-
+       
        public string Heading { get; set; }
+       private Form inputWindow;
 
-
-        //ToolStripLabel dateLabel;
-        //ToolStripLabel timeLabel;
-        //ToolStripLabel infoLabel;
-        //Timer timer;
-        public MainForm(Input x)
-        {  
+ 
+        public MainForm(Input inputWindow)
+        {
             InitializeComponent();
-
-            Items1 = GetItems1();
             Items2 = GetItems2();
             Orders = GetOrders();
 
-            // часики
-            //infoLabel = new ToolStripLabel();
-            //infoLabel.Text = "Текущие дата и время:";
-            //dateLabel = new ToolStripLabel();
-            //timeLabel = new ToolStripLabel();
-            //statusStrip1.Items.Add(infoLabel);
-            //statusStrip1.Items.Add(dateLabel);
-            //statusStrip1.Items.Add(timeLabel);
-            //infoLabel = new ToolStripLabel();
-            //infoLabel.Text = "Текущие дата и время:";
-            //dateLabel = new ToolStripLabel();
-            //timeLabel = new ToolStripLabel();
-            //timer = new Timer() { Interval = 1000 };
-            //timer.Tick += timer_Tick; 
-            //timer.Start();
-            //Input x = new Input();
-            //label1.Text = x.GetName();
-
-           presenter = new MainPresenter(this, new AuthorizationService());
+            this.inputWindow = inputWindow;
+            presenter = new MainPresenter(this, new AuthorizationService());
             presenter.GetRoles();
 
         }
-
         public void SetHeading(string heading)
         {
             CatalogLabel.Text = heading; 
@@ -77,7 +50,6 @@ namespace WarehouseAccountingSystem
         public void SetWindowFromRole()
         {
 
-    
             if (PurchasingManager == true)
             {
                 // нужно с маленькой буквы прописать
@@ -94,7 +66,6 @@ namespace WarehouseAccountingSystem
                 DeleviryToolStripMenuItem.Enabled = false;
                 OrderProviderToolStripMenuItem.Enabled = false;
             }
-
 
         }
         public void ShowMessage(string message)
@@ -122,7 +93,7 @@ namespace WarehouseAccountingSystem
             {
                 MainPanel.Show();
                 groupBox1.Show();
-                dataGridView1.Show();
+                ProductGridView1.Show();
             }
 
         }
@@ -137,13 +108,13 @@ namespace WarehouseAccountingSystem
             }
             groupBox1.Show();
             MainPanel.Show();
-            dataGridView1.Show();
+            ProductGridView1.Show();
             SortButton.Show();
             TransferButton.Show();
             Order.Show();
             OrderButton.Show();
             CatalogLabel.Text = "Товары на складе";
-            dataGridView3.Show();
+            CartGridView.Show();
         }
 
         public void ExitCatalog()
@@ -151,27 +122,7 @@ namespace WarehouseAccountingSystem
             MainPanel.Hide();
             CatalogLabel.Text = "";
         }
-
-
-        //void timer_Tick(object sender, EventArgs e)
-        //{
-        //    dateLabel.Text = DateTime.Now.ToLongDateString();
-        //    timeLabel.Text = DateTime.Now.ToLongTimeString();
-        //}
-
-        private List<Manufacture> GetItems1()
-        {
-            var list = new List<Manufacture>();
-            list.Add(new Manufacture()
-            {
-                NameProduct = "TV",
-                WeightProduct = 10,
-                CostProduct = 100,
-                CountryProduct = "Poland",
-                IdProduct = 123456
-            });
-            return list;
-        }
+        
         private List<Order> GetOrders()
         {
             var list = new List<Order>();
@@ -199,10 +150,8 @@ namespace WarehouseAccountingSystem
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = Items1;
-            dataGridView2.DataSource = Items2;
-            dataGridView4.DataSource = Orders;
-            dataGridView5.DataSource = Orders;
+            //dataGridView4.DataSource = Orders;
+           // dataGridView5.DataSource = Orders;
         }
         private void CheckCatalog_Click(object sender, EventArgs e)
         {
@@ -227,31 +176,7 @@ namespace WarehouseAccountingSystem
             presenter.GetStorage();
            
         }
-
-        public void ChooseType() {
-            if (radioButton1.Checked)
-            {
-                if (dataGridView2.Visible)
-                {
-                    dataGridView2.Hide();
-                }
-                MainPanel.Show();
-                dataGridView1.Show();
-            }
-            else if (radioButton2.Checked)
-            {
-                if (dataGridView1.Visible)
-                {
-                    dataGridView1.Hide();
-                }
-                MainPanel.Show();
-                dataGridView2.Show();
-            }
-            else
-            {
-                this.ShowMessage("Ошибка");
-            }
-        }
+     
         public void CheckCourierOrder()
         {
             CatalogLabel.Text = "Заказы";
@@ -270,7 +195,7 @@ namespace WarehouseAccountingSystem
         {
            // здесь под вопросом кое-что
             GiveStorageButton.Show();
-            dataGridView6.Show();
+            MyOrderGridView.Show();
             GiveStorageLabel.Show();
             CostProductBox.Show();
             CostProduct.Show();
@@ -312,7 +237,7 @@ namespace WarehouseAccountingSystem
         public void CheckMyOrders()
         {
             GiveStorageButton.Hide();
-            dataGridView6.Hide();
+            MyOrderGridView.Hide();
             GiveStorageLabel.Hide();
             BidText.Show();
             BidLabel.Show();
@@ -377,7 +302,7 @@ namespace WarehouseAccountingSystem
                 BidLabel.Hide();
                 LeaveBidButton.Hide();
                 GiveStorageButton.Show();
-                dataGridView6.Show();
+                MyOrderGridView.Show();
                 GiveStorageLabel.Show();
             }
 
@@ -390,7 +315,7 @@ namespace WarehouseAccountingSystem
                 BidLabel.Hide();
                 LeaveBidButton.Hide();
                 GiveStorageButton.Hide();
-                dataGridView6.Hide();
+                MyOrderGridView.Hide();
                 GiveStorageLabel.Hide();
                 FindButton.Show();
                 DeleteOrderButton.Show();
@@ -437,19 +362,21 @@ namespace WarehouseAccountingSystem
 
         private void AddProduct_Click(object sender, EventArgs e)
         {
-            
-            dataGridView3.DataSource = Items1; 
+
+            long id = long.Parse(IdProductBox.Text);
+
+            CartGridView.DataSource = new List<Product> (presenter.AddToCart(id));
+           
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            var selectedProduct = dataGridView1.SelectedRows[0].DataBoundItem as Product;
+            var selectedProduct = ProductGridView1.SelectedRows[0].DataBoundItem as Product;
             IdProductBox.Text = selectedProduct.IdProduct.ToString();
             AddProductButton.Enabled = true;
             OrderButton.Enabled = true;
         }
 
-      
         private void dataGridView5_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var selectedOrder = dataGridView5.SelectedRows[0].DataBoundItem as Order;
@@ -457,13 +384,13 @@ namespace WarehouseAccountingSystem
             CostProductBox.Text = selectedOrder.CostProduct.ToString();
             PayButton.Enabled = true;
         }
-        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            var selectedProduct = dataGridView2.SelectedRows[0].DataBoundItem as Product;
-            IdProductBox.Text = selectedProduct.IdProduct.ToString();
-            AddProductButton.Enabled = true;
-            OrderButton.Enabled = true;
-        }
+        //private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    var selectedProduct = ProductGridView2.SelectedRows[0].DataBoundItem as Product;
+        //    IdProductBox.Text = selectedProduct.IdProduct.ToString();
+        //    AddProductButton.Enabled = true;
+        //    OrderButton.Enabled = true;
+        //}
 
         private void dataGridView4_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -473,7 +400,14 @@ namespace WarehouseAccountingSystem
         }
         private void ОкGroupBox1_Click(object sender, EventArgs e)
         {
-            presenter.ChooseTypeProduct();
+            ProductType type = ProductType.Manufacture;
+            if (radioButton2.Checked)
+            {
+                type = ProductType.Food;
+            }
+            ProductGridView1.DataSource = presenter.GetClientsProduct(type);
+            ProductGridView1.Show();
+            MainPanel.Show();
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
@@ -504,7 +438,52 @@ namespace WarehouseAccountingSystem
 
         private void MyOrdersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            presenter.CheckClientOrder();
+
+            //presenter.CheckClientOrder()
+
+            GiveStorageButton.Hide();
+            MyOrderGridView.Hide();
+            GiveStorageLabel.Hide();
+            BidText.Show();
+            BidLabel.Show();
+            LeaveBidButton.Show();
+            CostProduct.Show();
+
+
+            if (!MyOrderPanel.Visible)
+            {
+                MyOrderPanel.Show();
+            }
+
+            CatalogLabel.Text = "Мои Заказы";
+            if (MainPanel.Visible || groupBox1.Visible || ProfitPanel.Visible || BidPanel.Visible || DeliverPanel.Visible)
+            {
+                MainPanel.Hide();
+                groupBox1.Hide();
+                ProfitPanel.Hide();
+                BidPanel.Hide();
+                DeliverPanel.Hide();
+            }
+
+            //if (!BidLabel.Visible || !BidText.Visible || !LeaveBidButton.Visible)
+            // {
+            //    BidText.Show();
+            //   BidLabel.Show();
+            //     LeaveBidButton.Show();
+            //    GiveStorageButton.Hide();
+            //    dataGridView6.Hide();
+            //    GiveStorageLabel.Hide();
+            // }
+
+            if (FindButton.Visible && DeleteOrderButton.Visible)
+            {
+                CostProductBox.Show();
+                PayButton.Show();
+                CostProduct.Show();
+                FindButton.Hide();
+                DeleteOrderButton.Hide();
+            }
+
         }
 
 
@@ -558,6 +537,7 @@ namespace WarehouseAccountingSystem
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+            inputWindow.Show();
         }
 
         private void DeleviryToolStripMenuItem_Click(object sender, EventArgs e)
@@ -588,6 +568,21 @@ namespace WarehouseAccountingSystem
         void IViewOpenClose.Close()
         {
             throw new NotImplementedException();
+        }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            inputWindow.Show();
+        }
+
+        private void RequestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void OrderButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -32,10 +32,8 @@ namespace Presentation.Presenters
             Start();
             _view.ShowMessage("Вы вошли в систему как " + _view.ClientName);
         }
-      
         public void Login()
         {
-
             _loginUser.Password = _view.Password;
             _loginUser.UserName = _view.Username;
             if (_loginUser.Authorization(this._loginUser))

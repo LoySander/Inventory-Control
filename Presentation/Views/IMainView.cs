@@ -14,7 +14,6 @@ namespace Presentation.Views
         void OpenCatalog();
         void CheckStorage();
         void ExitCatalog();
-        void ChooseType();
         void CheckCourierOrder();
         void CheckProviderOrder();
         void CheckMyOrders();

@@ -7,11 +7,11 @@ using WarehouseAccountingSystem;
 
 namespace Model.Repositories.DAO
 {
-    internal interface IProductDao
+    public interface IProductDao
     {
         List<Product> getAllProducts();
         Product GetProduct(long id);
-        void addProduct(Product order);
+        void addProduct(Product product);
         void deleteProduct(long id);
     }
 }

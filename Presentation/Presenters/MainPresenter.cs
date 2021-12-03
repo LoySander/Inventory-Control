@@ -7,8 +7,7 @@ using Presentation.Common;
 using Presentation.Views;
 using Model.Services;
 using Model.Repositories;
-
-
+using WarehouseAccountingSystem;
 
 namespace Presentation.Presenters
 {
@@ -17,10 +16,14 @@ namespace Presentation.Presenters
         private IMainView _view;
         private IAuthorizationCustomer _role;
         private Employee employee;
+        private ClientProductService clientProductService;
+        private List<Product> cart;
         public MainPresenter(IMainView view, IAuthorizationCustomer role)
         {
             this._view = view;
             this._role = role;
+            this.clientProductService = ClientProductService.getInstance();
+            this.cart = new List<Product>();
         }
         public void Start()
         {
@@ -56,9 +59,15 @@ namespace Presentation.Presenters
             _view.ExitCatalog();
         }
 
-        public void ChooseTypeProduct()
+        public List<Product> GetClientsProduct(ProductType productType)
         {
-            _view.ChooseType();
+            return clientProductService.getProducts(productType);
+        }
+
+        public List<Product> AddToCart(long id)
+        {
+            cart.Add(clientProductService.GetProduct(id));
+            return cart;
         }
 
         public void GetCourierOrder()

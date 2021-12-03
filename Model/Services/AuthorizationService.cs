@@ -35,22 +35,19 @@ namespace Model.Services
 
         public bool CheckRole(IAuthorizationCustomer loginUser)
         {
-            foreach (Employee x in list)
+            if (loginUser.UserName == "AM")
             {
-                if (loginUser.UserName == "AM")
-                {
-                    Employee.AccountManager = true;
-                }
-                else if(loginUser.UserName == "PM")
-                {
-                    Employee.PurchasingManager = true;
-                }
-
+                Employee.AccountManager = true;
+                //x.employeeType = EmployeeType.AccountManager;
+            }
+            else if (loginUser.UserName == "PM")
+            {
+                Employee.PurchasingManager = true;
+                // x.employeeType = EmployeeType.PurchasingManager;
             }
             return false;
-        }
 
-       
+        }
 
 
     }

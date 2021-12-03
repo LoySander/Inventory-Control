@@ -60,6 +60,7 @@ namespace WarehouseAccountingSystem
         {
             MainForm z = new MainForm(this);
             z.Show();
+            this.Hide();
         }
 
         private void AddClient_Click(object sender, EventArgs e)
