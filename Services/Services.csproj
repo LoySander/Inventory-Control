@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CAA92F2B-6B35-4AAE-9213-541123A7098B}</ProjectGuid>
+    <ProjectGuid>{77C19ED8-50E1-4829-8FE0-BD5D1C4BCE9A}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Presentation</RootNamespace>
-    <AssemblyName>Presentation</AssemblyName>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Services</RootNamespace>
+    <AssemblyName>Services</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,16 +23,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -46,17 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\IPresenter.cs" />
-    <Compile Include="Common\IViewOpenClose.cs" />
-    <Compile Include="Common\IViewRole.cs" />
-    <Compile Include="Presenters\LoginPresenter.cs" />
-    <Compile Include="Presenters\MainPresenter.cs" />
+    <Compile Include="AuthorizationService.cs" />
+    <Compile Include="ClientOrderService.cs" />
+    <Compile Include="ClientProductService.cs" />
+    <Compile Include="ClientService.cs" />
+    <Compile Include="IAuthorizationClient.cs" />
+    <Compile Include="IAuthorizationCustomer.cs" />
+    <Compile Include="IRoleCustomer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\ILoginView.cs" />
-    <Compile Include="Views\IMainView.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
+    <Compile Include="StorageService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Model\Model.csproj">
@@ -67,11 +60,6 @@
       <Project>{6779feb2-10b9-4988-a844-55e359c000d7}</Project>
       <Name>Repositories</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Services\Services.csproj">
-      <Project>{77c19ed8-50e1-4829-8fe0-bd5d1c4bce9a}</Project>
-      <Name>Services</Name>
-    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

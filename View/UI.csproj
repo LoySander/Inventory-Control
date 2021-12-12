@@ -100,6 +100,14 @@
       <Project>{caa92f2b-6b35-4aae-9213-541123a7098b}</Project>
       <Name>Presentation</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Repositories\Repositories.csproj">
+      <Project>{6779feb2-10b9-4988-a844-55e359c000d7}</Project>
+      <Name>Repositories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services\Services.csproj">
+      <Project>{77c19ed8-50e1-4829-8fe0-bd5d1c4bce9a}</Project>
+      <Name>Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

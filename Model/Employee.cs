@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Model.Services;
 
 
-namespace Model.Repositories
+
+namespace Model
 {
     public class Employee
     {

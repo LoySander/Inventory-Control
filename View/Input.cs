@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Presentation.Presenters;
 using Presentation.Views;
-using Model.Services;
+using Services;
 
 
 namespace WarehouseAccountingSystem

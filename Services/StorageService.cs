@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WarehouseAccountingSystem;
 
-namespace Model.Services
+namespace Services
 {
     public class StorageService
     {

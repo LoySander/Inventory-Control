@@ -45,23 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Client.cs" />
+    <Compile Include="Employee.cs" />
+    <Compile Include="Order.cs" />
+    <Compile Include="OrderDB.cs" />
+    <Compile Include="Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\Client.cs" />
-    <Compile Include="Repositories\DAO\IOrderDao.cs" />
-    <Compile Include="Repositories\DAO\IProductDao.cs" />
-    <Compile Include="Repositories\DAO\ListOrderDao.cs" />
-    <Compile Include="Repositories\DAO\ListProductDao.cs" />
-    <Compile Include="Repositories\Order.cs" />
-    <Compile Include="Repositories\OrderDB.cs" />
-    <Compile Include="Repositories\Employee.cs" />
-    <Compile Include="Repositories\Product.cs" />
-    <Compile Include="Services\ClientOrderService.cs" />
-    <Compile Include="Services\ClientProductService.cs" />
-    <Compile Include="Services\ClientService.cs" />
-    <Compile Include="Services\AuthorizationService.cs" />
-    <Compile Include="Services\IAuthorizationClient.cs" />
-    <Compile Include="Services\IAuthorizationCustomer.cs" />
-    <Compile Include="Services\StorageService.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

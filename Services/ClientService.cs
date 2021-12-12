@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Model.Repositories;
+using Model;
 
-namespace Model.Services
+
+namespace Services
 {
     public class ClientService : IAuthorizationClient
     {
