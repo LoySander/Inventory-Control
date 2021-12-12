@@ -21,7 +21,7 @@ namespace WarehouseAccountingSystem
     {
        
        private MainPresenter presenter;
-       public List<Product> Items3 { get; set; }
+       public List<StorageProduct> Items3 { get; set; }
        public List<Order> Orders { get; set; }
        public string ClientName { get; set; }
 
@@ -39,7 +39,7 @@ namespace WarehouseAccountingSystem
 
             this.inputWindow = inputWindow;
             presenter = new MainPresenter(this, new AuthorizationService());
-            presenter.GetRoles(type);
+            type = presenter.GetRoles();
 
         }
         public void SetHeading(string heading)
@@ -362,7 +362,7 @@ namespace WarehouseAccountingSystem
 
             long id = long.Parse(IdProductBox.Text);
 
-            CartGridView.DataSource = new List<Product> (presenter.AddToCart(id));
+            CartGridView.DataSource = new List<StorageProduct> (presenter.AddToCart(id));
            
         }
 
@@ -592,6 +592,12 @@ namespace WarehouseAccountingSystem
                 type = ProductType.Food;
             }
             return type;
+        }
+
+        private void PayButton_Click(object sender, EventArgs e)
+        {
+            long id = long.Parse(IdProductBox1.Text);
+            MyOrderGridView1.DataSource = presenter.changeOrderStatus(id, "Оплачено");
         }
     }
 }

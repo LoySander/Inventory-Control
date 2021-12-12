@@ -1,4 +1,5 @@
-﻿using Model.Repositories.DAO;
+﻿using Model;
+using Model.Repositories.DAO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,16 +28,29 @@ namespace Services
 
         public  List<Product> getProducts(ProductType type)
         {
-            List<Product> products = productDao.getAllProducts();
-            return products.Where(product => product.type == type & product.Stock > 0).ToList();
+            List<StorageProduct> products = productDao.getAllProducts();
+            List<Product> clientProducts = new List<Product>();
+            products = products.Where(product => product.type == type & product.Stock > 0).ToList();
+            products.ForEach(product =>
+            {
+                Product clientProduct = new Product();
+                clientProduct.IdProduct = product.IdProduct;
+                clientProduct.NameProduct = product.NameProduct;
+                clientProduct.WeightProduct = product.WeightProduct;
+                clientProduct.CostProduct = product.CostProduct;
+                clientProduct.CountryProduct = product.CountryProduct;
+                clientProduct.DescriptionProduct = product.DescriptionProduct;
+                clientProducts.Add(clientProduct);
+            });
+            return clientProducts;
         }
 
-        public Product GetProduct(long id)
+        public StorageProduct GetProduct(long id)
         {
             return productDao.GetProduct(id);
         }
 
-        public void addProduct(Product product)
+        public void addProduct(StorageProduct product)
         {
             productDao.addProduct(product);
         }

@@ -45,7 +45,7 @@ namespace Model.Repositories.DAO
 
         public Order GetOrder(long id)
         {
-            return orderList.Where(order => order.Id == id).FirstOrDefault(null);
+            return orderList.Where(order => order.Id == id).First();
         }
 
 

@@ -25,25 +25,25 @@ namespace Services
             productDao = ListProductDao.getInstance();
         }
 
-        public List<Product> getProducts(ProductType type)
+        public List<StorageProduct> getProducts(ProductType type)
         {
-            List<Product> products = productDao.getAllProducts();
+            List<StorageProduct> products = productDao.getAllProducts();
             return products.Where(product => product.type == type).ToList();
         }
 
-        public List<Product> getSortedProducts(ProductType type)
+        public List<StorageProduct> getSortedProducts(ProductType type)
         {
-            List<Product> products = getProducts(type);
+            List<StorageProduct> products = getProducts(type);
             products.Sort(new ProductStockCopmarator());
             return products;
         }
 
-        public Product GetProduct(long id)
+        public StorageProduct GetProduct(long id)
         {
             return productDao.GetProduct(id);
         }
 
-        public void addProduct(Product product)
+        public void addProduct(StorageProduct product)
         {
             productDao.addProduct(product);
         }
@@ -54,9 +54,9 @@ namespace Services
         }
     }
 
-    public class ProductStockCopmarator : IComparer<Product>
+    public class ProductStockCopmarator : IComparer<StorageProduct>
     {
-        public int Compare(Product x, Product y)
+        public int Compare(StorageProduct x, StorageProduct y)
         {
             return x.Stock - y.Stock;
         }
