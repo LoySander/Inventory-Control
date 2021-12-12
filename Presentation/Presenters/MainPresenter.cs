@@ -18,14 +18,14 @@ namespace Presentation.Presenters
         private ClientProductService clientProductService;
         private ClientOrderService clientOrderService;
         private StorageService storageService;
-        private List<Product> cart;
+        private List<StorageProduct> cart;
         public MainPresenter(IMainView view, IAuthorizationCustomer role)
         {
             this._view = view;
             this._role = role;
             this.clientProductService = ClientProductService.getInstance();
             this.clientOrderService = ClientOrderService.getInstance();
-            this.cart = new List<Product>();
+            this.cart = new List<StorageProduct>();
             this.storageService = StorageService.getInstance();
         }
         public void Start()
@@ -33,10 +33,9 @@ namespace Presentation.Presenters
             _view.Show();
         }
 
-        public void GetRoles(EmployeeType type)
+        public EmployeeType GetRoles()
         {
-            type = Employee.employeeType;
-            _view.SetWindowFromRole();
+            return Employee.employeeType;
         }
 
         public void Help()
@@ -50,14 +49,14 @@ namespace Presentation.Presenters
             _view.OpenCatalog();
         }
         // когда нажимаем на просмотреть список товаров на складе, должны подгрузить данные
-        public List<Product> GetStorage(ProductType type)
+        public List<StorageProduct> GetStorage(ProductType type)
         { 
             // связь с датагрид
             _view.CheckStorage();
             return storageService.getProducts(type);
         }
 
-        public List<Product> GetSortedStorage(ProductType type)
+        public List<StorageProduct> GetSortedStorage(ProductType type)
         {
             return storageService.getSortedProducts(type);
         }
@@ -72,7 +71,7 @@ namespace Presentation.Presenters
             return clientProductService.getProducts(productType);
         }
 
-        public List<Product> AddToCart(long id)
+        public List<StorageProduct> AddToCart(long id)
         {
             cart.Add(clientProductService.GetProduct(id));
             return cart;
@@ -112,11 +111,11 @@ namespace Presentation.Presenters
             _view.CheckBid();
         }
 
-        public List<Product> makeOrder()
+        public List<StorageProduct> makeOrder()
         {
             String productNames = "";
             int totalCost = 0;
-            foreach (Product product in cart)
+            foreach (StorageProduct product in cart)
             {
                 productNames += product.NameProduct + ", ";
                 totalCost += product.CostProduct;
@@ -136,6 +135,12 @@ namespace Presentation.Presenters
         public List<Order> getClientsOrders()
         {
             return clientOrderService.GetOrders(1);
+        }
+
+        public List<Order> changeOrderStatus(long id, String newStatus)
+        {
+            clientOrderService.getOrder(id).PaymentProduct = newStatus;
+            return getClientsOrders();
         }
     }
 }

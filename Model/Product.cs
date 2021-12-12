@@ -4,23 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WarehouseAccountingSystem
+namespace Model
 {
     public class Product
     {
         public long IdProduct { get; set; }
         public string NameProduct { get; set; }
-        public int Stock { get; set; }
-        public int  WeightProduct { get; set; }
+        public int WeightProduct { get; set; }
         public int CostProduct { get; set; }
         public string CountryProduct { get; set; }
         public string DescriptionProduct { get; set; }
-        public ProductType type { get; set; }
-    }
-
-    public enum ProductType
-    {
-        Manufacture,
-        Food
     }
 }

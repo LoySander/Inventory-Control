@@ -9,9 +9,9 @@ namespace Model.Repositories.DAO
 {
     public interface IProductDao
     {
-        List<Product> getAllProducts();
-        Product GetProduct(long id);
-        void addProduct(Product product);
+        List<StorageProduct> getAllProducts();
+        StorageProduct GetProduct(long id);
+        void addProduct(StorageProduct product);
         void deleteProduct(long id);
     }
 }

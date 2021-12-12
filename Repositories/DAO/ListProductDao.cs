@@ -9,7 +9,7 @@ namespace Model.Repositories.DAO
 {
     public class ListProductDao : IProductDao
     {
-        private List<Product> productList;
+        private List<StorageProduct> productList;
         private static ListProductDao INSTANCE;
 
        static public ListProductDao getInstance()
@@ -21,9 +21,9 @@ namespace Model.Repositories.DAO
 
         private ListProductDao()
         {
-            productList = new List<Product>();
+            productList = new List<StorageProduct>();
             //прописать здесь тестовые продукты
-            productList.Add(new Product {
+            productList.Add(new StorageProduct {
                 NameProduct = "Телевизор, он же TV",
                 Stock = 150,
                 CostProduct = 500,
@@ -32,7 +32,7 @@ namespace Model.Repositories.DAO
                 IdProduct = 111,
                 WeightProduct = 10,
                 type = ProductType.Manufacture }) ;
-            productList.Add(new Product
+            productList.Add(new StorageProduct
             {
                 NameProduct = "Компьютер",
                 Stock = 9,
@@ -43,7 +43,7 @@ namespace Model.Repositories.DAO
                 WeightProduct = 10,
                 type = ProductType.Manufacture
             });
-            productList.Add(new Product
+            productList.Add(new StorageProduct
             {
                 NameProduct = "Компьютер 2.0",
                 Stock = 0,
@@ -54,7 +54,7 @@ namespace Model.Repositories.DAO
                 WeightProduct = 15,
                 type = ProductType.Manufacture
             });
-            productList.Add(new Product
+            productList.Add(new StorageProduct
             {
                 NameProduct = "Хлеб",
                 Stock = 1250,
@@ -68,7 +68,7 @@ namespace Model.Repositories.DAO
 
         }
 
-        public void addProduct(Product product)
+        public void addProduct(StorageProduct product)
         {
             productList.Add(product);
         }
@@ -78,12 +78,12 @@ namespace Model.Repositories.DAO
             productList.Remove(GetProduct(id));
         }
 
-        public List<Product> getAllProducts()
+        public List<StorageProduct> getAllProducts()
         {
-            return new List<Product>(productList);
+            return new List<StorageProduct>(productList);
         }
 
-        public Product GetProduct(long id)
+        public StorageProduct GetProduct(long id)
         {
             return productList.Where(product => product.IdProduct == id).First();
         }

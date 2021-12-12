@@ -34,5 +34,10 @@ namespace Services
         {
             orderDao.addOrder(order);
         }
+
+        public Order getOrder(long id)
+        {
+            return orderDao.GetOrder(id);
+        }
     }
 }
