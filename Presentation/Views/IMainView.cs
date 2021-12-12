@@ -16,7 +16,7 @@ namespace Presentation.Views
         void ExitCatalog();
         void CheckCourierOrder();
         void CheckProviderOrder();
-        void CheckMyOrders();
+        //void CheckMyOrders();
         void CheckEditing();
         void CheckProfit();
 

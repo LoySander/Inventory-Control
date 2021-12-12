@@ -7,6 +7,7 @@ using Presentation.Common;
 using Presentation.Views;
 using Model.Services;
 using Model.Repositories;
+using Model.Repositories.DAO;
 using WarehouseAccountingSystem;
 
 namespace Presentation.Presenters
@@ -15,15 +16,18 @@ namespace Presentation.Presenters
     {
         private IMainView _view;
         private IAuthorizationCustomer _role;
-        private Employee employee;
         private ClientProductService clientProductService;
+        private ClientOrderService clientOrderService;
+        private StorageService storageService;
         private List<Product> cart;
         public MainPresenter(IMainView view, IAuthorizationCustomer role)
         {
             this._view = view;
             this._role = role;
             this.clientProductService = ClientProductService.getInstance();
+            this.clientOrderService = ClientOrderService.getInstance();
             this.cart = new List<Product>();
+            this.storageService = StorageService.getInstance();
         }
         public void Start()
         {
@@ -48,10 +52,16 @@ namespace Presentation.Presenters
             _view.OpenCatalog();
         }
         // когда нажимаем на просмотреть список товаров на складе, должны подгрузить данные
-        public void GetStorage()
+        public List<Product> GetStorage(ProductType type)
         { 
             // связь с датагрид
             _view.CheckStorage();
+            return storageService.getProducts(type);
+        }
+
+        public List<Product> GetSortedStorage(ProductType type)
+        {
+            return storageService.getSortedProducts(type);
         }
 
         public void CloseCatalog()
@@ -85,7 +95,7 @@ namespace Presentation.Presenters
         public void CheckClientOrder()
         {
             // предоставить данные по заказам
-            _view.CheckMyOrders();
+            //_view.CheckMyOrders();
         }
 
         public void GetEditing()
@@ -102,6 +112,32 @@ namespace Presentation.Presenters
         public void GetBid()
         {
             _view.CheckBid();
+        }
+
+        public List<Product> makeOrder()
+        {
+            String productNames = "";
+            int totalCost = 0;
+            foreach (Product product in cart)
+            {
+                productNames += product.NameProduct + ", ";
+                totalCost += product.CostProduct;
+            }
+            Order order = new Order
+            {
+                ClientId = 1,
+                NamesOfProducts = productNames,
+                TotalCost = totalCost,
+                PaymentProduct = "Ожидает оплаты"
+            };
+            cart.Clear();
+            clientOrderService.addOrder(order);
+            return cart;
+        }
+
+        public List<Order> getClientsOrders()
+        {
+            return clientOrderService.GetOrders(1);
         }
     }
 }

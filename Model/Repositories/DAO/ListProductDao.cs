@@ -23,17 +23,19 @@ namespace Model.Repositories.DAO
         {
             productList = new List<Product>();
             //прописать здесь тестовые продукты
-            productList.Add(new Product { 
-                NameProduct = "Телевизор, он же TV", 
-                CostProduct = 500, 
-                CountryProduct = "Беларусь", 
+            productList.Add(new Product {
+                NameProduct = "Телевизор, он же TV",
+                Stock = 150,
+                CostProduct = 500,
+                CountryProduct = "Беларусь",
                 DescriptionProduct = "Норм",
                 IdProduct = 111,
                 WeightProduct = 10,
-                  type = ProductType.Manufacture});
+                type = ProductType.Manufacture }) ;
             productList.Add(new Product
             {
                 NameProduct = "Компьютер",
+                Stock = 9,
                 CostProduct = 1000,
                 CountryProduct = "Тайвань",
                 DescriptionProduct = "Геймерский",
@@ -43,7 +45,19 @@ namespace Model.Repositories.DAO
             });
             productList.Add(new Product
             {
+                NameProduct = "Компьютер 2.0",
+                Stock = 0,
+                CostProduct = 1500,
+                CountryProduct = "Тайвань",
+                DescriptionProduct = "Геймерский",
+                IdProduct = 1337,
+                WeightProduct = 15,
+                type = ProductType.Manufacture
+            });
+            productList.Add(new Product
+            {
                 NameProduct = "Хлеб",
+                Stock = 1250,
                 CostProduct = 10,
                 CountryProduct = "Беларусь",
                 DescriptionProduct = "Черствый",

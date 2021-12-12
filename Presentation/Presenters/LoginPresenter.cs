@@ -13,14 +13,14 @@ namespace Presentation.Presenters
     public class LoginPresenter: IPresenter
     {
         private ILoginView _view;
-        private IAuthorizationCustomer _loginUser;
-        private IAuthorizationClient _client;
+        private AuthorizationService _loginUser;
+        private ClientService _client;
        
-        public LoginPresenter(ILoginView view,IAuthorizationCustomer loginUser, IAuthorizationClient client)
+        public LoginPresenter(ILoginView view)
         {
             this._view = view;
-            this._loginUser = loginUser;
-            this._client = client;
+            this._loginUser = new AuthorizationService();
+            this._client = new ClientService();
         }
         public void Start()
         {

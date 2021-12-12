@@ -8,27 +8,34 @@ using WarehouseAccountingSystem;
 
 namespace Model.Services
 {
-    public class ClientProductService
+    public class StorageService
     {
         private IProductDao productDao;
-        private static ClientProductService INSTANCE;
+        private static StorageService INSTANCE;
 
-        public static ClientProductService getInstance()
+        public static StorageService getInstance()
         {
             if (INSTANCE == null)
-                INSTANCE = new ClientProductService();
+                INSTANCE = new StorageService();
             return INSTANCE;
         }
 
-        private ClientProductService()
+        private StorageService()
         {
             productDao = ListProductDao.getInstance();
         }
 
-        public  List<Product> getProducts(ProductType type)
+        public List<Product> getProducts(ProductType type)
         {
             List<Product> products = productDao.getAllProducts();
-            return products.Where(product => product.type == type & product.Stock > 0).ToList();
+            return products.Where(product => product.type == type).ToList();
+        }
+
+        public List<Product> getSortedProducts(ProductType type)
+        {
+            List<Product> products = getProducts(type);
+            products.Sort(new ProductStockCopmarator());
+            return products;
         }
 
         public Product GetProduct(long id)
@@ -44,6 +51,14 @@ namespace Model.Services
         public void deleteProduct(long id)
         {
             productDao.deleteProduct(id);
+        }
+    }
+
+    public class ProductStockCopmarator : IComparer<Product>
+    {
+        public int Compare(Product x, Product y)
+        {
+            return x.Stock - y.Stock;
         }
     }
 }

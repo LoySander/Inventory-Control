@@ -8,19 +8,12 @@ namespace WarehouseAccountingSystem
 {
     public class Product
     {
-        public long IdProduct { get; set; }
         public string NameProduct { get; set; }
-        public int Stock { get; set; }
         public int  WeightProduct { get; set; }
         public int CostProduct { get; set; }
         public string CountryProduct { get; set; }
-        public string DescriptionProduct { get; set; }
-        public ProductType type { get; set; }
-    }
 
-    public enum ProductType
-    {
-        Manufacture,
-        Food
+        public int IdProduct{ get; set;}
+
     }
 }

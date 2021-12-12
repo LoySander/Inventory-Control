@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Model.Services;
 
@@ -22,6 +23,8 @@ namespace Model.Repositories
         public Employee() { }
         public Employee(string userName, string password)
         {
+            //Thread.CurrentPrincipal.IsInRole
+
             UserName = userName;
             Password = password;
         }
@@ -38,7 +41,7 @@ namespace Model.Repositories
 
         //List<Customer> list = Customer.GetUsers();
     }
-
+   //  потом будем использовать enum
     public enum EmployeeType
     {
         PurchasingManager,

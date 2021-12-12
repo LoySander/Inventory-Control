@@ -24,7 +24,7 @@ namespace WarehouseAccountingSystem
         {
             InitializeComponent();
         
-            loginPresenter = new LoginPresenter(this,new AuthorizationService(),new ClientService());
+            loginPresenter = new LoginPresenter(this);
             //presenter.Start();
         }
         //пока работаем с одним пользователем
@@ -72,6 +72,11 @@ namespace WarehouseAccountingSystem
         private void InputEmployee_Click(object sender, EventArgs e)
         {
             loginPresenter.Login();
+        }
+
+        private void login_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

@@ -55,11 +55,13 @@
     <Compile Include="Repositories\OrderDB.cs" />
     <Compile Include="Repositories\Employee.cs" />
     <Compile Include="Repositories\Product.cs" />
+    <Compile Include="Services\ClientOrderService.cs" />
     <Compile Include="Services\ClientProductService.cs" />
     <Compile Include="Services\ClientService.cs" />
     <Compile Include="Services\AuthorizationService.cs" />
     <Compile Include="Services\IAuthorizationClient.cs" />
     <Compile Include="Services\IAuthorizationCustomer.cs" />
+    <Compile Include="Services\StorageService.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

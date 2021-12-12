@@ -8,8 +8,9 @@ using System.Collections;
 
 namespace Model.Repositories.DAO
 {
-    internal class ListOrderDao : IOrderDao
+    public class ListOrderDao : IOrderDao
     {
+        private long currentId = 1;
         private List<Order> orderList;
         private static ListOrderDao INSTANCE;
 
@@ -28,7 +29,8 @@ namespace Model.Repositories.DAO
 
         public void addOrder(Order order)
         {
-           orderList.Append(order);
+           order.Id = currentId++;
+           orderList.Add(order);
         }
 
         public void deleteOrder(long id)

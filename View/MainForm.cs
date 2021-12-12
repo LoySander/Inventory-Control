@@ -58,6 +58,8 @@ namespace WarehouseAccountingSystem
                 ProfitToolStripMenuItem.Enabled = false;
                 EditingToolStripMenuItem.Enabled = false;
                 сatalogToolStripMenuItem.Enabled = false;
+                groupBox1.Hide();
+                CatalogLabel.Text = " ";
             }
             else if (AccountManager == true)
             {
@@ -65,6 +67,8 @@ namespace WarehouseAccountingSystem
                 BidToolStripMenuItem.Enabled = false;
                 DeleviryToolStripMenuItem.Enabled = false;
                 OrderProviderToolStripMenuItem.Enabled = false;
+                groupBox1.Hide();
+                CatalogLabel.Text = " ";
             }
 
         }
@@ -126,13 +130,6 @@ namespace WarehouseAccountingSystem
         private List<Order> GetOrders()
         {
             var list = new List<Order>();
-            list.Add(new Order()
-            {
-                NameProduct = "TV",
-                CostProduct = 100,
-                IdProduct = 123456,
-                PaymentProduct = "Оплачен"
-            });
             return list;
         }
         private List<Foodstuffs> GetItems2()
@@ -151,7 +148,7 @@ namespace WarehouseAccountingSystem
         private void Form1_Load(object sender, EventArgs e)
         {
             //dataGridView4.DataSource = Orders;
-           // dataGridView5.DataSource = Orders;
+           MyOrderGridView1.DataSource = Orders;
         }
         private void CheckCatalog_Click(object sender, EventArgs e)
         {
@@ -173,7 +170,7 @@ namespace WarehouseAccountingSystem
             //ReOrderButton.Show();
             //SortButton.Show();
             //TransferButton.Show();
-            presenter.GetStorage();
+            ProductGridView1.DataSource = presenter.GetStorage(getProductType());
            
         }
      
@@ -234,52 +231,52 @@ namespace WarehouseAccountingSystem
 
 
         }
-        public void CheckMyOrders()
-        {
-            GiveStorageButton.Hide();
-            MyOrderGridView.Hide();
-            GiveStorageLabel.Hide();
-            BidText.Show();
-            BidLabel.Show();
-            LeaveBidButton.Show();
-            CostProduct.Show();
+        //public void CheckMyOrders()
+        //{
+        //    GiveStorageButton.Hide();
+        //    MyOrderGridView.Hide();
+        //    GiveStorageLabel.Hide();
+        //    BidText.Show();
+        //    BidLabel.Show();
+        //    LeaveBidButton.Show();
+        //    CostProduct.Show();
 
 
-            if (!MyOrderPanel.Visible)
-            {
-                MyOrderPanel.Show();
-            }
+        //    if (!MyOrderPanel.Visible)
+        //    {
+        //        MyOrderPanel.Show();
+        //    }
 
-            CatalogLabel.Text = "Мои Заказы";
-            if (MainPanel.Visible || groupBox1.Visible || ProfitPanel.Visible || BidPanel.Visible || DeliverPanel.Visible)
-            {
-                MainPanel.Hide();
-                groupBox1.Hide();
-                ProfitPanel.Hide();
-                BidPanel.Hide();
-                DeliverPanel.Hide();
-            }
+        //    CatalogLabel.Text = "Мои Заказы";
+        //    if (MainPanel.Visible || groupBox1.Visible || ProfitPanel.Visible || BidPanel.Visible || DeliverPanel.Visible)
+        //    {
+        //        MainPanel.Hide();
+        //        groupBox1.Hide();
+        //        ProfitPanel.Hide();
+        //        BidPanel.Hide();
+        //        DeliverPanel.Hide();
+        //    }
 
-            //if (!BidLabel.Visible || !BidText.Visible || !LeaveBidButton.Visible)
-            // {
-            //    BidText.Show();
-            //   BidLabel.Show();
-            //     LeaveBidButton.Show();
-            //    GiveStorageButton.Hide();
-            //    dataGridView6.Hide();
-            //    GiveStorageLabel.Hide();
-            // }
+        //    //if (!BidLabel.Visible || !BidText.Visible || !LeaveBidButton.Visible)
+        //    // {
+        //    //    BidText.Show();
+        //    //   BidLabel.Show();
+        //    //     LeaveBidButton.Show();
+        //    //    GiveStorageButton.Hide();
+        //    //    dataGridView6.Hide();
+        //    //    GiveStorageLabel.Hide();
+        //    // }
 
-            if (FindButton.Visible && DeleteOrderButton.Visible)
-            {
-                CostProductBox.Show();
-                PayButton.Show();
-                CostProduct.Show();
-                FindButton.Hide();
-                DeleteOrderButton.Hide();
-            }
+        //    if (FindButton.Visible && DeleteOrderButton.Visible)
+        //    {
+        //        CostProductBox.Show();
+        //        PayButton.Show();
+        //        CostProduct.Show();
+        //        FindButton.Hide();
+        //        DeleteOrderButton.Hide();
+        //    }
 
-        }
+        //}
         public void CheckEditing()
         {
             if (!MyOrderPanel.Visible)
@@ -379,9 +376,9 @@ namespace WarehouseAccountingSystem
 
         private void dataGridView5_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            var selectedOrder = dataGridView5.SelectedRows[0].DataBoundItem as Order;
-            IdProductBox1.Text = selectedOrder.IdProduct.ToString();
-            CostProductBox.Text = selectedOrder.CostProduct.ToString();
+            var selectedOrder = MyOrderGridView1.SelectedRows[0].DataBoundItem as Order;
+            IdProductBox1.Text = selectedOrder.Id.ToString();
+            CostProductBox.Text = selectedOrder.TotalCost.ToString();
             PayButton.Enabled = true;
         }
         //private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -400,12 +397,7 @@ namespace WarehouseAccountingSystem
         }
         private void ОкGroupBox1_Click(object sender, EventArgs e)
         {
-            ProductType type = ProductType.Manufacture;
-            if (radioButton2.Checked)
-            {
-                type = ProductType.Food;
-            }
-            ProductGridView1.DataSource = presenter.GetClientsProduct(type);
+            ProductGridView1.DataSource = presenter.GetClientsProduct(getProductType());
             ProductGridView1.Show();
             MainPanel.Show();
         }
@@ -483,6 +475,8 @@ namespace WarehouseAccountingSystem
                 FindButton.Hide();
                 DeleteOrderButton.Hide();
             }
+
+            MyOrderGridView1.DataSource = presenter.getClientsOrders();
 
         }
 
@@ -580,9 +574,24 @@ namespace WarehouseAccountingSystem
 
         }
 
+        private void SortButton_Click(object sender, EventArgs e)
+        {
+            ProductGridView1.DataSource = presenter.GetSortedStorage(getProductType());
+        }
+
         private void OrderButton_Click(object sender, EventArgs e)
         {
+            CartGridView.DataSource = presenter.makeOrder();
+        }
 
+        private ProductType getProductType()
+        {
+            ProductType type = ProductType.Manufacture;
+            if (radioButton2.Checked)
+            {
+                type = ProductType.Food;
+            }
+            return type;
         }
     }
 }
