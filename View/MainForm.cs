@@ -7,11 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Model;
 using Presentation.Common;
 using Presentation.Presenters;
 using Presentation.Views;
 using Services;
-using Model.Repositories.DAO;
+
 
 
 namespace WarehouseAccountingSystem
@@ -20,26 +21,25 @@ namespace WarehouseAccountingSystem
     {
        
        private MainPresenter presenter;
-       public List<Foodstuffs> Items2 { get; set; }
        public List<Product> Items3 { get; set; }
        public List<Order> Orders { get; set; }
        public string ClientName { get; set; }
-       public bool PurchasingManager { get; set; }
-       public bool AccountManager { get; set; }
-       
-       public string Heading { get; set; }
+
+       public EmployeeType type;
+        public string Heading { get; set; }
        private Form inputWindow;
+
+      
 
  
         public MainForm(Input inputWindow)
         {
             InitializeComponent();
-            Items2 = GetItems2();
             Orders = GetOrders();
 
             this.inputWindow = inputWindow;
             presenter = new MainPresenter(this, new AuthorizationService());
-            presenter.GetRoles();
+            presenter.GetRoles(type);
 
         }
         public void SetHeading(string heading)
@@ -50,7 +50,7 @@ namespace WarehouseAccountingSystem
         public void SetWindowFromRole()
         {
 
-            if (PurchasingManager == true)
+            if (type == EmployeeType.PurchasingManager)
             {
                 // нужно с маленькой буквы прописать
                 DeleviryToolStripMenuItem.Enabled = false;
@@ -61,7 +61,7 @@ namespace WarehouseAccountingSystem
                 groupBox1.Hide();
                 CatalogLabel.Text = " ";
             }
-            else if (AccountManager == true)
+            else if (type == EmployeeType.PurchasingManager)
             {
                 ProfitToolStripMenuItem.Enabled = false;
                 BidToolStripMenuItem.Enabled = false;
@@ -132,19 +132,19 @@ namespace WarehouseAccountingSystem
             var list = new List<Order>();
             return list;
         }
-        private List<Foodstuffs> GetItems2()
-        {
-            var list = new List<Foodstuffs>();
-            list.Add(new Foodstuffs()
-            {
-                NameProduct = "Bread",
-                WeightProduct = 1,
-                CostProduct = 1,
-                CountryProduct = "Belarus",
-                IdProduct = 345678
-            });
-            return list;
-        }
+        //private List<Foodstuffs> GetItems2()
+        //{
+        //    var list = new List<Foodstuffs>();
+        //    list.Add(new Foodstuffs()
+        //    {
+        //        NameProduct = "Bread",
+        //        WeightProduct = 1,
+        //        CostProduct = 1,
+        //        CountryProduct = "Belarus",
+        //        IdProduct = 345678
+        //    });
+        //    return list;
+        //}
         private void Form1_Load(object sender, EventArgs e)
         {
             //dataGridView4.DataSource = Orders;

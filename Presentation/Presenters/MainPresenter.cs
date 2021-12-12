@@ -5,11 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Presentation.Common;
 using Presentation.Views;
-using Model.Repositories;
-using Model.Repositories.DAO;
 using WarehouseAccountingSystem;
 using Services;
-
+using Model;
 
 namespace Presentation.Presenters
 {
@@ -35,10 +33,9 @@ namespace Presentation.Presenters
             _view.Show();
         }
 
-        public void GetRoles()
+        public void GetRoles(EmployeeType type)
         {
-            _view.AccountManager = _role.AccountManager;
-            _view.PurchasingManager = _role.PurchasingManager;
+            type = Employee.employeeType;
             _view.SetWindowFromRole();
         }
 

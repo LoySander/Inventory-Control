@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,10 +11,10 @@ namespace Services
     {
         string UserName { get; set; }
         string Password { get; set; }
-        bool PurchasingManager { get; set; }
-        bool AccountManager { get; set; }
+         
+        EmployeeType employeeType{ get; }
         bool Authorization(IAuthorizationCustomer loginUser);
 
-        bool CheckRole(IAuthorizationCustomer loginUser);
+        void CheckRole(IAuthorizationCustomer loginUser);
     }
 }

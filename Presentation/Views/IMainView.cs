@@ -7,7 +7,7 @@ using Presentation.Common;
 
 namespace Presentation.Views
 {
-   public interface IMainView: IViewOpenClose, IViewRole
+   public interface IMainView: IViewOpenClose
     {
         void SetWindowFromRole();
         void ShowMessage(string message);
