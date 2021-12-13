@@ -76,7 +76,7 @@ namespace WarehouseAccountingSystem
             this.DeleteOrderButton = new System.Windows.Forms.Button();
             this.GiveStorageButton = new System.Windows.Forms.Button();
             this.GiveStorageLabel = new System.Windows.Forms.Label();
-            this.MyOrderGridView = new System.Windows.Forms.DataGridView();
+            this.MyOrderCartGridView = new System.Windows.Forms.DataGridView();
             this.CostProductBox = new System.Windows.Forms.TextBox();
             this.CostProduct = new System.Windows.Forms.Label();
             this.PayButton = new System.Windows.Forms.Button();
@@ -85,7 +85,7 @@ namespace WarehouseAccountingSystem
             this.LeaveBidButton = new System.Windows.Forms.Button();
             this.BidText = new System.Windows.Forms.TextBox();
             this.BidLabel = new System.Windows.Forms.Label();
-            this.MyOrderGridView1 = new System.Windows.Forms.DataGridView();
+            this.MyOrderView = new System.Windows.Forms.DataGridView();
             this.CloseButton2 = new System.Windows.Forms.Button();
             this.BidPanel = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
@@ -108,6 +108,7 @@ namespace WarehouseAccountingSystem
             this.label4 = new System.Windows.Forms.Label();
             this.CloseProfit = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.moveButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ProductGridView1)).BeginInit();
             this.MainPanel.SuspendLayout();
@@ -118,8 +119,8 @@ namespace WarehouseAccountingSystem
             this.DeliverPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             this.MyOrderPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.MyOrderGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MyOrderGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MyOrderCartGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MyOrderView)).BeginInit();
             this.BidPanel.SuspendLayout();
             this.ProfitPanel.SuspendLayout();
             this.SuspendLayout();
@@ -533,12 +534,13 @@ namespace WarehouseAccountingSystem
             // 
             // MyOrderPanel
             // 
+            this.MyOrderPanel.Controls.Add(this.moveButton);
             this.MyOrderPanel.Controls.Add(this.FindButton);
             this.MyOrderPanel.Controls.Add(this.FindOrderTextBox);
             this.MyOrderPanel.Controls.Add(this.DeleteOrderButton);
             this.MyOrderPanel.Controls.Add(this.GiveStorageButton);
             this.MyOrderPanel.Controls.Add(this.GiveStorageLabel);
-            this.MyOrderPanel.Controls.Add(this.MyOrderGridView);
+            this.MyOrderPanel.Controls.Add(this.MyOrderCartGridView);
             this.MyOrderPanel.Controls.Add(this.CostProductBox);
             this.MyOrderPanel.Controls.Add(this.CostProduct);
             this.MyOrderPanel.Controls.Add(this.PayButton);
@@ -547,7 +549,7 @@ namespace WarehouseAccountingSystem
             this.MyOrderPanel.Controls.Add(this.LeaveBidButton);
             this.MyOrderPanel.Controls.Add(this.BidText);
             this.MyOrderPanel.Controls.Add(this.BidLabel);
-            this.MyOrderPanel.Controls.Add(this.MyOrderGridView1);
+            this.MyOrderPanel.Controls.Add(this.MyOrderView);
             this.MyOrderPanel.Controls.Add(this.CloseButton2);
             this.MyOrderPanel.Location = new System.Drawing.Point(4, 163);
             this.MyOrderPanel.Name = "MyOrderPanel";
@@ -559,7 +561,7 @@ namespace WarehouseAccountingSystem
             // FindButton
             // 
             this.FindButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FindButton.Location = new System.Drawing.Point(498, 143);
+            this.FindButton.Location = new System.Drawing.Point(498, 140);
             this.FindButton.Name = "FindButton";
             this.FindButton.Size = new System.Drawing.Size(152, 29);
             this.FindButton.TabIndex = 31;
@@ -576,7 +578,7 @@ namespace WarehouseAccountingSystem
             // DeleteOrderButton
             // 
             this.DeleteOrderButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DeleteOrderButton.Location = new System.Drawing.Point(498, 175);
+            this.DeleteOrderButton.Location = new System.Drawing.Point(498, 178);
             this.DeleteOrderButton.Name = "DeleteOrderButton";
             this.DeleteOrderButton.Size = new System.Drawing.Size(152, 29);
             this.DeleteOrderButton.TabIndex = 29;
@@ -585,14 +587,14 @@ namespace WarehouseAccountingSystem
             // 
             // GiveStorageButton
             // 
-            this.GiveStorageButton.Enabled = false;
             this.GiveStorageButton.Location = new System.Drawing.Point(738, 229);
-            this.GiveStorageButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GiveStorageButton.Margin = new System.Windows.Forms.Padding(2);
             this.GiveStorageButton.Name = "GiveStorageButton";
             this.GiveStorageButton.Size = new System.Drawing.Size(104, 42);
             this.GiveStorageButton.TabIndex = 28;
             this.GiveStorageButton.Text = "Передать";
             this.GiveStorageButton.UseVisualStyleBackColor = true;
+            this.GiveStorageButton.Click += new System.EventHandler(this.GiveStorageButton_Click);
             // 
             // GiveStorageLabel
             // 
@@ -604,15 +606,15 @@ namespace WarehouseAccountingSystem
             this.GiveStorageLabel.TabIndex = 27;
             this.GiveStorageLabel.Text = "Передать на склад";
             // 
-            // MyOrderGridView
+            // MyOrderCartGridView
             // 
-            this.MyOrderGridView.BackgroundColor = System.Drawing.SystemColors.Info;
-            this.MyOrderGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.MyOrderGridView.Location = new System.Drawing.Point(656, 40);
-            this.MyOrderGridView.Name = "MyOrderGridView";
-            this.MyOrderGridView.RowHeadersWidth = 51;
-            this.MyOrderGridView.Size = new System.Drawing.Size(279, 184);
-            this.MyOrderGridView.TabIndex = 26;
+            this.MyOrderCartGridView.BackgroundColor = System.Drawing.SystemColors.Info;
+            this.MyOrderCartGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.MyOrderCartGridView.Location = new System.Drawing.Point(656, 40);
+            this.MyOrderCartGridView.Name = "MyOrderCartGridView";
+            this.MyOrderCartGridView.RowHeadersWidth = 51;
+            this.MyOrderCartGridView.Size = new System.Drawing.Size(279, 184);
+            this.MyOrderCartGridView.TabIndex = 26;
             // 
             // CostProductBox
             // 
@@ -665,7 +667,7 @@ namespace WarehouseAccountingSystem
             // LeaveBidButton
             // 
             this.LeaveBidButton.Location = new System.Drawing.Point(738, 229);
-            this.LeaveBidButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.LeaveBidButton.Margin = new System.Windows.Forms.Padding(2);
             this.LeaveBidButton.Name = "LeaveBidButton";
             this.LeaveBidButton.Size = new System.Drawing.Size(104, 42);
             this.LeaveBidButton.TabIndex = 20;
@@ -675,7 +677,7 @@ namespace WarehouseAccountingSystem
             // BidText
             // 
             this.BidText.Location = new System.Drawing.Point(669, 84);
-            this.BidText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BidText.Margin = new System.Windows.Forms.Padding(2);
             this.BidText.Multiline = true;
             this.BidText.Name = "BidText";
             this.BidText.Size = new System.Drawing.Size(248, 130);
@@ -692,17 +694,17 @@ namespace WarehouseAccountingSystem
             this.BidLabel.TabIndex = 18;
             this.BidLabel.Text = "Можете оставить заявку";
             // 
-            // MyOrderGridView1
+            // MyOrderView
             // 
-            this.MyOrderGridView1.BackgroundColor = System.Drawing.SystemColors.Info;
-            this.MyOrderGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.MyOrderGridView1.Location = new System.Drawing.Point(3, 20);
-            this.MyOrderGridView1.Name = "MyOrderGridView1";
-            this.MyOrderGridView1.RowHeadersWidth = 51;
-            this.MyOrderGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.MyOrderGridView1.Size = new System.Drawing.Size(476, 228);
-            this.MyOrderGridView1.TabIndex = 17;
-            this.MyOrderGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView5_CellContentClick);
+            this.MyOrderView.BackgroundColor = System.Drawing.SystemColors.Info;
+            this.MyOrderView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.MyOrderView.Location = new System.Drawing.Point(3, 15);
+            this.MyOrderView.Name = "MyOrderView";
+            this.MyOrderView.RowHeadersWidth = 51;
+            this.MyOrderView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.MyOrderView.Size = new System.Drawing.Size(476, 228);
+            this.MyOrderView.TabIndex = 17;
+            this.MyOrderView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView5_CellContentClick);
             // 
             // CloseButton2
             // 
@@ -929,6 +931,18 @@ namespace WarehouseAccountingSystem
             this.statusStrip1.Text = "statusStrip1";
             this.statusStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.statusStrip1_ItemClicked);
             // 
+            // moveButton
+            // 
+            this.moveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.moveButton.Location = new System.Drawing.Point(497, 219);
+            this.moveButton.Name = "moveButton";
+            this.moveButton.Size = new System.Drawing.Size(152, 29);
+            this.moveButton.TabIndex = 32;
+            this.moveButton.Text = "Переместить";
+            this.moveButton.UseVisualStyleBackColor = true;
+            this.moveButton.Visible = false;
+            this.moveButton.Click += new System.EventHandler(this.moveButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -962,8 +976,8 @@ namespace WarehouseAccountingSystem
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
             this.MyOrderPanel.ResumeLayout(false);
             this.MyOrderPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.MyOrderGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MyOrderGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MyOrderCartGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MyOrderView)).EndInit();
             this.BidPanel.ResumeLayout(false);
             this.BidPanel.PerformLayout();
             this.ProfitPanel.ResumeLayout(false);
@@ -1014,7 +1028,7 @@ namespace WarehouseAccountingSystem
         private System.Windows.Forms.Button LeaveBidButton;
         private System.Windows.Forms.TextBox BidText;
         private System.Windows.Forms.Label BidLabel;
-        private System.Windows.Forms.DataGridView MyOrderGridView1;
+        private System.Windows.Forms.DataGridView MyOrderView;
         private System.Windows.Forms.Button CloseButton2;
         private System.Windows.Forms.Button PayButton;
         private System.Windows.Forms.Label label3;
@@ -1026,7 +1040,7 @@ namespace WarehouseAccountingSystem
         private System.Windows.Forms.ToolStripMenuItem ProfitToolStripMenuItem;
         private System.Windows.Forms.Button GiveStorageButton;
         private System.Windows.Forms.Label GiveStorageLabel;
-        private System.Windows.Forms.DataGridView MyOrderGridView;
+        private System.Windows.Forms.DataGridView MyOrderCartGridView;
         private System.Windows.Forms.Panel BidPanel;
         private System.Windows.Forms.Button CloseButton3;
         private System.Windows.Forms.Label BidClients;
@@ -1053,5 +1067,6 @@ namespace WarehouseAccountingSystem
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
+        private System.Windows.Forms.Button moveButton;
     }
 }

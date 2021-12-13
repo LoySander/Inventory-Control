@@ -49,7 +49,6 @@
     <Compile Include="DAO\IProductDao.cs" />
     <Compile Include="DAO\ListOrderDao.cs" />
     <Compile Include="DAO\ListProductDao.cs" />
-    <Compile Include="DAO\ListStorageDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -18,14 +18,18 @@ namespace Presentation.Presenters
         private ClientProductService clientProductService;
         private ClientOrderService clientOrderService;
         private StorageService storageService;
-        private List<StorageProduct> cart;
+        private PurchasingManagerService providerService;
+        private List<StorageProduct> orderCart;
+        private List<OrderProvider> providerOrder;
         public MainPresenter(IMainView view, IAuthorizationCustomer role)
         {
             this._view = view;
             this._role = role;
             this.clientProductService = ClientProductService.getInstance();
             this.clientOrderService = ClientOrderService.getInstance();
-            this.cart = new List<StorageProduct>();
+            this.orderCart = new List<StorageProduct>();
+            this.providerOrder = new List<OrderProvider>();
+            this.providerService = PurchasingManagerService.getInstance();
             this.storageService = StorageService.getInstance();
         }
         public void Start()
@@ -73,20 +77,15 @@ namespace Presentation.Presenters
 
         public List<StorageProduct> AddToCart(long id)
         {
-            cart.Add(clientProductService.GetProduct(id));
-            return cart;
+            orderCart.Add(clientProductService.GetProduct(id));
+            return orderCart;
         }
+
 
         public void GetCourierOrder()
         {
             // необходимо поместить 
             _view.CheckCourierOrder();
-        }
-
-        public void CheckOrderProvider() 
-        {
-            // необходимо предоставить данные
-            _view.CheckProviderOrder();
         }
 
         public void CheckClientOrder()
@@ -115,7 +114,7 @@ namespace Presentation.Presenters
         {
             String productNames = "";
             int totalCost = 0;
-            foreach (StorageProduct product in cart)
+            foreach (StorageProduct product in orderCart)
             {
                 productNames += product.NameProduct + ", ";
                 totalCost += product.CostProduct;
@@ -127,9 +126,9 @@ namespace Presentation.Presenters
                 TotalCost = totalCost,
                 PaymentProduct = "Ожидает оплаты"
             };
-            cart.Clear();
+            orderCart.Clear();
             clientOrderService.addOrder(order);
-            return cart;
+            return orderCart;
         }
 
         public List<Order> getClientsOrders()
@@ -137,10 +136,41 @@ namespace Presentation.Presenters
             return clientOrderService.GetOrders(1);
         }
 
+        public List<OrderProvider> GetOrderProvider()
+        {
+            return providerService.GetOrdersProvider();
+        }
+
         public List<Order> changeOrderStatus(long id, String newStatus)
         {
             clientOrderService.getOrder(id).PaymentProduct = newStatus;
             return getClientsOrders();
+        }
+
+        // оптимизировать нужно
+        public List<OrderProvider> ChangeOrderStatus(long id, String newStatus)
+        {
+            clientOrderService.getOrder(id).PaymentProduct = newStatus;
+            return GetOrderProvider();
+        }
+        public List<OrderProvider> AddToCartProvider(long id)
+        {
+            if (providerService.CheckPayment(id))
+            {
+
+                providerOrder.Add(providerService.getOrder(id));
+               
+            }
+
+            else { _view.ShowMessage("Товар не оплачен");
+               
+            }
+            return providerOrder;
+        }
+        public List<OrderProvider> RemoveOrder(long id)
+        {
+            providerService.deleteOrder(id);
+            return GetOrderProvider();
         }
     }
 }

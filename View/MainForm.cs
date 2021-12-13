@@ -26,7 +26,7 @@ namespace WarehouseAccountingSystem
        public string ClientName { get; set; }
 
        public EmployeeType type;
-        public string Heading { get; set; }
+       public string Heading { get; set; }
        private Form inputWindow;
 
       
@@ -40,6 +40,7 @@ namespace WarehouseAccountingSystem
             this.inputWindow = inputWindow;
             presenter = new MainPresenter(this, new AuthorizationService());
             type = presenter.GetRoles();
+            SetWindowFromRole();
 
         }
         public void SetHeading(string heading)
@@ -49,27 +50,33 @@ namespace WarehouseAccountingSystem
         // здесь происходит установка ролей
         public void SetWindowFromRole()
         {
+            
 
-            if (type == EmployeeType.PurchasingManager)
-            {
-                // нужно с маленькой буквы прописать
-                DeleviryToolStripMenuItem.Enabled = false;
-                BidToolStripMenuItem.Enabled = false;
-                ProfitToolStripMenuItem.Enabled = false;
-                EditingToolStripMenuItem.Enabled = false;
-                сatalogToolStripMenuItem.Enabled = false;
-                groupBox1.Hide();
-                CatalogLabel.Text = " ";
-            }
-            else if (type == EmployeeType.PurchasingManager)
-            {
-                ProfitToolStripMenuItem.Enabled = false;
-                BidToolStripMenuItem.Enabled = false;
-                DeleviryToolStripMenuItem.Enabled = false;
-                OrderProviderToolStripMenuItem.Enabled = false;
-                groupBox1.Hide();
-                CatalogLabel.Text = " ";
-            }
+
+
+                if (type == EmployeeType.PurchasingManager)
+                {
+                    // нужно с маленькой буквы прописать
+                    DeleviryToolStripMenuItem.Enabled = false;
+                    BidToolStripMenuItem.Enabled = false;
+                    ProfitToolStripMenuItem.Enabled = false;
+                    EditingToolStripMenuItem.Enabled = false;
+                    сatalogToolStripMenuItem.Enabled = false;
+                    MyOrdersToolStripMenuItem.Enabled = false;
+                    groupBox1.Hide();
+                    CatalogLabel.Text = " ";
+                }
+                else if (type == EmployeeType.AccountManager)
+                {
+                    ProfitToolStripMenuItem.Enabled = false;
+                    BidToolStripMenuItem.Enabled = false;
+                    DeleviryToolStripMenuItem.Enabled = false;
+                    OrderProviderToolStripMenuItem.Enabled = false;
+                    groupBox1.Hide();
+                    CatalogLabel.Text = " ";
+                }
+               
+            
 
         }
         public void ShowMessage(string message)
@@ -148,7 +155,7 @@ namespace WarehouseAccountingSystem
         private void Form1_Load(object sender, EventArgs e)
         {
             //dataGridView4.DataSource = Orders;
-           MyOrderGridView1.DataSource = Orders;
+           MyOrderView.DataSource = Orders;
         }
         private void CheckCatalog_Click(object sender, EventArgs e)
         {
@@ -188,49 +195,7 @@ namespace WarehouseAccountingSystem
             DeliverPanel.Show();
         }
 
-        public void CheckProviderOrder()
-        {
-           // здесь под вопросом кое-что
-            GiveStorageButton.Show();
-            MyOrderGridView.Show();
-            GiveStorageLabel.Show();
-            CostProductBox.Show();
-            CostProduct.Show();
-            BidText.Hide();
-            BidLabel.Hide();
-            LeaveBidButton.Hide();
-
-            if (!MyOrderPanel.Visible)
-            {
-                MyOrderPanel.Show();
-            }
-            if (DeliverPanel.Visible || MainPanel.Visible || groupBox1.Visible || BidPanel.Visible || ProfitPanel.Visible)
-            {
-                DeliverPanel.Hide();
-                MainPanel.Hide();
-                groupBox1.Hide();
-                BidPanel.Hide();
-                ProfitPanel.Hide();
-            }
-            CatalogLabel.Text = "Заказы у поставщиков";
-            //if(BidLabel.Visible && BidText.Visible && LeaveBidButton.Visible)
-            //{
-            //    BidText.Hide();
-            //    BidLabel.Hide();
-            //    LeaveBidButton.Hide();
-
-            //}
-            if (FindButton.Visible && DeleteOrderButton.Visible)
-            {
-                CostProductBox.Show();
-                PayButton.Show();
-                CostProductBox.Show();
-                FindButton.Hide();
-                DeleteOrderButton.Hide();
-            }
-
-
-        }
+    
         //public void CheckMyOrders()
         //{
         //    GiveStorageButton.Hide();
@@ -299,7 +264,7 @@ namespace WarehouseAccountingSystem
                 BidLabel.Hide();
                 LeaveBidButton.Hide();
                 GiveStorageButton.Show();
-                MyOrderGridView.Show();
+                MyOrderCartGridView.Show();
                 GiveStorageLabel.Show();
             }
 
@@ -312,7 +277,7 @@ namespace WarehouseAccountingSystem
                 BidLabel.Hide();
                 LeaveBidButton.Hide();
                 GiveStorageButton.Hide();
-                MyOrderGridView.Hide();
+                MyOrderCartGridView.Hide();
                 GiveStorageLabel.Hide();
                 FindButton.Show();
                 DeleteOrderButton.Show();
@@ -376,7 +341,7 @@ namespace WarehouseAccountingSystem
 
         private void dataGridView5_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            var selectedOrder = MyOrderGridView1.SelectedRows[0].DataBoundItem as Order;
+            var selectedOrder = MyOrderView.SelectedRows[0].DataBoundItem as OrderProvider;
             IdProductBox1.Text = selectedOrder.Id.ToString();
             CostProductBox.Text = selectedOrder.TotalCost.ToString();
             PayButton.Enabled = true;
@@ -434,7 +399,7 @@ namespace WarehouseAccountingSystem
             //presenter.CheckClientOrder()
 
             GiveStorageButton.Hide();
-            MyOrderGridView.Hide();
+            MyOrderCartGridView.Hide();
             GiveStorageLabel.Hide();
             BidText.Show();
             BidLabel.Show();
@@ -476,7 +441,8 @@ namespace WarehouseAccountingSystem
                 DeleteOrderButton.Hide();
             }
 
-            MyOrderGridView1.DataSource = presenter.getClientsOrders();
+            MyOrderView.DataSource = presenter.getClientsOrders();
+           
 
         }
 
@@ -494,7 +460,46 @@ namespace WarehouseAccountingSystem
 
         private void OrderProviderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            presenter.CheckOrderProvider();
+            GiveStorageButton.Show();
+            MyOrderCartGridView.Show();
+            GiveStorageLabel.Show();
+            CostProductBox.Show();
+            CostProduct.Show();
+            BidText.Hide();
+            BidLabel.Hide();
+            LeaveBidButton.Hide();
+
+            if (!MyOrderPanel.Visible)
+            {
+                MyOrderPanel.Show();
+            }
+            if (DeliverPanel.Visible || MainPanel.Visible || groupBox1.Visible || BidPanel.Visible || ProfitPanel.Visible)
+            {
+                DeliverPanel.Hide();
+                MainPanel.Hide();
+                groupBox1.Hide();
+                BidPanel.Hide();
+                ProfitPanel.Hide();
+            }
+            CatalogLabel.Text = "Заказы у поставщиков";
+            //if(BidLabel.Visible && BidText.Visible && LeaveBidButton.Visible)
+            //{
+            //    BidText.Hide();
+            //    BidLabel.Hide();
+            //    LeaveBidButton.Hide();
+
+            //}
+            if (FindButton.Visible && DeleteOrderButton.Visible)
+            {
+                CostProductBox.Show();
+                PayButton.Show();
+                CostProductBox.Show();
+                moveButton.Show();
+                FindButton.Hide();
+                DeleteOrderButton.Hide();
+            }
+
+            MyOrderView.DataSource = presenter.GetOrderProvider(); 
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -596,8 +601,29 @@ namespace WarehouseAccountingSystem
 
         private void PayButton_Click(object sender, EventArgs e)
         {
+
             long id = long.Parse(IdProductBox1.Text);
-            MyOrderGridView1.DataSource = presenter.changeOrderStatus(id, "Оплачено");
+            if (type == EmployeeType.PurchasingManager)
+            {
+                MyOrderView.DataSource = presenter.ChangeOrderStatus(id, "Оплачено");
+            }
+            else
+            {
+                MyOrderView.DataSource = presenter.changeOrderStatus(id, "Оплачено");
+            }
+        }
+
+        private void moveButton_Click(object sender, EventArgs e)
+        {
+            long id = long.Parse(IdProductBox1.Text);
+            MyOrderCartGridView.DataSource = new List<OrderProvider>(presenter.AddToCartProvider(id));
+            MyOrderView.DataSource = presenter.RemoveOrder(id);
+            
+        }
+
+        private void GiveStorageButton_Click(object sender, EventArgs e)
+        {
+            //ProductGridView1.DataSource = presenter.AddNewProduct()
         }
     }
 }
