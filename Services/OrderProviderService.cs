@@ -10,19 +10,19 @@ using WarehouseAccountingSystem;
 
 namespace Services
 {
-   public class PurchasingManagerService
+   public class OrderProviderService
     {
         private IOrderDao orderDao;
-        private static PurchasingManagerService INSTANCE;
+        private static OrderProviderService INSTANCE;
 
-        public static PurchasingManagerService getInstance()
+        public static OrderProviderService getInstance()
         {
             if (INSTANCE == null)
-                INSTANCE = new PurchasingManagerService();
+                INSTANCE = new OrderProviderService();
             return INSTANCE;
         }
 
-        private PurchasingManagerService()
+        private OrderProviderService()
         {
             orderDao = ListOrderDao.getInstance();
         }
@@ -69,7 +69,7 @@ namespace Services
             return false;
 
        }
-        public void deleteOrder(long id)
+        public void deleteOrderProvider(long id)
         {
             orderDao.deleteOrder(id);
         }

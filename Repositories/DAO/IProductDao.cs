@@ -13,5 +13,6 @@ namespace Model.Repositories.DAO
         StorageProduct GetProduct(long id);
         void addProduct(StorageProduct product);
         void deleteProduct(long id);
+        void RenewAllProduct(List<StorageProduct> products);
     }
 }

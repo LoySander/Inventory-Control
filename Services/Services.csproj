@@ -48,7 +48,7 @@
     <Compile Include="IAuthorizationClient.cs" />
     <Compile Include="IAuthorizationCustomer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PurchasingManagerService.cs" />
+    <Compile Include="OrderProviderService.cs" />
     <Compile Include="StorageService.cs" />
   </ItemGroup>
   <ItemGroup>

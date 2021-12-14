@@ -24,7 +24,7 @@ namespace Model.Repositories.DAO
             productList = new List<StorageProduct>();
             //прописать здесь тестовые продукты
             productList.Add(new StorageProduct {
-                NameProduct = "Телевизор, он же TV",
+                NameProduct = "Телевизор",
                 Stock = 150,
                 CostProduct = 500,
                 CountryProduct = "Беларусь",
@@ -86,6 +86,11 @@ namespace Model.Repositories.DAO
         public StorageProduct GetProduct(long id)
         {
             return productList.Where(product => product.IdProduct == id).First();
+        }
+
+        public void RenewAllProduct(List<StorageProduct> products)
+        {
+            productList = products;
         }
     }
 }

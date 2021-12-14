@@ -18,7 +18,7 @@ namespace Presentation.Presenters
         private ClientProductService clientProductService;
         private ClientOrderService clientOrderService;
         private StorageService storageService;
-        private PurchasingManagerService providerService;
+        private OrderProviderService providerService;
         private List<StorageProduct> orderCart;
         private List<OrderProvider> providerOrder;
         public MainPresenter(IMainView view, IAuthorizationCustomer role)
@@ -29,7 +29,7 @@ namespace Presentation.Presenters
             this.clientOrderService = ClientOrderService.getInstance();
             this.orderCart = new List<StorageProduct>();
             this.providerOrder = new List<OrderProvider>();
-            this.providerService = PurchasingManagerService.getInstance();
+            this.providerService = OrderProviderService.getInstance();
             this.storageService = StorageService.getInstance();
         }
         public void Start()
@@ -54,7 +54,7 @@ namespace Presentation.Presenters
         }
         // когда нажимаем на просмотреть список товаров на складе, должны подгрузить данные
         public List<StorageProduct> GetStorage(ProductType type)
-        { 
+        {
             // связь с датагрид
             _view.CheckStorage();
             return storageService.getProducts(type);
@@ -116,7 +116,7 @@ namespace Presentation.Presenters
             int totalCost = 0;
             foreach (StorageProduct product in orderCart)
             {
-                productNames += product.NameProduct + ", ";
+                productNames += product.NameProduct + " ";
                 totalCost += product.CostProduct;
             }
             Order order = new Order
@@ -169,8 +169,36 @@ namespace Presentation.Presenters
         }
         public List<OrderProvider> RemoveOrder(long id)
         {
-            providerService.deleteOrder(id);
+            providerService.deleteOrderProvider(id);
             return GetOrderProvider();
+        }
+
+        public List<OrderProvider> AddProductToStorage(List<OrderProvider> orders)
+        {
+            //    // связь с датагрид
+            //    _view.CheckStorage()
+            string productNames = "";
+            int totalCost = 0;
+            foreach (OrderProvider orderProvider in orders)
+            {
+                productNames += orderProvider.NamesOfProducts + " ";
+                totalCost += orderProvider.TotalCost;
+            }
+            StorageProduct product = new StorageProduct()
+            {
+                Stock = 1,
+                CostProduct = 1,
+                DescriptionProduct = " ",
+                NameProduct = productNames,
+                IdProduct = 1,
+                WeightProduct = 1,
+                CountryProduct = " ",
+                type = ProductType.Food,
+            };
+            clientProductService.addProduct(product);
+            orders.Clear();
+            return orders;
         }
     }
 }
+

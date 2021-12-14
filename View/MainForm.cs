@@ -618,12 +618,16 @@ namespace WarehouseAccountingSystem
             long id = long.Parse(IdProductBox1.Text);
             MyOrderCartGridView.DataSource = new List<OrderProvider>(presenter.AddToCartProvider(id));
             MyOrderView.DataSource = presenter.RemoveOrder(id);
-            
+       
         }
 
         private void GiveStorageButton_Click(object sender, EventArgs e)
         {
-            //ProductGridView1.DataSource = presenter.AddNewProduct()
+          if(MyOrderCartGridView.DataSource != null)
+            {
+                MyOrderCartGridView.DataSource = presenter.AddProductToStorage((List<OrderProvider>)MyOrderCartGridView.DataSource);
+            }
+        //    ProductGridView1.DataSource = presenter.AddNewProduct()
         }
     }
 }
