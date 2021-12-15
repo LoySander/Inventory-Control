@@ -17,10 +17,7 @@ namespace Model
         public string UserName { get; set; }
         public string Password { get; set; }
 
-     
-
-        private static WindowsBuiltInRole windowsBuiltInRole;
-        public static EmployeeType employeeType;
+        public static UserType employeeType;
         public Employee() { }
         public Employee(string userName, string password)
         {
@@ -38,60 +35,14 @@ namespace Model
         {
             return listUsers;
         }
-
-        static public void SetEmployeeType(string str)
-        {
-            if (str == "AM")
-            {
-                windowsBuiltInRole = WindowsBuiltInRole.AccountManager;
-                employeeType = EmployeeType.AccountManager;
-            }
-            else if (str == "PM")
-            {
-                windowsBuiltInRole = WindowsBuiltInRole.PurchasingManager;
-                employeeType = EmployeeType.PurchasingManager;
-            }
-        
-
-            else if (str == "B")
-            {
-                windowsBuiltInRole = WindowsBuiltInRole.Booker;
-                employeeType = EmployeeType.Booker;
-            }
-            else if (str == "D")
-            {
-                windowsBuiltInRole = WindowsBuiltInRole.Deliverman;
-                employeeType = EmployeeType.Deliverman;
-            }
-
-            else if (str == "S")
-            {
-                windowsBuiltInRole = WindowsBuiltInRole.Storekeeper;
-                employeeType = EmployeeType.Storekeeper;
-            }
-        }
-
-        //List<Customer> list = Customer.GetUsers();
-    }
-    //  потом будем использовать enum
-    public enum EmployeeType
+    } 
+    public enum UserType
     {
         PurchasingManager,
         AccountManager,
         Booker,
         Deliverman,
-        Storekeeper
+        Storekeeper,
+        Client
     }
-
-    public enum WindowsBuiltInRole
-    {
-        PurchasingManager,
-        AccountManager,
-        Booker,
-        Deliverman,
-        Storekeeper
-    }
-
-
-
 }

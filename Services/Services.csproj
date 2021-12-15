@@ -46,7 +46,7 @@
     <Compile Include="ClientProductService.cs" />
     <Compile Include="ClientService.cs" />
     <Compile Include="IAuthorizationClient.cs" />
-    <Compile Include="IAuthorizationCustomer.cs" />
+    <Compile Include="IAuthorizationUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="OrderProviderService.cs" />
     <Compile Include="StorageService.cs" />

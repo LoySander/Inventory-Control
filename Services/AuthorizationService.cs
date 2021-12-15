@@ -12,18 +12,34 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    public class AuthorizationService:IAuthorizationCustomer
+    public class AuthorizationService:IAuthorizationUser
     {
         
+       public string UserName { get; set; }
+       public string Password { get; set; }
+       public UserType employeeType { get { return Employee.employeeType; } set { } }
+
+        public string ClientName { get; set; }
+        public int IdClient { get; set; }
+
+        List<Client> listClient = Client.GetClient();
         List<Employee> list = Employee.GetUsers();
 
-        public string UserName { get; set; }
-        public string Password { get; set; }
+        private int id = 0;
 
-        // нужно перенести роли в кастомера
-       public EmployeeType employeeType { get { return Employee.employeeType; } set { } }
+        public void Add(string clientName)
+        {
+            this.ClientName = clientName;
+            listClient.Add(new Client() { ClientName = clientName, IdClient = id });
+            id++;
+        }
 
-        public bool Authorization(IAuthorizationCustomer loginUser)
+        public Client Get(int id)
+        {
+            return listClient.Where(client => client.IdClient == id).FirstOrDefault(null);
+        }
+
+        public bool Authorization(IAuthorizationUser loginUser)
         {
             foreach(Employee x in list)
             {
@@ -36,32 +52,35 @@ namespace Services
             return false;
         }
 
-        public void CheckRole(IAuthorizationCustomer loginUser)
+        public void CheckRole(IAuthorizationUser loginUser)
         {
-            //AppDomain myDomain = AppDomain.CurrentDomain;
-            //WindowsPrincipal principial = (WindowsPrincipal)Thread.CurrentPrincipal;
-            //WindowsIdentity windowsIdentity = new WindowsIdentity(loginUser.ToString());
-           
+            if (loginUser.UserName == "AM")
+            {
+                Employee.employeeType = UserType.AccountManager;
+            }
+            else if (loginUser.UserName == "PM")
+            {
+                Employee.employeeType = UserType.PurchasingManager;
+            }
+            else if (loginUser.UserName == "B")
+            {
+                Employee.employeeType = UserType.Booker;
+            }
+            else if (loginUser.UserName == "D")
+            {
+                Employee.employeeType = UserType.Deliverman;
+            }
+
+            else if (loginUser.UserName == "S")
+            {
+                Employee.employeeType = UserType.Storekeeper;
+            }
+
+           else
+            {
+                Employee.employeeType = UserType.Client;
+            }
             
-            //WindowsPrincipal myPrincipal = (WindowsPrincipal)Thread.CurrentPrincipal;
-            //Array wbirFields = Enum.GetValues(typeof(Model.WindowsBuiltInRole));
-
-            Employee.SetEmployeeType(loginUser.ToString());
-            
-            //if (loginUser.UserName == "AM")
-            //{
-            //    Employee.AccountManager = true;
-            //    x.employeeType = EmployeeType.AccountManager;
-            //}
-            //else if (loginUser.UserName == "PM")
-            //{
-            //    Employee.PurchasingManager = true;
-            //    x.employeeType = EmployeeType.PurchasingManager;
-            //}
-
-
         }
-
-
     }
 }

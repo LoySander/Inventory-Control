@@ -10,6 +10,6 @@ namespace Services
     {
        string ClientName { get; set; }
         int IdClient { get; set; }
-         void Add(string clientName);
+        void Add(string clientName);
     }
 }

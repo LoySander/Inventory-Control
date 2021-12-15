@@ -25,23 +25,18 @@ namespace WarehouseAccountingSystem
        public List<Order> Orders { get; set; }
        public string ClientName { get; set; }
 
-       public EmployeeType type;
+       public UserType type;
        public string Heading { get; set; }
        private Form inputWindow;
 
-      
-
- 
         public MainForm(Input inputWindow)
         {
             InitializeComponent();
             Orders = GetOrders();
-
             this.inputWindow = inputWindow;
             presenter = new MainPresenter(this, new AuthorizationService());
             type = presenter.GetRoles();
             SetWindowFromRole();
-
         }
         public void SetHeading(string heading)
         {
@@ -52,9 +47,7 @@ namespace WarehouseAccountingSystem
         {
             
 
-
-
-                if (type == EmployeeType.PurchasingManager)
+                if (type == UserType.PurchasingManager)
                 {
                     // нужно с маленькой буквы прописать
                     DeleviryToolStripMenuItem.Enabled = false;
@@ -66,7 +59,7 @@ namespace WarehouseAccountingSystem
                     groupBox1.Hide();
                     CatalogLabel.Text = " ";
                 }
-                else if (type == EmployeeType.AccountManager)
+                else if (type == UserType.AccountManager)
                 {
                     ProfitToolStripMenuItem.Enabled = false;
                     BidToolStripMenuItem.Enabled = false;
@@ -74,6 +67,14 @@ namespace WarehouseAccountingSystem
                     OrderProviderToolStripMenuItem.Enabled = false;
                     groupBox1.Hide();
                     CatalogLabel.Text = " ";
+                }
+
+                else if (type == UserType.Client)
+                {
+                ProfitToolStripMenuItem.Enabled = false;
+                DeleviryToolStripMenuItem.Enabled = false;
+                OrderProviderToolStripMenuItem.Enabled = false;
+                OpenCatalog();
                 }
                
             
@@ -603,7 +604,7 @@ namespace WarehouseAccountingSystem
         {
 
             long id = long.Parse(IdProductBox1.Text);
-            if (type == EmployeeType.PurchasingManager)
+            if (type == UserType.PurchasingManager)
             {
                 MyOrderView.DataSource = presenter.ChangeOrderStatus(id, "Оплачено");
             }

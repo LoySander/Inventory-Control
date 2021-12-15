@@ -66,12 +66,15 @@ namespace WarehouseAccountingSystem
         private void AddClient_Click(object sender, EventArgs e)
         {
             //Customer.Items.Add(name_customer.Text);
-            loginPresenter.AddClient(name_customer.Text);
+            loginPresenter.AddClient(nameСustomerBox.Text);
+            nameСustomerBox.Text = " ";
         }
-
+        // придумать очистку
         private void InputEmployee_Click(object sender, EventArgs e)
         {
             loginPresenter.Login();
+            //textLoginBox.Text = " ";
+            //textPasswordBox.Text = " ";
         }
 
         private void login_Paint(object sender, PaintEventArgs e)

@@ -13,14 +13,14 @@ namespace Presentation.Presenters
     public class LoginPresenter: IPresenter
     {
         private ILoginView _view;
-        private AuthorizationService _loginUser;
-        private ClientService _client;
+        private AuthorizationService loginUser;
+        private ClientService client;
        
         public LoginPresenter(ILoginView view)
         {
             this._view = view;
-            this._loginUser = new AuthorizationService();
-            this._client = new ClientService();
+            this.loginUser = new AuthorizationService();
+            this.client = new ClientService();
         }
         public void Start()
         {
@@ -29,28 +29,32 @@ namespace Presentation.Presenters
 
         public void ClientLogin()
         {
+            loginUser.ClientName = _view.ClientName;
+            loginUser.CheckRole(this.loginUser);
             Start();
-            _view.ShowMessage("Вы вошли в систему как " + _view.ClientName);
+            _view.ShowMessage("Вы вошли в систему как " + _view.ClientName);   
         }
         public void Login()
         {
-            _loginUser.Password = _view.Password;
-            _loginUser.UserName = _view.Username;
-            if (_loginUser.Authorization(this._loginUser))
+            loginUser.Password = _view.Password;
+            loginUser.UserName = _view.Username;
+            if (loginUser.Authorization(this.loginUser))
             {
-                _loginUser.CheckRole(this._loginUser);
+                loginUser.CheckRole(this.loginUser);
                 Start();
             }
             else
             {
                 _view.ShowMessage("Неверно, проверьте логин или пароль");
             }
+            loginUser.Password = " ";
+            loginUser.UserName = " ";
         }
 
         public void AddClient(string name)
         {
-            _client.Add(name);
-            _view.AddCustomer(_client.ClientName);
+            loginUser.Add(name);
+            _view.AddCustomer(loginUser.ClientName);
         }
      
     }

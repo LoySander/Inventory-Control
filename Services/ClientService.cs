@@ -8,6 +8,7 @@ using Model;
 
 namespace Services
 {
+    // можно не использовать класс
     public class ClientService : IAuthorizationClient
     {
         public string ClientName { get; set; }

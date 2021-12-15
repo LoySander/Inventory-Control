@@ -14,14 +14,14 @@ namespace Presentation.Presenters
     public class MainPresenter: IPresenter
     {
         private IMainView _view;
-        private IAuthorizationCustomer _role;
+        private IAuthorizationUser _role;
         private ClientProductService clientProductService;
         private ClientOrderService clientOrderService;
         private StorageService storageService;
         private OrderProviderService providerService;
         private List<StorageProduct> orderCart;
         private List<OrderProvider> providerOrder;
-        public MainPresenter(IMainView view, IAuthorizationCustomer role)
+        public MainPresenter(IMainView view, IAuthorizationUser role)
         {
             this._view = view;
             this._role = role;
@@ -37,7 +37,7 @@ namespace Presentation.Presenters
             _view.Show();
         }
 
-        public EmployeeType GetRoles()
+        public UserType GetRoles()
         {
             return Employee.employeeType;
         }
@@ -195,7 +195,7 @@ namespace Presentation.Presenters
                 CountryProduct = " ",
                 type = ProductType.Food,
             };
-            clientProductService.addProduct(product);
+            storageService.addProduct(product);
             orders.Clear();
             return orders;
         }
