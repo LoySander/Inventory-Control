@@ -71,6 +71,7 @@ namespace WarehouseAccountingSystem
             this.label2 = new System.Windows.Forms.Label();
             this.CloseButton = new System.Windows.Forms.Button();
             this.MyOrderPanel = new System.Windows.Forms.Panel();
+            this.moveButton = new System.Windows.Forms.Button();
             this.FindButton = new System.Windows.Forms.Button();
             this.FindOrderTextBox = new System.Windows.Forms.TextBox();
             this.DeleteOrderButton = new System.Windows.Forms.Button();
@@ -85,7 +86,7 @@ namespace WarehouseAccountingSystem
             this.LeaveBidButton = new System.Windows.Forms.Button();
             this.BidText = new System.Windows.Forms.TextBox();
             this.BidLabel = new System.Windows.Forms.Label();
-            this.MyOrderView = new System.Windows.Forms.DataGridView();
+            this.myOrderClientView = new System.Windows.Forms.DataGridView();
             this.CloseButton2 = new System.Windows.Forms.Button();
             this.BidPanel = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
@@ -108,7 +109,12 @@ namespace WarehouseAccountingSystem
             this.label4 = new System.Windows.Forms.Label();
             this.CloseProfit = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.moveButton = new System.Windows.Forms.Button();
+            this.consignmentPanel = new System.Windows.Forms.Panel();
+            this.consignmentLabel = new System.Windows.Forms.Label();
+            this.consignmentDataView = new System.Windows.Forms.DataGridView();
+            this.idClientBox = new System.Windows.Forms.TextBox();
+            this.idClientLabel = new System.Windows.Forms.Label();
+            this.myOrderProviderView = new System.Windows.Forms.DataGridView();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ProductGridView1)).BeginInit();
             this.MainPanel.SuspendLayout();
@@ -120,9 +126,12 @@ namespace WarehouseAccountingSystem
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             this.MyOrderPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MyOrderCartGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MyOrderView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.myOrderClientView)).BeginInit();
             this.BidPanel.SuspendLayout();
             this.ProfitPanel.SuspendLayout();
+            this.consignmentPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.consignmentDataView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.myOrderProviderView)).BeginInit();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -328,7 +337,7 @@ namespace WarehouseAccountingSystem
             // TransferButton
             // 
             this.TransferButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TransferButton.Location = new System.Drawing.Point(485, 149);
+            this.TransferButton.Location = new System.Drawing.Point(32, 242);
             this.TransferButton.Name = "TransferButton";
             this.TransferButton.Size = new System.Drawing.Size(152, 29);
             this.TransferButton.TabIndex = 10;
@@ -338,6 +347,7 @@ namespace WarehouseAccountingSystem
             // 
             // MainPanel
             // 
+            this.MainPanel.Controls.Add(this.consignmentPanel);
             this.MainPanel.Controls.Add(this.OrderButton);
             this.MainPanel.Controls.Add(this.CartGridView);
             this.MainPanel.Controls.Add(this.Order);
@@ -345,7 +355,6 @@ namespace WarehouseAccountingSystem
             this.MainPanel.Controls.Add(this.IdProductLabel);
             this.MainPanel.Controls.Add(this.ExitFromCatalog);
             this.MainPanel.Controls.Add(this.SortButton);
-            this.MainPanel.Controls.Add(this.TransferButton);
             this.MainPanel.Controls.Add(this.ProductGridView1);
             this.MainPanel.Controls.Add(this.AddProductButton);
             this.MainPanel.Controls.Add(this.IdProductBox);
@@ -534,6 +543,7 @@ namespace WarehouseAccountingSystem
             // 
             // MyOrderPanel
             // 
+            this.MyOrderPanel.Controls.Add(this.myOrderProviderView);
             this.MyOrderPanel.Controls.Add(this.moveButton);
             this.MyOrderPanel.Controls.Add(this.FindButton);
             this.MyOrderPanel.Controls.Add(this.FindOrderTextBox);
@@ -549,7 +559,7 @@ namespace WarehouseAccountingSystem
             this.MyOrderPanel.Controls.Add(this.LeaveBidButton);
             this.MyOrderPanel.Controls.Add(this.BidText);
             this.MyOrderPanel.Controls.Add(this.BidLabel);
-            this.MyOrderPanel.Controls.Add(this.MyOrderView);
+            this.MyOrderPanel.Controls.Add(this.myOrderClientView);
             this.MyOrderPanel.Controls.Add(this.CloseButton2);
             this.MyOrderPanel.Location = new System.Drawing.Point(4, 163);
             this.MyOrderPanel.Name = "MyOrderPanel";
@@ -557,6 +567,18 @@ namespace WarehouseAccountingSystem
             this.MyOrderPanel.TabIndex = 18;
             this.MyOrderPanel.Visible = false;
             this.MyOrderPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.MyOrderPanel_Paint);
+            // 
+            // moveButton
+            // 
+            this.moveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.moveButton.Location = new System.Drawing.Point(497, 219);
+            this.moveButton.Name = "moveButton";
+            this.moveButton.Size = new System.Drawing.Size(152, 29);
+            this.moveButton.TabIndex = 32;
+            this.moveButton.Text = "Переместить";
+            this.moveButton.UseVisualStyleBackColor = true;
+            this.moveButton.Visible = false;
+            this.moveButton.Click += new System.EventHandler(this.moveButton_Click);
             // 
             // FindButton
             // 
@@ -694,17 +716,17 @@ namespace WarehouseAccountingSystem
             this.BidLabel.TabIndex = 18;
             this.BidLabel.Text = "Можете оставить заявку";
             // 
-            // MyOrderView
+            // myOrderClientView
             // 
-            this.MyOrderView.BackgroundColor = System.Drawing.SystemColors.Info;
-            this.MyOrderView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.MyOrderView.Location = new System.Drawing.Point(3, 15);
-            this.MyOrderView.Name = "MyOrderView";
-            this.MyOrderView.RowHeadersWidth = 51;
-            this.MyOrderView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.MyOrderView.Size = new System.Drawing.Size(476, 228);
-            this.MyOrderView.TabIndex = 17;
-            this.MyOrderView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView5_CellContentClick);
+            this.myOrderClientView.BackgroundColor = System.Drawing.SystemColors.Info;
+            this.myOrderClientView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.myOrderClientView.Location = new System.Drawing.Point(3, 14);
+            this.myOrderClientView.Name = "myOrderClientView";
+            this.myOrderClientView.RowHeadersWidth = 51;
+            this.myOrderClientView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.myOrderClientView.Size = new System.Drawing.Size(476, 228);
+            this.myOrderClientView.TabIndex = 17;
+            this.myOrderClientView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView5_CellContentClick);
             // 
             // CloseButton2
             // 
@@ -931,17 +953,67 @@ namespace WarehouseAccountingSystem
             this.statusStrip1.Text = "statusStrip1";
             this.statusStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.statusStrip1_ItemClicked);
             // 
-            // moveButton
+            // consignmentPanel
             // 
-            this.moveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.moveButton.Location = new System.Drawing.Point(497, 219);
-            this.moveButton.Name = "moveButton";
-            this.moveButton.Size = new System.Drawing.Size(152, 29);
-            this.moveButton.TabIndex = 32;
-            this.moveButton.Text = "Переместить";
-            this.moveButton.UseVisualStyleBackColor = true;
-            this.moveButton.Visible = false;
-            this.moveButton.Click += new System.EventHandler(this.moveButton_Click);
+            this.consignmentPanel.Controls.Add(this.idClientLabel);
+            this.consignmentPanel.Controls.Add(this.idClientBox);
+            this.consignmentPanel.Controls.Add(this.consignmentDataView);
+            this.consignmentPanel.Controls.Add(this.consignmentLabel);
+            this.consignmentPanel.Controls.Add(this.TransferButton);
+            this.consignmentPanel.Location = new System.Drawing.Point(657, 1);
+            this.consignmentPanel.Name = "consignmentPanel";
+            this.consignmentPanel.Size = new System.Drawing.Size(282, 279);
+            this.consignmentPanel.TabIndex = 15;
+            this.consignmentPanel.Visible = false;
+            // 
+            // consignmentLabel
+            // 
+            this.consignmentLabel.AutoSize = true;
+            this.consignmentLabel.Font = new System.Drawing.Font("Impact", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.consignmentLabel.Location = new System.Drawing.Point(63, 21);
+            this.consignmentLabel.Name = "consignmentLabel";
+            this.consignmentLabel.Size = new System.Drawing.Size(178, 23);
+            this.consignmentLabel.TabIndex = 15;
+            this.consignmentLabel.Text = "Партия для курьера";
+            // 
+            // consignmentDataView
+            // 
+            this.consignmentDataView.BackgroundColor = System.Drawing.SystemColors.Info;
+            this.consignmentDataView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.consignmentDataView.Location = new System.Drawing.Point(32, 47);
+            this.consignmentDataView.Name = "consignmentDataView";
+            this.consignmentDataView.RowHeadersWidth = 51;
+            this.consignmentDataView.Size = new System.Drawing.Size(240, 150);
+            this.consignmentDataView.TabIndex = 16;
+            // 
+            // idClientBox
+            // 
+            this.idClientBox.Location = new System.Drawing.Point(170, 211);
+            this.idClientBox.Name = "idClientBox";
+            this.idClientBox.Size = new System.Drawing.Size(100, 20);
+            this.idClientBox.TabIndex = 17;
+            // 
+            // idClientLabel
+            // 
+            this.idClientLabel.AutoSize = true;
+            this.idClientLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.idClientLabel.Location = new System.Drawing.Point(28, 206);
+            this.idClientLabel.Name = "idClientLabel";
+            this.idClientLabel.Size = new System.Drawing.Size(104, 24);
+            this.idClientLabel.TabIndex = 18;
+            this.idClientLabel.Text = "ID клиента";
+            this.idClientLabel.Click += new System.EventHandler(this.label6_Click);
+            // 
+            // myOrderProviderView
+            // 
+            this.myOrderProviderView.BackgroundColor = System.Drawing.SystemColors.Info;
+            this.myOrderProviderView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.myOrderProviderView.Location = new System.Drawing.Point(3, 14);
+            this.myOrderProviderView.Name = "myOrderProviderView";
+            this.myOrderProviderView.RowHeadersWidth = 51;
+            this.myOrderProviderView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.myOrderProviderView.Size = new System.Drawing.Size(476, 228);
+            this.myOrderProviderView.TabIndex = 33;
             // 
             // MainForm
             // 
@@ -952,11 +1024,11 @@ namespace WarehouseAccountingSystem
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.MyOrderPanel);
             this.Controls.Add(this.DeliverPanel);
             this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.ProfitPanel);
             this.Controls.Add(this.BidPanel);
+            this.Controls.Add(this.MyOrderPanel);
             this.Name = "MainForm";
             this.Text = "Storage v1.0";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
@@ -977,11 +1049,15 @@ namespace WarehouseAccountingSystem
             this.MyOrderPanel.ResumeLayout(false);
             this.MyOrderPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MyOrderCartGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MyOrderView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.myOrderClientView)).EndInit();
             this.BidPanel.ResumeLayout(false);
             this.BidPanel.PerformLayout();
             this.ProfitPanel.ResumeLayout(false);
             this.ProfitPanel.PerformLayout();
+            this.consignmentPanel.ResumeLayout(false);
+            this.consignmentPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.consignmentDataView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.myOrderProviderView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1028,7 +1104,7 @@ namespace WarehouseAccountingSystem
         private System.Windows.Forms.Button LeaveBidButton;
         private System.Windows.Forms.TextBox BidText;
         private System.Windows.Forms.Label BidLabel;
-        private System.Windows.Forms.DataGridView MyOrderView;
+        private System.Windows.Forms.DataGridView myOrderClientView;
         private System.Windows.Forms.Button CloseButton2;
         private System.Windows.Forms.Button PayButton;
         private System.Windows.Forms.Label label3;
@@ -1068,5 +1144,11 @@ namespace WarehouseAccountingSystem
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
         private System.Windows.Forms.Button moveButton;
+        private System.Windows.Forms.TextBox idClientBox;
+        private System.Windows.Forms.Panel consignmentPanel;
+        private System.Windows.Forms.DataGridView consignmentDataView;
+        private System.Windows.Forms.Label consignmentLabel;
+        private System.Windows.Forms.Label idClientLabel;
+        private System.Windows.Forms.DataGridView myOrderProviderView;
     }
 }

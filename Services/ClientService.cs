@@ -9,7 +9,7 @@ using Model;
 namespace Services
 {
     // можно не использовать класс
-    public class ClientService : IAuthorizationClient
+    public class ClientService
     {
         public string ClientName { get; set; }
         public int IdClient { get; set; }
@@ -17,13 +17,6 @@ namespace Services
         List<Client> list = Client.GetClient();
 
         private int id = 0;
-
-        public void Add(string clientName)
-        {
-            this.ClientName = clientName;
-            list.Add(new Client() { ClientName = clientName, IdClient = id });
-            id++;
-        }
 
         public Client Get(int id)
         {

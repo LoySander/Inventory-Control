@@ -28,7 +28,8 @@ namespace Model
 
         static List<Employee> listUsers = new List<Employee>() {
             new Employee{UserName = "PM",Password = "123"},
-        new Employee{UserName = "AM",Password = "321"}
+        new Employee{UserName = "AM",Password = "321"},
+        new Employee{UserName = "S",Password = "111"}
         };
 
         static public List<Employee> GetUsers()

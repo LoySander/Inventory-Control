@@ -195,8 +195,8 @@ namespace Presentation.Presenters
                 CountryProduct = " ",
                 type = ProductType.Food,
             };
-            storageService.addProduct(product);
             orders.Clear();
+            storageService.addProduct(product);
             return orders;
         }
     }
