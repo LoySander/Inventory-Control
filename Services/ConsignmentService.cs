@@ -31,7 +31,7 @@ namespace Services
             return consignmentDao.getAllConsignments();
         }
         
-        public void deleteProduct(long id)
+        public void deleteConsigment(long id)
         {
             consignmentDao.deleteConsigment(id);
         }

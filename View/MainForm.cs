@@ -382,8 +382,8 @@ namespace WarehouseAccountingSystem
         private void dataGridView4_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var selectedProduct = courierDataGridView.SelectedRows[0].DataBoundItem as Order;
-            textBox3.Text = selectedProduct.IdProduct.ToString();
-            DeliverButton.Enabled = true;
+            idClientText.Text = selectedProduct.IdProduct.ToString();
+            deliverButton.Enabled = true;
         }
         private void ОкGroupBox1_Click(object sender, EventArgs e)
         {
@@ -412,11 +412,6 @@ namespace WarehouseAccountingSystem
         private void CourierToolStripMenuItem_Click(object sender, EventArgs e)
         {
             presenter.GetCourierOrder();
-        }
-
-        private void DeliverButton_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
@@ -674,14 +669,10 @@ namespace WarehouseAccountingSystem
         //    ProductGridView1.DataSource = presenter.AddNewProduct()
         }
 
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void transferToCourierButton_Click(object sender, EventArgs e)
         {
-            if(idClientBox.Text !="" && consignmentDataView.DataSource != null)
+            if(idClientBox.Text !="" && consignmentDataView.Rows.Count != 0)
             {
                 consignmentDataView.DataSource = presenter.AddToCourier(long.Parse(idClientBox.Text));
             }
@@ -690,6 +681,27 @@ namespace WarehouseAccountingSystem
                 this.ShowMessage("Ошибка");
             }
            
+        }
+
+        private void courierDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var selectedId = courierDataGridView.SelectedRows[0].DataBoundItem as Сonsignment;
+            idClientText.Text = selectedId.ClientId.ToString();
+            deliverButton.Enabled = true;
+        }
+
+        private void deliverButton_Click(object sender, EventArgs e)
+        {
+            if (idClientText.Text != "")
+            {
+                presenter.RemoveConsignment(long.Parse(idClientText.Text));
+                courierDataGridView.DataSource = presenter.GetСonsignments();
+                ShowMessage("Заказ успешно доставлен");
+            }
+            else
+            {
+                ShowMessage("Ошибка");
+            }
         }
     }
 }

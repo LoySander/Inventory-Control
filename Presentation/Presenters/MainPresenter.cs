@@ -226,6 +226,11 @@ namespace Presentation.Presenters
             return consignmentService.GetConsignment();
         }
 
+        public void RemoveConsignment(long id)
+        {
+             consignmentService.deleteConsigment(id);
+        }
+
     }
     
 }

@@ -71,8 +71,8 @@ namespace WarehouseAccountingSystem
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.DeliverPanel = new System.Windows.Forms.Panel();
             this.courierDataGridView = new System.Windows.Forms.DataGridView();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.DeliverButton = new System.Windows.Forms.Button();
+            this.idClientText = new System.Windows.Forms.TextBox();
+            this.deliverButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.CloseButton = new System.Windows.Forms.Button();
             this.MyOrderPanel = new System.Windows.Forms.Panel();
@@ -387,7 +387,6 @@ namespace WarehouseAccountingSystem
             this.idClientLabel.Size = new System.Drawing.Size(104, 24);
             this.idClientLabel.TabIndex = 18;
             this.idClientLabel.Text = "ID клиента";
-            this.idClientLabel.Click += new System.EventHandler(this.label6_Click);
             // 
             // idClientBox
             // 
@@ -531,8 +530,8 @@ namespace WarehouseAccountingSystem
             // DeliverPanel
             // 
             this.DeliverPanel.Controls.Add(this.courierDataGridView);
-            this.DeliverPanel.Controls.Add(this.textBox3);
-            this.DeliverPanel.Controls.Add(this.DeliverButton);
+            this.DeliverPanel.Controls.Add(this.idClientText);
+            this.DeliverPanel.Controls.Add(this.deliverButton);
             this.DeliverPanel.Controls.Add(this.label2);
             this.DeliverPanel.Controls.Add(this.CloseButton);
             this.DeliverPanel.Location = new System.Drawing.Point(4, 163);
@@ -551,25 +550,27 @@ namespace WarehouseAccountingSystem
             this.courierDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.courierDataGridView.Size = new System.Drawing.Size(476, 228);
             this.courierDataGridView.TabIndex = 17;
+            this.courierDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.courierDataGridView_CellContentClick);
             // 
-            // textBox3
+            // idClientText
             // 
-            this.textBox3.Location = new System.Drawing.Point(498, 47);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(152, 20);
-            this.textBox3.TabIndex = 24;
+            this.idClientText.Location = new System.Drawing.Point(498, 47);
+            this.idClientText.Name = "idClientText";
+            this.idClientText.ReadOnly = true;
+            this.idClientText.Size = new System.Drawing.Size(152, 20);
+            this.idClientText.TabIndex = 24;
             // 
-            // DeliverButton
+            // deliverButton
             // 
-            this.DeliverButton.Enabled = false;
-            this.DeliverButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DeliverButton.Location = new System.Drawing.Point(498, 73);
-            this.DeliverButton.Name = "DeliverButton";
-            this.DeliverButton.Size = new System.Drawing.Size(152, 29);
-            this.DeliverButton.TabIndex = 16;
-            this.DeliverButton.Text = "Доставить";
-            this.DeliverButton.UseVisualStyleBackColor = true;
+            this.deliverButton.Enabled = false;
+            this.deliverButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deliverButton.Location = new System.Drawing.Point(498, 73);
+            this.deliverButton.Name = "deliverButton";
+            this.deliverButton.Size = new System.Drawing.Size(152, 29);
+            this.deliverButton.TabIndex = 16;
+            this.deliverButton.Text = "Доставить";
+            this.deliverButton.UseVisualStyleBackColor = true;
+            this.deliverButton.Click += new System.EventHandler(this.deliverButton_Click);
             // 
             // label2
             // 
@@ -577,9 +578,9 @@ namespace WarehouseAccountingSystem
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(520, 21);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(95, 24);
+            this.label2.Size = new System.Drawing.Size(104, 24);
             this.label2.TabIndex = 6;
-            this.label2.Text = "ID товара";
+            this.label2.Text = "ID клиента";
             // 
             // CloseButton
             // 
@@ -1096,7 +1097,7 @@ namespace WarehouseAccountingSystem
         private System.Windows.Forms.Button OrderButton;
         private System.Windows.Forms.ToolStripMenuItem HelpToolStripMenuItem;
         private System.Windows.Forms.Panel DeliverPanel;
-        private System.Windows.Forms.Button DeliverButton;
+        private System.Windows.Forms.Button deliverButton;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button CloseButton;
         private System.Windows.Forms.DataGridView courierDataGridView;
@@ -1113,7 +1114,7 @@ namespace WarehouseAccountingSystem
         private System.Windows.Forms.ToolStripMenuItem BidToolStripMenuItem;
         private System.Windows.Forms.Label CostProduct;
         private System.Windows.Forms.TextBox CostProductBox;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox idClientText;
         private System.Windows.Forms.ToolStripMenuItem ProfitToolStripMenuItem;
         private System.Windows.Forms.Button GiveStorageButton;
         private System.Windows.Forms.Label GiveStorageLabel;
