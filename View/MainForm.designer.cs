@@ -52,8 +52,13 @@ namespace WarehouseAccountingSystem
             this.IdProductLabel = new System.Windows.Forms.Label();
             this.IdProductBox = new System.Windows.Forms.TextBox();
             this.SortButton = new System.Windows.Forms.Button();
-            this.TransferButton = new System.Windows.Forms.Button();
+            this.transferToCourierButton = new System.Windows.Forms.Button();
             this.MainPanel = new System.Windows.Forms.Panel();
+            this.consignmentPanel = new System.Windows.Forms.Panel();
+            this.idClientLabel = new System.Windows.Forms.Label();
+            this.idClientBox = new System.Windows.Forms.TextBox();
+            this.consignmentDataView = new System.Windows.Forms.DataGridView();
+            this.consignmentLabel = new System.Windows.Forms.Label();
             this.OrderButton = new System.Windows.Forms.Button();
             this.CartGridView = new System.Windows.Forms.DataGridView();
             this.Order = new System.Windows.Forms.Label();
@@ -65,12 +70,13 @@ namespace WarehouseAccountingSystem
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.DeliverPanel = new System.Windows.Forms.Panel();
-            this.dataGridView4 = new System.Windows.Forms.DataGridView();
+            this.courierDataGridView = new System.Windows.Forms.DataGridView();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.DeliverButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.CloseButton = new System.Windows.Forms.Button();
             this.MyOrderPanel = new System.Windows.Forms.Panel();
+            this.myOrderProviderView = new System.Windows.Forms.DataGridView();
             this.moveButton = new System.Windows.Forms.Button();
             this.FindButton = new System.Windows.Forms.Button();
             this.FindOrderTextBox = new System.Windows.Forms.TextBox();
@@ -109,29 +115,23 @@ namespace WarehouseAccountingSystem
             this.label4 = new System.Windows.Forms.Label();
             this.CloseProfit = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.consignmentPanel = new System.Windows.Forms.Panel();
-            this.consignmentLabel = new System.Windows.Forms.Label();
-            this.consignmentDataView = new System.Windows.Forms.DataGridView();
-            this.idClientBox = new System.Windows.Forms.TextBox();
-            this.idClientLabel = new System.Windows.Forms.Label();
-            this.myOrderProviderView = new System.Windows.Forms.DataGridView();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ProductGridView1)).BeginInit();
             this.MainPanel.SuspendLayout();
+            this.consignmentPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.consignmentDataView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CartGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ProductGridView2)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.DeliverPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.courierDataGridView)).BeginInit();
             this.MyOrderPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.myOrderProviderView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MyOrderCartGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.myOrderClientView)).BeginInit();
             this.BidPanel.SuspendLayout();
             this.ProfitPanel.SuspendLayout();
-            this.consignmentPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.consignmentDataView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.myOrderProviderView)).BeginInit();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -334,16 +334,17 @@ namespace WarehouseAccountingSystem
             this.SortButton.Visible = false;
             this.SortButton.Click += new System.EventHandler(this.SortButton_Click);
             // 
-            // TransferButton
+            // transferToCourierButton
             // 
-            this.TransferButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TransferButton.Location = new System.Drawing.Point(32, 242);
-            this.TransferButton.Name = "TransferButton";
-            this.TransferButton.Size = new System.Drawing.Size(152, 29);
-            this.TransferButton.TabIndex = 10;
-            this.TransferButton.Text = "Передать доставщику";
-            this.TransferButton.UseVisualStyleBackColor = true;
-            this.TransferButton.Visible = false;
+            this.transferToCourierButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.transferToCourierButton.Location = new System.Drawing.Point(32, 242);
+            this.transferToCourierButton.Name = "transferToCourierButton";
+            this.transferToCourierButton.Size = new System.Drawing.Size(152, 29);
+            this.transferToCourierButton.TabIndex = 10;
+            this.transferToCourierButton.Text = "Передать доставщику";
+            this.transferToCourierButton.UseVisualStyleBackColor = true;
+            this.transferToCourierButton.Visible = false;
+            this.transferToCourierButton.Click += new System.EventHandler(this.transferToCourierButton_Click);
             // 
             // MainPanel
             // 
@@ -363,6 +364,57 @@ namespace WarehouseAccountingSystem
             this.MainPanel.Size = new System.Drawing.Size(938, 282);
             this.MainPanel.TabIndex = 11;
             this.MainPanel.Visible = false;
+            // 
+            // consignmentPanel
+            // 
+            this.consignmentPanel.Controls.Add(this.idClientLabel);
+            this.consignmentPanel.Controls.Add(this.idClientBox);
+            this.consignmentPanel.Controls.Add(this.consignmentDataView);
+            this.consignmentPanel.Controls.Add(this.consignmentLabel);
+            this.consignmentPanel.Controls.Add(this.transferToCourierButton);
+            this.consignmentPanel.Location = new System.Drawing.Point(657, 1);
+            this.consignmentPanel.Name = "consignmentPanel";
+            this.consignmentPanel.Size = new System.Drawing.Size(282, 279);
+            this.consignmentPanel.TabIndex = 15;
+            this.consignmentPanel.Visible = false;
+            // 
+            // idClientLabel
+            // 
+            this.idClientLabel.AutoSize = true;
+            this.idClientLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.idClientLabel.Location = new System.Drawing.Point(28, 206);
+            this.idClientLabel.Name = "idClientLabel";
+            this.idClientLabel.Size = new System.Drawing.Size(104, 24);
+            this.idClientLabel.TabIndex = 18;
+            this.idClientLabel.Text = "ID клиента";
+            this.idClientLabel.Click += new System.EventHandler(this.label6_Click);
+            // 
+            // idClientBox
+            // 
+            this.idClientBox.Location = new System.Drawing.Point(170, 211);
+            this.idClientBox.Name = "idClientBox";
+            this.idClientBox.Size = new System.Drawing.Size(100, 20);
+            this.idClientBox.TabIndex = 17;
+            // 
+            // consignmentDataView
+            // 
+            this.consignmentDataView.BackgroundColor = System.Drawing.SystemColors.Info;
+            this.consignmentDataView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.consignmentDataView.Location = new System.Drawing.Point(32, 47);
+            this.consignmentDataView.Name = "consignmentDataView";
+            this.consignmentDataView.RowHeadersWidth = 51;
+            this.consignmentDataView.Size = new System.Drawing.Size(240, 150);
+            this.consignmentDataView.TabIndex = 16;
+            // 
+            // consignmentLabel
+            // 
+            this.consignmentLabel.AutoSize = true;
+            this.consignmentLabel.Font = new System.Drawing.Font("Impact", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.consignmentLabel.Location = new System.Drawing.Point(63, 21);
+            this.consignmentLabel.Name = "consignmentLabel";
+            this.consignmentLabel.Size = new System.Drawing.Size(178, 23);
+            this.consignmentLabel.TabIndex = 15;
+            this.consignmentLabel.Text = "Партия для курьера";
             // 
             // OrderButton
             // 
@@ -478,7 +530,7 @@ namespace WarehouseAccountingSystem
             // 
             // DeliverPanel
             // 
-            this.DeliverPanel.Controls.Add(this.dataGridView4);
+            this.DeliverPanel.Controls.Add(this.courierDataGridView);
             this.DeliverPanel.Controls.Add(this.textBox3);
             this.DeliverPanel.Controls.Add(this.DeliverButton);
             this.DeliverPanel.Controls.Add(this.label2);
@@ -489,16 +541,16 @@ namespace WarehouseAccountingSystem
             this.DeliverPanel.TabIndex = 17;
             this.DeliverPanel.Visible = false;
             // 
-            // dataGridView4
+            // courierDataGridView
             // 
-            this.dataGridView4.BackgroundColor = System.Drawing.SystemColors.Info;
-            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView4.Location = new System.Drawing.Point(3, 20);
-            this.dataGridView4.Name = "dataGridView4";
-            this.dataGridView4.RowHeadersWidth = 51;
-            this.dataGridView4.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView4.Size = new System.Drawing.Size(476, 228);
-            this.dataGridView4.TabIndex = 17;
+            this.courierDataGridView.BackgroundColor = System.Drawing.SystemColors.Info;
+            this.courierDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.courierDataGridView.Location = new System.Drawing.Point(3, 20);
+            this.courierDataGridView.Name = "courierDataGridView";
+            this.courierDataGridView.RowHeadersWidth = 51;
+            this.courierDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.courierDataGridView.Size = new System.Drawing.Size(476, 228);
+            this.courierDataGridView.TabIndex = 17;
             // 
             // textBox3
             // 
@@ -567,6 +619,17 @@ namespace WarehouseAccountingSystem
             this.MyOrderPanel.TabIndex = 18;
             this.MyOrderPanel.Visible = false;
             this.MyOrderPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.MyOrderPanel_Paint);
+            // 
+            // myOrderProviderView
+            // 
+            this.myOrderProviderView.BackgroundColor = System.Drawing.SystemColors.Info;
+            this.myOrderProviderView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.myOrderProviderView.Location = new System.Drawing.Point(3, 14);
+            this.myOrderProviderView.Name = "myOrderProviderView";
+            this.myOrderProviderView.RowHeadersWidth = 51;
+            this.myOrderProviderView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.myOrderProviderView.Size = new System.Drawing.Size(476, 228);
+            this.myOrderProviderView.TabIndex = 33;
             // 
             // moveButton
             // 
@@ -953,68 +1016,6 @@ namespace WarehouseAccountingSystem
             this.statusStrip1.Text = "statusStrip1";
             this.statusStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.statusStrip1_ItemClicked);
             // 
-            // consignmentPanel
-            // 
-            this.consignmentPanel.Controls.Add(this.idClientLabel);
-            this.consignmentPanel.Controls.Add(this.idClientBox);
-            this.consignmentPanel.Controls.Add(this.consignmentDataView);
-            this.consignmentPanel.Controls.Add(this.consignmentLabel);
-            this.consignmentPanel.Controls.Add(this.TransferButton);
-            this.consignmentPanel.Location = new System.Drawing.Point(657, 1);
-            this.consignmentPanel.Name = "consignmentPanel";
-            this.consignmentPanel.Size = new System.Drawing.Size(282, 279);
-            this.consignmentPanel.TabIndex = 15;
-            this.consignmentPanel.Visible = false;
-            // 
-            // consignmentLabel
-            // 
-            this.consignmentLabel.AutoSize = true;
-            this.consignmentLabel.Font = new System.Drawing.Font("Impact", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.consignmentLabel.Location = new System.Drawing.Point(63, 21);
-            this.consignmentLabel.Name = "consignmentLabel";
-            this.consignmentLabel.Size = new System.Drawing.Size(178, 23);
-            this.consignmentLabel.TabIndex = 15;
-            this.consignmentLabel.Text = "Партия для курьера";
-            // 
-            // consignmentDataView
-            // 
-            this.consignmentDataView.BackgroundColor = System.Drawing.SystemColors.Info;
-            this.consignmentDataView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.consignmentDataView.Location = new System.Drawing.Point(32, 47);
-            this.consignmentDataView.Name = "consignmentDataView";
-            this.consignmentDataView.RowHeadersWidth = 51;
-            this.consignmentDataView.Size = new System.Drawing.Size(240, 150);
-            this.consignmentDataView.TabIndex = 16;
-            // 
-            // idClientBox
-            // 
-            this.idClientBox.Location = new System.Drawing.Point(170, 211);
-            this.idClientBox.Name = "idClientBox";
-            this.idClientBox.Size = new System.Drawing.Size(100, 20);
-            this.idClientBox.TabIndex = 17;
-            // 
-            // idClientLabel
-            // 
-            this.idClientLabel.AutoSize = true;
-            this.idClientLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.idClientLabel.Location = new System.Drawing.Point(28, 206);
-            this.idClientLabel.Name = "idClientLabel";
-            this.idClientLabel.Size = new System.Drawing.Size(104, 24);
-            this.idClientLabel.TabIndex = 18;
-            this.idClientLabel.Text = "ID клиента";
-            this.idClientLabel.Click += new System.EventHandler(this.label6_Click);
-            // 
-            // myOrderProviderView
-            // 
-            this.myOrderProviderView.BackgroundColor = System.Drawing.SystemColors.Info;
-            this.myOrderProviderView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.myOrderProviderView.Location = new System.Drawing.Point(3, 14);
-            this.myOrderProviderView.Name = "myOrderProviderView";
-            this.myOrderProviderView.RowHeadersWidth = 51;
-            this.myOrderProviderView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.myOrderProviderView.Size = new System.Drawing.Size(476, 228);
-            this.myOrderProviderView.TabIndex = 33;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1038,6 +1039,9 @@ namespace WarehouseAccountingSystem
             ((System.ComponentModel.ISupportInitialize)(this.ProductGridView1)).EndInit();
             this.MainPanel.ResumeLayout(false);
             this.MainPanel.PerformLayout();
+            this.consignmentPanel.ResumeLayout(false);
+            this.consignmentPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.consignmentDataView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CartGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ProductGridView2)).EndInit();
             this.panel1.ResumeLayout(false);
@@ -1045,19 +1049,16 @@ namespace WarehouseAccountingSystem
             this.groupBox1.PerformLayout();
             this.DeliverPanel.ResumeLayout(false);
             this.DeliverPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.courierDataGridView)).EndInit();
             this.MyOrderPanel.ResumeLayout(false);
             this.MyOrderPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.myOrderProviderView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MyOrderCartGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.myOrderClientView)).EndInit();
             this.BidPanel.ResumeLayout(false);
             this.BidPanel.PerformLayout();
             this.ProfitPanel.ResumeLayout(false);
             this.ProfitPanel.PerformLayout();
-            this.consignmentPanel.ResumeLayout(false);
-            this.consignmentPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.consignmentDataView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.myOrderProviderView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1079,7 +1080,7 @@ namespace WarehouseAccountingSystem
         private System.Windows.Forms.Label IdProductLabel;
         private System.Windows.Forms.TextBox IdProductBox;
         private System.Windows.Forms.Button SortButton;
-        private System.Windows.Forms.Button TransferButton;
+        private System.Windows.Forms.Button transferToCourierButton;
         private System.Windows.Forms.ToolStripMenuItem DeleviryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem CourierToolStripMenuItem;
         private System.Windows.Forms.Panel MainPanel;
@@ -1098,7 +1099,7 @@ namespace WarehouseAccountingSystem
         private System.Windows.Forms.Button DeliverButton;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button CloseButton;
-        private System.Windows.Forms.DataGridView dataGridView4;
+        private System.Windows.Forms.DataGridView courierDataGridView;
         private System.Windows.Forms.ToolStripMenuItem MyOrdersToolStripMenuItem;
         private System.Windows.Forms.Panel MyOrderPanel;
         private System.Windows.Forms.Button LeaveBidButton;

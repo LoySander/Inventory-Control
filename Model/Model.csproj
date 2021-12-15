@@ -53,6 +53,7 @@
     <Compile Include="OrderDB.cs" />
     <Compile Include="StorageProduct.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Сonsignment.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

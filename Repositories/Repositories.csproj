@@ -45,10 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\IConsignmentDao.cs" />
     <Compile Include="DAO\IOrderDao.cs" />
     <Compile Include="DAO\IProductDao.cs" />
     <Compile Include="DAO\ListOrderDao.cs" />
     <Compile Include="DAO\ListProductDao.cs" />
+    <Compile Include="DAO\ListСonsignmentDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

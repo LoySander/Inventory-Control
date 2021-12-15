@@ -19,8 +19,11 @@ namespace Presentation.Presenters
         private ClientOrderService clientOrderService;
         private StorageService storageService;
         private OrderProviderService providerService;
+        private ConsignmentService consignmentService;
         private List<StorageProduct> orderCart;
         private List<OrderProvider> providerOrder;
+        private List<Сonsignment> consignments;
+
         public MainPresenter(IMainView view, IAuthorizationUser role)
         {
             this._view = view;
@@ -29,6 +32,7 @@ namespace Presentation.Presenters
             this.clientOrderService = ClientOrderService.getInstance();
             this.orderCart = new List<StorageProduct>();
             this.providerOrder = new List<OrderProvider>();
+            this.consignmentService = ConsignmentService.getInstance();
             this.providerService = OrderProviderService.getInstance();
             this.storageService = StorageService.getInstance();
         }
@@ -199,6 +203,30 @@ namespace Presentation.Presenters
             storageService.addProduct(product);
             return orders;
         }
+
+        public List<StorageProduct> AddToCourier(long clientId)
+        {
+            string productNames = "";
+            foreach (StorageProduct x in orderCart)
+            {
+                productNames += x.NameProduct + " ";
+            }
+            Сonsignment consignment = new Сonsignment()
+            {
+                ClientId = clientId,
+                NamesProduct = productNames,
+            };
+            consignmentService.addConsignment(consignment);
+            orderCart.Clear();
+            return orderCart;
+        }
+
+        public List<Сonsignment> GetСonsignments()
+        {
+            return consignmentService.GetConsignment();
+        }
+
     }
+    
 }
 

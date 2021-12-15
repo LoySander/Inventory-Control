@@ -79,7 +79,7 @@ namespace WarehouseAccountingSystem
                 else if(type == UserType.Storekeeper)
                {
                 ProfitToolStripMenuItem.Enabled = false;
-                DeleviryToolStripMenuItem.Enabled = false;
+                //DeleviryToolStripMenuItem.Enabled = false;
                 OrderProviderToolStripMenuItem.Enabled = false;
                 BidToolStripMenuItem.Enabled = false;
                 сatalogToolStripMenuItem.Enabled = false;
@@ -101,14 +101,14 @@ namespace WarehouseAccountingSystem
 
         public void OpenCatalog()
         {
-            if (DeliverPanel.Visible || MyOrderPanel.Visible || BidPanel.Visible || ProfitPanel.Visible || SortButton.Visible || TransferButton.Visible || consignmentPanel.Visible)
+            if (DeliverPanel.Visible || MyOrderPanel.Visible || BidPanel.Visible || ProfitPanel.Visible || SortButton.Visible || transferToCourierButton.Visible || consignmentPanel.Visible)
             {
                 DeliverPanel.Hide();
                 MyOrderPanel.Hide();
                 BidPanel.Hide();
                 ProfitPanel.Hide();
                 SortButton.Hide();
-                TransferButton.Hide();
+                transferToCourierButton.Hide();
                 consignmentPanel.Hide();
             }
             CatalogLabel.Text = "Каталог товаров";
@@ -138,7 +138,7 @@ namespace WarehouseAccountingSystem
             MainPanel.Show();
             ProductGridView1.Show();
             SortButton.Show();
-            TransferButton.Show();
+            transferToCourierButton.Show();
             Order.Show();
             OrderButton.Show();
             CatalogLabel.Text = "Товары на складе";
@@ -381,7 +381,7 @@ namespace WarehouseAccountingSystem
 
         private void dataGridView4_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            var selectedProduct = dataGridView4.SelectedRows[0].DataBoundItem as Order;
+            var selectedProduct = courierDataGridView.SelectedRows[0].DataBoundItem as Order;
             textBox3.Text = selectedProduct.IdProduct.ToString();
             DeliverButton.Enabled = true;
         }
@@ -576,7 +576,18 @@ namespace WarehouseAccountingSystem
 
         private void DeleviryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            CatalogLabel.Text = "Заказы";
+            if (MainPanel.Visible || groupBox1.Visible || MyOrderPanel.Visible || BidPanel.Visible || ProfitPanel.Visible || consignmentPanel.Visible)
+            {
+                MainPanel.Hide();
+                groupBox1.Hide();
+                MyOrderPanel.Hide();
+                BidPanel.Hide();
+                ProfitPanel.Hide();
+                consignmentPanel.Hide();
+            }
+            DeliverPanel.Show();
+            courierDataGridView.DataSource = presenter.GetСonsignments();
         }
 
         private void сatalogToolStripMenuItem_Click(object sender, EventArgs e)
@@ -666,6 +677,19 @@ namespace WarehouseAccountingSystem
         private void label6_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void transferToCourierButton_Click(object sender, EventArgs e)
+        {
+            if(idClientBox.Text !="" && consignmentDataView.DataSource != null)
+            {
+                consignmentDataView.DataSource = presenter.AddToCourier(long.Parse(idClientBox.Text));
+            }
+            else
+            {
+                this.ShowMessage("Ошибка");
+            }
+           
         }
     }
 }
