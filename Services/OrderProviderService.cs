@@ -29,7 +29,7 @@ namespace Services
 
         public List<OrderProvider> GetOrdersProvider()
         {
-            List<Order> orders = orderDao.getAllOrders();
+            List<Order> orders = orderDao.getAllOrders().Where(order => order.OrderType == OrderType.provider).ToList();
             List<OrderProvider> ordersProvider = new List<OrderProvider>();
             orders = orders.ToList();
             orders.ForEach(order =>
