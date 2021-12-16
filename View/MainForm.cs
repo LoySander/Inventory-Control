@@ -232,9 +232,9 @@ namespace WarehouseAccountingSystem
                 consignmentPanel.Hide();
             }
             CatalogLabel.Text = "Редактирование заказов";
-            if (BidLabel.Visible && BidText.Visible && LeaveBidButton.Visible)
+            if (BidLabel.Visible && bidText.Visible && LeaveBidButton.Visible)
             {
-                BidText.Hide();
+                bidText.Hide();
                 BidLabel.Hide();
                 LeaveBidButton.Hide();
                 GiveStorageButton.Show();
@@ -247,7 +247,7 @@ namespace WarehouseAccountingSystem
                 CostProductBox.Hide();
                 PayButton.Hide();
                 CostProduct.Hide();
-                BidText.Hide();
+                bidText.Hide();
                 BidLabel.Hide();
                 LeaveBidButton.Hide();
                 GiveStorageButton.Hide();
@@ -385,7 +385,7 @@ namespace WarehouseAccountingSystem
             GiveStorageButton.Hide();
             MyOrderCartGridView.Hide();
             GiveStorageLabel.Hide();
-            BidText.Show();
+            bidText.Show();
             BidLabel.Show();
             LeaveBidButton.Show();
             CostProduct.Show();
@@ -449,7 +449,7 @@ namespace WarehouseAccountingSystem
             GiveStorageLabel.Show();
             CostProductBox.Show();
             CostProduct.Show();
-            BidText.Hide();
+            bidText.Hide();
             BidLabel.Hide();
             LeaveBidButton.Hide();
             myOrderProviderView.Show();
@@ -584,7 +584,7 @@ namespace WarehouseAccountingSystem
 
         private void OrderButton_Click(object sender, EventArgs e)
         {
-          
+         
             CartGridView.DataSource = presenter.makeOrder();
         }
 
@@ -679,6 +679,12 @@ namespace WarehouseAccountingSystem
             var selectedId = myOrderProviderView.SelectedRows[0].DataBoundItem as OrderProvider;
             idProductBox1.Text = selectedId.Id.ToString();
             deliverButton.Enabled = true;
+        }
+
+        private void LeaveBidButton_Click(object sender, EventArgs e)
+        {
+            presenter.LeaveBid(bidText.Text);
+            bidText.Text = "";
         }
     }
 }
