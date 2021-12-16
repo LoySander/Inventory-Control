@@ -11,5 +11,12 @@ namespace WarehouseAccountingSystem
     {
         public int ClientId { get; set; }
         public int IdProduct { get; set; }
+        public OrderType OrderType { get; set; }
+    }
+
+    public enum OrderType
+    {
+        client,
+        provider
     }
 }

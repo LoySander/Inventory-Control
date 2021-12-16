@@ -130,8 +130,17 @@ namespace Presentation.Presenters
                 ClientId = 1,
                 NamesOfProducts = productNames,
                 TotalCost = totalCost,
-                PaymentProduct = "Ожидает оплаты"
+                PaymentProduct = "Ожидает оплаты",
             };
+            switch (Employee.employeeType)
+            {
+                case UserType.PurchasingManager:
+                    order.OrderType = OrderType.provider;
+                    break;
+                default:
+                    order.OrderType = OrderType.client;
+                    break;
+            }
             orderCart.Clear();
             clientOrderService.addOrder(order);
             return orderCart;
@@ -248,6 +257,12 @@ namespace Presentation.Presenters
             storageService.reduceProduct(nameProducts);
         }
 
+        public void LeaveBid(string Text)
+        {
+            Bid bid = new Bid();
+            bid.Text = Text;
+            bid.ClientId = 1;
+        }
     }
     
 }
