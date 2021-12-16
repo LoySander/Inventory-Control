@@ -27,7 +27,7 @@ namespace Services
 
         public List<Order> GetOrders(int clientId)
         {
-            return orderDao.getAllOrders().Where(order => order.ClientId == clientId).ToList();
+            return orderDao.getAllOrders().Where(order => order.ClientId == clientId && order.OrderType == OrderType.client).ToList();
         }
 
         public void addOrder(Order order)
