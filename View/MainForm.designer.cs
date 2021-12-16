@@ -38,7 +38,7 @@ namespace WarehouseAccountingSystem
             this.BidToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ProfitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.EditingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.заказToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.storageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.СheckStorage = new System.Windows.Forms.ToolStripMenuItem();
             this.сatalogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CheckCatalog = new System.Windows.Forms.ToolStripMenuItem();
@@ -76,11 +76,9 @@ namespace WarehouseAccountingSystem
             this.label2 = new System.Windows.Forms.Label();
             this.CloseButton = new System.Windows.Forms.Button();
             this.MyOrderPanel = new System.Windows.Forms.Panel();
+            this.deleteOrderButton = new System.Windows.Forms.Button();
             this.myOrderProviderView = new System.Windows.Forms.DataGridView();
             this.moveButton = new System.Windows.Forms.Button();
-            this.FindButton = new System.Windows.Forms.Button();
-            this.FindOrderTextBox = new System.Windows.Forms.TextBox();
-            this.DeleteOrderButton = new System.Windows.Forms.Button();
             this.GiveStorageButton = new System.Windows.Forms.Button();
             this.GiveStorageLabel = new System.Windows.Forms.Label();
             this.MyOrderCartGridView = new System.Windows.Forms.DataGridView();
@@ -88,7 +86,7 @@ namespace WarehouseAccountingSystem
             this.CostProduct = new System.Windows.Forms.Label();
             this.PayButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.IdProductBox1 = new System.Windows.Forms.TextBox();
+            this.idProductBox1 = new System.Windows.Forms.TextBox();
             this.LeaveBidButton = new System.Windows.Forms.Button();
             this.BidText = new System.Windows.Forms.TextBox();
             this.BidLabel = new System.Windows.Forms.Label();
@@ -145,7 +143,7 @@ namespace WarehouseAccountingSystem
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.RequestToolStripMenuItem,
-            this.заказToolStripMenuItem,
+            this.storageToolStripMenuItem,
             this.сatalogToolStripMenuItem,
             this.DeleviryToolStripMenuItem,
             this.HelpToolStripMenuItem,
@@ -205,13 +203,13 @@ namespace WarehouseAccountingSystem
             this.EditingToolStripMenuItem.Text = "Редактирование";
             this.EditingToolStripMenuItem.Click += new System.EventHandler(this.EditingToolStripMenuItem_Click);
             // 
-            // заказToolStripMenuItem
+            // storageToolStripMenuItem
             // 
-            this.заказToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.storageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.СheckStorage});
-            this.заказToolStripMenuItem.Name = "заказToolStripMenuItem";
-            this.заказToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
-            this.заказToolStripMenuItem.Text = "Склад";
+            this.storageToolStripMenuItem.Name = "storageToolStripMenuItem";
+            this.storageToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.storageToolStripMenuItem.Text = "Склад";
             // 
             // СheckStorage
             // 
@@ -596,11 +594,9 @@ namespace WarehouseAccountingSystem
             // 
             // MyOrderPanel
             // 
+            this.MyOrderPanel.Controls.Add(this.deleteOrderButton);
             this.MyOrderPanel.Controls.Add(this.myOrderProviderView);
             this.MyOrderPanel.Controls.Add(this.moveButton);
-            this.MyOrderPanel.Controls.Add(this.FindButton);
-            this.MyOrderPanel.Controls.Add(this.FindOrderTextBox);
-            this.MyOrderPanel.Controls.Add(this.DeleteOrderButton);
             this.MyOrderPanel.Controls.Add(this.GiveStorageButton);
             this.MyOrderPanel.Controls.Add(this.GiveStorageLabel);
             this.MyOrderPanel.Controls.Add(this.MyOrderCartGridView);
@@ -608,7 +604,7 @@ namespace WarehouseAccountingSystem
             this.MyOrderPanel.Controls.Add(this.CostProduct);
             this.MyOrderPanel.Controls.Add(this.PayButton);
             this.MyOrderPanel.Controls.Add(this.label3);
-            this.MyOrderPanel.Controls.Add(this.IdProductBox1);
+            this.MyOrderPanel.Controls.Add(this.idProductBox1);
             this.MyOrderPanel.Controls.Add(this.LeaveBidButton);
             this.MyOrderPanel.Controls.Add(this.BidText);
             this.MyOrderPanel.Controls.Add(this.BidLabel);
@@ -621,6 +617,17 @@ namespace WarehouseAccountingSystem
             this.MyOrderPanel.Visible = false;
             this.MyOrderPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.MyOrderPanel_Paint);
             // 
+            // deleteOrderButton
+            // 
+            this.deleteOrderButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deleteOrderButton.Location = new System.Drawing.Point(489, 161);
+            this.deleteOrderButton.Name = "deleteOrderButton";
+            this.deleteOrderButton.Size = new System.Drawing.Size(152, 29);
+            this.deleteOrderButton.TabIndex = 34;
+            this.deleteOrderButton.Text = "Удалить";
+            this.deleteOrderButton.UseVisualStyleBackColor = true;
+            this.deleteOrderButton.Click += new System.EventHandler(this.deleteOrderButton_Click);
+            // 
             // myOrderProviderView
             // 
             this.myOrderProviderView.BackgroundColor = System.Drawing.SystemColors.Info;
@@ -631,11 +638,12 @@ namespace WarehouseAccountingSystem
             this.myOrderProviderView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.myOrderProviderView.Size = new System.Drawing.Size(476, 228);
             this.myOrderProviderView.TabIndex = 33;
+            this.myOrderProviderView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.myOrderProviderView_CellContentClick);
             // 
             // moveButton
             // 
             this.moveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.moveButton.Location = new System.Drawing.Point(497, 219);
+            this.moveButton.Location = new System.Drawing.Point(489, 199);
             this.moveButton.Name = "moveButton";
             this.moveButton.Size = new System.Drawing.Size(152, 29);
             this.moveButton.TabIndex = 32;
@@ -643,33 +651,6 @@ namespace WarehouseAccountingSystem
             this.moveButton.UseVisualStyleBackColor = true;
             this.moveButton.Visible = false;
             this.moveButton.Click += new System.EventHandler(this.moveButton_Click);
-            // 
-            // FindButton
-            // 
-            this.FindButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FindButton.Location = new System.Drawing.Point(498, 140);
-            this.FindButton.Name = "FindButton";
-            this.FindButton.Size = new System.Drawing.Size(152, 29);
-            this.FindButton.TabIndex = 31;
-            this.FindButton.Text = "Поиск";
-            this.FindButton.UseVisualStyleBackColor = true;
-            // 
-            // FindOrderTextBox
-            // 
-            this.FindOrderTextBox.Location = new System.Drawing.Point(498, 21);
-            this.FindOrderTextBox.Name = "FindOrderTextBox";
-            this.FindOrderTextBox.Size = new System.Drawing.Size(152, 20);
-            this.FindOrderTextBox.TabIndex = 30;
-            // 
-            // DeleteOrderButton
-            // 
-            this.DeleteOrderButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DeleteOrderButton.Location = new System.Drawing.Point(498, 178);
-            this.DeleteOrderButton.Name = "DeleteOrderButton";
-            this.DeleteOrderButton.Size = new System.Drawing.Size(152, 29);
-            this.DeleteOrderButton.TabIndex = 29;
-            this.DeleteOrderButton.Text = "Удалить";
-            this.DeleteOrderButton.UseVisualStyleBackColor = true;
             // 
             // GiveStorageButton
             // 
@@ -704,7 +685,7 @@ namespace WarehouseAccountingSystem
             // 
             // CostProductBox
             // 
-            this.CostProductBox.Location = new System.Drawing.Point(498, 149);
+            this.CostProductBox.Location = new System.Drawing.Point(489, 132);
             this.CostProductBox.Name = "CostProductBox";
             this.CostProductBox.ReadOnly = true;
             this.CostProductBox.Size = new System.Drawing.Size(152, 20);
@@ -714,7 +695,7 @@ namespace WarehouseAccountingSystem
             // 
             this.CostProduct.AutoSize = true;
             this.CostProduct.Font = new System.Drawing.Font("Impact", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CostProduct.Location = new System.Drawing.Point(520, 114);
+            this.CostProduct.Location = new System.Drawing.Point(511, 97);
             this.CostProduct.Name = "CostProduct";
             this.CostProduct.Size = new System.Drawing.Size(112, 23);
             this.CostProduct.TabIndex = 24;
@@ -724,7 +705,7 @@ namespace WarehouseAccountingSystem
             // 
             this.PayButton.Enabled = false;
             this.PayButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PayButton.Location = new System.Drawing.Point(498, 178);
+            this.PayButton.Location = new System.Drawing.Point(489, 161);
             this.PayButton.Name = "PayButton";
             this.PayButton.Size = new System.Drawing.Size(152, 29);
             this.PayButton.TabIndex = 23;
@@ -736,19 +717,19 @@ namespace WarehouseAccountingSystem
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Impact", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(529, 55);
+            this.label3.Location = new System.Drawing.Point(520, 38);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(87, 23);
             this.label3.TabIndex = 21;
             this.label3.Text = "ID товара";
             // 
-            // IdProductBox1
+            // idProductBox1
             // 
-            this.IdProductBox1.Location = new System.Drawing.Point(498, 84);
-            this.IdProductBox1.Name = "IdProductBox1";
-            this.IdProductBox1.ReadOnly = true;
-            this.IdProductBox1.Size = new System.Drawing.Size(152, 20);
-            this.IdProductBox1.TabIndex = 22;
+            this.idProductBox1.Location = new System.Drawing.Point(489, 73);
+            this.idProductBox1.Name = "idProductBox1";
+            this.idProductBox1.ReadOnly = true;
+            this.idProductBox1.Size = new System.Drawing.Size(152, 20);
+            this.idProductBox1.TabIndex = 22;
             // 
             // LeaveBidButton
             // 
@@ -1026,11 +1007,11 @@ namespace WarehouseAccountingSystem
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.MyOrderPanel);
+            this.Controls.Add(this.DeliverPanel);
             this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.ProfitPanel);
             this.Controls.Add(this.BidPanel);
-            this.Controls.Add(this.MyOrderPanel);
-            this.Controls.Add(this.DeliverPanel);
             this.Name = "MainForm";
             this.Text = "Storage v1.0";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
@@ -1070,7 +1051,7 @@ namespace WarehouseAccountingSystem
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem RequestToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem заказToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem storageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem OrderProviderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem сatalogToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem СheckStorage;
@@ -1110,7 +1091,7 @@ namespace WarehouseAccountingSystem
         private System.Windows.Forms.Button CloseButton2;
         private System.Windows.Forms.Button PayButton;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox IdProductBox1;
+        private System.Windows.Forms.TextBox idProductBox1;
         private System.Windows.Forms.ToolStripMenuItem BidToolStripMenuItem;
         private System.Windows.Forms.Label CostProduct;
         private System.Windows.Forms.TextBox CostProductBox;
@@ -1126,9 +1107,6 @@ namespace WarehouseAccountingSystem
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripMenuItem EditingToolStripMenuItem;
-        private System.Windows.Forms.Button FindButton;
-        private System.Windows.Forms.TextBox FindOrderTextBox;
-        private System.Windows.Forms.Button DeleteOrderButton;
         private System.Windows.Forms.Panel ProfitPanel;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.RichTextBox richTextBox1;
@@ -1152,5 +1130,6 @@ namespace WarehouseAccountingSystem
         private System.Windows.Forms.Label consignmentLabel;
         private System.Windows.Forms.Label idClientLabel;
         private System.Windows.Forms.DataGridView myOrderProviderView;
+        private System.Windows.Forms.Button deleteOrderButton;
     }
 }

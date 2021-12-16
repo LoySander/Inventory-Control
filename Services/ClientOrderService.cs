@@ -39,5 +39,10 @@ namespace Services
         {
             return orderDao.GetOrder(id);
         }
+
+        public void deleteOrder(long id)
+        {
+            orderDao.deleteOrder(id);
+        }
     }
 }

@@ -120,7 +120,7 @@ namespace Presentation.Presenters
         {
             String productNames = "";
             int totalCost = 0;
-            foreach (StorageProduct product in orderCart)
+            foreach (Product product in orderCart)
             {
                 productNames += product.NameProduct + " ";
                 totalCost += product.CostProduct;
@@ -173,10 +173,18 @@ namespace Presentation.Presenters
             }
             return providerOrder;
         }
-        public List<OrderProvider> RemoveOrder(long id)
+
+        // перегрузка методов, либо var либо List<t>
+        public List<OrderProvider> RemoveOrderProvider(long id)
         {
             providerService.deleteOrderProvider(id);
             return GetOrderProvider();
+        }
+
+        public List<Order> RemoveOrder(long id)
+        {
+            clientOrderService.deleteOrder(id);
+            return clientOrderService.GetOrders(1);
         }
 
         public List<OrderProvider> AddProductToStorage(List<OrderProvider> orders)
@@ -209,7 +217,7 @@ namespace Presentation.Presenters
         public List<Product> AddToCourier(long clientId)
         {
             string productNames = "";
-            foreach (StorageProduct x in orderCart)
+            foreach (Product x in orderCart)
             {
                 productNames += x.NameProduct + " ";
             }

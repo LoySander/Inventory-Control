@@ -56,7 +56,6 @@ namespace Services
                         x.Stock++;
                     }
                 }
-
             }
             productDao.RenewAllProduct(storageProducts);
         }

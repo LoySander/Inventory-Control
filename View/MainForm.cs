@@ -73,6 +73,8 @@ namespace WarehouseAccountingSystem
                 ProfitToolStripMenuItem.Enabled = false;
                 DeleviryToolStripMenuItem.Enabled = false;
                 OrderProviderToolStripMenuItem.Enabled = false;
+                storageToolStripMenuItem.Enabled = false;
+                
                 OpenCatalog();
                 }
 
@@ -213,53 +215,6 @@ namespace WarehouseAccountingSystem
             DeliverPanel.Show();
         }
 
-    
-        //public void CheckMyOrders()
-        //{
-        //    GiveStorageButton.Hide();
-        //    MyOrderGridView.Hide();
-        //    GiveStorageLabel.Hide();
-        //    BidText.Show();
-        //    BidLabel.Show();
-        //    LeaveBidButton.Show();
-        //    CostProduct.Show();
-
-
-        //    if (!MyOrderPanel.Visible)
-        //    {
-        //        MyOrderPanel.Show();
-        //    }
-
-        //    CatalogLabel.Text = "Мои Заказы";
-        //    if (MainPanel.Visible || groupBox1.Visible || ProfitPanel.Visible || BidPanel.Visible || DeliverPanel.Visible)
-        //    {
-        //        MainPanel.Hide();
-        //        groupBox1.Hide();
-        //        ProfitPanel.Hide();
-        //        BidPanel.Hide();
-        //        DeliverPanel.Hide();
-        //    }
-
-        //    //if (!BidLabel.Visible || !BidText.Visible || !LeaveBidButton.Visible)
-        //    // {
-        //    //    BidText.Show();
-        //    //   BidLabel.Show();
-        //    //     LeaveBidButton.Show();
-        //    //    GiveStorageButton.Hide();
-        //    //    dataGridView6.Hide();
-        //    //    GiveStorageLabel.Hide();
-        //    // }
-
-        //    if (FindButton.Visible && DeleteOrderButton.Visible)
-        //    {
-        //        CostProductBox.Show();
-        //        PayButton.Show();
-        //        CostProduct.Show();
-        //        FindButton.Hide();
-        //        DeleteOrderButton.Hide();
-        //    }
-
-        //}
         public void CheckEditing()
         {
             if (!MyOrderPanel.Visible)
@@ -298,8 +253,7 @@ namespace WarehouseAccountingSystem
                 GiveStorageButton.Hide();
                 MyOrderCartGridView.Hide();
                 GiveStorageLabel.Hide();
-                FindButton.Show();
-                DeleteOrderButton.Show();
+                deleteOrderButton.Show();
             }
         }
 
@@ -370,7 +324,7 @@ namespace WarehouseAccountingSystem
         private void dataGridView5_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var selectedOrder = myOrderClientView.SelectedRows[0].DataBoundItem as OrderProvider;
-            IdProductBox1.Text = selectedOrder.Id.ToString();
+            idProductBox1.Text = selectedOrder.Id.ToString();
             CostProductBox.Text = selectedOrder.TotalCost.ToString();
             PayButton.Enabled = true;
         }
@@ -436,6 +390,7 @@ namespace WarehouseAccountingSystem
             LeaveBidButton.Show();
             CostProduct.Show();
             myOrderClientView.Show();
+        
             //
             myOrderProviderView.Hide();
             if (!MyOrderPanel.Visible)
@@ -462,18 +417,17 @@ namespace WarehouseAccountingSystem
             //    GiveStorageLabel.Hide();
             // }
 
-            if (FindButton.Visible && DeleteOrderButton.Visible)
+            if (deleteOrderButton.Visible)
             {
                 CostProductBox.Show();
                 PayButton.Show();
                 CostProduct.Show();
-                FindButton.Hide();
-                DeleteOrderButton.Hide();
+               
+                deleteOrderButton.Hide();
             }
 
             myOrderClientView.DataSource = presenter.getClientsOrders();
-           
-
+          
         }
 
 
@@ -499,6 +453,7 @@ namespace WarehouseAccountingSystem
             BidLabel.Hide();
             LeaveBidButton.Hide();
             myOrderProviderView.Show();
+            deleteOrderButton.Show();
             //
             myOrderClientView.Hide();
 
@@ -522,17 +477,16 @@ namespace WarehouseAccountingSystem
             //    LeaveBidButton.Hide();
 
             //}
-            if (FindButton.Visible && DeleteOrderButton.Visible)
+            if (deleteOrderButton.Visible)
             {
                 CostProductBox.Show();
                 PayButton.Show();
                 CostProductBox.Show();
                 moveButton.Show();
-                FindButton.Hide();
-                DeleteOrderButton.Hide();
+                deleteOrderButton.Hide();
             }
 
-            myOrderClientView.DataSource = presenter.GetOrderProvider(); 
+            myOrderProviderView.DataSource = presenter.GetOrderProvider(); 
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -630,6 +584,7 @@ namespace WarehouseAccountingSystem
 
         private void OrderButton_Click(object sender, EventArgs e)
         {
+          
             CartGridView.DataSource = presenter.makeOrder();
         }
 
@@ -646,7 +601,7 @@ namespace WarehouseAccountingSystem
         private void PayButton_Click(object sender, EventArgs e)
         {
 
-            long id = long.Parse(IdProductBox1.Text);
+            long id = long.Parse(idProductBox1.Text);
             if (type == UserType.PurchasingManager)
             {
                 myOrderClientView.DataSource = presenter.ChangeOrderStatus(id, "Оплачено");
@@ -658,9 +613,9 @@ namespace WarehouseAccountingSystem
         }
         private void moveButton_Click(object sender, EventArgs e)
         {
-            long id = long.Parse(IdProductBox1.Text);
+            long id = long.Parse(idProductBox1.Text);
             MyOrderCartGridView.DataSource = new List<OrderProvider>(presenter.AddToCartProvider(id));
-            myOrderClientView.DataSource = presenter.RemoveOrder(id);
+            myOrderClientView.DataSource = presenter.RemoveOrderProvider(id);
        
         }
         private void GiveStorageButton_Click(object sender, EventArgs e)
@@ -706,6 +661,24 @@ namespace WarehouseAccountingSystem
             {
                 ShowMessage("Ошибка");
             }
+        }
+
+        private void deleteOrderButton_Click(object sender, EventArgs e)
+        {
+            if (idProductBox1.Text != "")
+            {
+                if (type == UserType.AccountManager)
+                {
+                    myOrderClientView.DataSource = presenter.RemoveOrder(long.Parse(idProductBox1.Text));
+                }
+            }
+        }
+
+        private void myOrderProviderView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var selectedId = myOrderProviderView.SelectedRows[0].DataBoundItem as OrderProvider;
+            idProductBox1.Text = selectedId.Id.ToString();
+            deliverButton.Enabled = true;
         }
     }
 }
