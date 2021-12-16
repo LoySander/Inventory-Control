@@ -25,9 +25,9 @@ namespace Repositories.DAO
             Bids = new List<Bid>();
         }
 
-        public Bid getBid(int id)
+        public Bid getBid(int clientId)
         {
-            return Bids.Where(bid => bid.Id == id).First();
+            return Bids.Where(bid => bid.ClientId == clientId).First();
         }
 
         public List<Bid> getAllBids()

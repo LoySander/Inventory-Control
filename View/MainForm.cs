@@ -604,7 +604,7 @@ namespace WarehouseAccountingSystem
             long id = long.Parse(idProductBox1.Text);
             if (type == UserType.PurchasingManager)
             {
-                myOrderClientView.DataSource = presenter.ChangeOrderStatus(id, "Оплачено");
+               myOrderProviderView.DataSource = presenter.ChangeOrderStatus(id, "Оплачено");
             }
             else
             {
@@ -614,13 +614,16 @@ namespace WarehouseAccountingSystem
         private void moveButton_Click(object sender, EventArgs e)
         {
             long id = long.Parse(idProductBox1.Text);
-            MyOrderCartGridView.DataSource = new List<OrderProvider>(presenter.AddToCartProvider(id));
-            myOrderClientView.DataSource = presenter.RemoveOrderProvider(id);
-       
+            if (idProductBox1.Text != "" && myOrderProviderView.Rows.Count != 0)
+            {
+                MyOrderCartGridView.DataSource = new List<OrderProvider>(presenter.AddToCartProvider(id));
+                myOrderProviderView.DataSource = presenter.RemoveOrderProvider(id);
+            }
+          
         }
         private void GiveStorageButton_Click(object sender, EventArgs e)
         {
-          if(MyOrderCartGridView.DataSource != null)
+          if(MyOrderCartGridView.Rows.Count != 0 )
             {
                 MyOrderCartGridView.DataSource = presenter.AddProductToStorage((List<OrderProvider>)MyOrderCartGridView.DataSource);
             }
@@ -678,13 +681,22 @@ namespace WarehouseAccountingSystem
         {
             var selectedId = myOrderProviderView.SelectedRows[0].DataBoundItem as OrderProvider;
             idProductBox1.Text = selectedId.Id.ToString();
-            deliverButton.Enabled = true;
+            CostProductBox.Text = selectedId.TotalCost.ToString();
+            PayButton.Enabled = true;
         }
 
         private void LeaveBidButton_Click(object sender, EventArgs e)
         {
             presenter.LeaveBid(bidText.Text);
+            // додумать
+            clientsComboBox.Items.Add("1");
             bidText.Text = "";
+        }
+
+        private void clientsComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedState = clientsComboBox.SelectedItem.ToString();
+            bidTextBox.Text = presenter.GetBid(int.Parse(selectedState));
         }
     }
 }

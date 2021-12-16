@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthorizationService.cs" />
+    <Compile Include="BidService.cs" />
     <Compile Include="ClientOrderService.cs" />
     <Compile Include="ClientProductService.cs" />
     <Compile Include="ClientService.cs" />

@@ -94,9 +94,9 @@ namespace WarehouseAccountingSystem
             this.CloseButton2 = new System.Windows.Forms.Button();
             this.BidPanel = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.bidTextBox = new System.Windows.Forms.TextBox();
             this.BidClients = new System.Windows.Forms.Label();
-            this.ClientsComboBox = new System.Windows.Forms.ComboBox();
+            this.clientsComboBox = new System.Windows.Forms.ComboBox();
             this.CloseButton3 = new System.Windows.Forms.Button();
             this.ProfitPanel = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
@@ -789,9 +789,9 @@ namespace WarehouseAccountingSystem
             // BidPanel
             // 
             this.BidPanel.Controls.Add(this.label1);
-            this.BidPanel.Controls.Add(this.textBox1);
+            this.BidPanel.Controls.Add(this.bidTextBox);
             this.BidPanel.Controls.Add(this.BidClients);
-            this.BidPanel.Controls.Add(this.ClientsComboBox);
+            this.BidPanel.Controls.Add(this.clientsComboBox);
             this.BidPanel.Controls.Add(this.CloseButton3);
             this.BidPanel.Location = new System.Drawing.Point(4, 163);
             this.BidPanel.Name = "BidPanel";
@@ -808,14 +808,14 @@ namespace WarehouseAccountingSystem
             this.label1.Size = new System.Drawing.Size(0, 23);
             this.label1.TabIndex = 9;
             // 
-            // textBox1
+            // bidTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(271, 40);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(626, 191);
-            this.textBox1.TabIndex = 8;
+            this.bidTextBox.Location = new System.Drawing.Point(271, 40);
+            this.bidTextBox.Multiline = true;
+            this.bidTextBox.Name = "bidTextBox";
+            this.bidTextBox.ReadOnly = true;
+            this.bidTextBox.Size = new System.Drawing.Size(626, 191);
+            this.bidTextBox.TabIndex = 8;
             // 
             // BidClients
             // 
@@ -828,13 +828,14 @@ namespace WarehouseAccountingSystem
             this.BidClients.Text = "Заявки клиентов";
             this.BidClients.Click += new System.EventHandler(this.label1_Click);
             // 
-            // ClientsComboBox
+            // clientsComboBox
             // 
-            this.ClientsComboBox.FormattingEnabled = true;
-            this.ClientsComboBox.Location = new System.Drawing.Point(7, 40);
-            this.ClientsComboBox.Name = "ClientsComboBox";
-            this.ClientsComboBox.Size = new System.Drawing.Size(252, 21);
-            this.ClientsComboBox.TabIndex = 6;
+            this.clientsComboBox.FormattingEnabled = true;
+            this.clientsComboBox.Location = new System.Drawing.Point(7, 40);
+            this.clientsComboBox.Name = "clientsComboBox";
+            this.clientsComboBox.Size = new System.Drawing.Size(252, 21);
+            this.clientsComboBox.TabIndex = 6;
+            this.clientsComboBox.SelectedIndexChanged += new System.EventHandler(this.clientsComboBox_SelectedIndexChanged);
             // 
             // CloseButton3
             // 
@@ -1104,8 +1105,8 @@ namespace WarehouseAccountingSystem
         private System.Windows.Forms.Panel BidPanel;
         private System.Windows.Forms.Button CloseButton3;
         private System.Windows.Forms.Label BidClients;
-        private System.Windows.Forms.ComboBox ClientsComboBox;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ComboBox clientsComboBox;
+        private System.Windows.Forms.TextBox bidTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripMenuItem EditingToolStripMenuItem;
         private System.Windows.Forms.Panel ProfitPanel;

@@ -24,6 +24,7 @@ namespace Presentation.Presenters
         //private List<StorageProduct> orderCart;
         private List<OrderProvider> providerOrder;
         private List<Сonsignment> consignments;
+        private BidService bidService;
 
         public MainPresenter(IMainView view, IAuthorizationUser role)
         {
@@ -37,6 +38,7 @@ namespace Presentation.Presenters
             this.consignmentService = ConsignmentService.getInstance();
             this.providerService = OrderProviderService.getInstance();
             this.storageService = StorageService.getInstance();
+            this.bidService = BidService.getInstance();
         }
         public void Start()
         {
@@ -218,9 +220,9 @@ namespace Presentation.Presenters
                 CountryProduct = " ",
                 type = ProductType.Food,
             };
-            orders.Clear();
+            providerOrder.Clear();
             storageService.addProduct(product);
-            return orders;
+            return providerOrder;
         }
 
         public List<Product> AddToCourier(long clientId)
@@ -262,6 +264,14 @@ namespace Presentation.Presenters
             Bid bid = new Bid();
             bid.Text = Text;
             bid.ClientId = 1;
+            bid.Id = 1;
+            bidService.addBid(bid);
+        }
+        
+        public string GetBid(int clientId)
+        {
+            Bid bid = bidService.getBids(clientId);
+            return bid.Text;
         }
     }
     
