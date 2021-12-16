@@ -347,11 +347,14 @@ namespace WarehouseAccountingSystem
             long id = long.Parse(IdProductBox.Text);
             if (type == UserType.Storekeeper)
             {
-                consignmentDataView.DataSource = new List<StorageProduct>(presenter.AddToCart(id));
+
+                // consignmentDataView.DataSource = new List<StorageProduct>(presenter.AddToCart(id));
+                consignmentDataView.DataSource = new List<Product>(presenter.AddToCart(id));
             }
             else
             {
-                CartGridView.DataSource = new List<StorageProduct>(presenter.AddToCart(id));
+                //CartGridView.DataSource = new List<StorageProduct>(presenter.AddToCart(id));
+                CartGridView.DataSource = new List<Product>(presenter.AddToCart(id));
             }
            
         }
@@ -675,6 +678,7 @@ namespace WarehouseAccountingSystem
             if(idClientBox.Text !="" && consignmentDataView.Rows.Count != 0)
             {
                 consignmentDataView.DataSource = presenter.AddToCourier(long.Parse(idClientBox.Text));
+                ProductGridView1.DataSource = presenter.GetStorage(getProductType());
             }
             else
             {

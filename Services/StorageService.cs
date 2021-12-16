@@ -61,6 +61,24 @@ namespace Services
             productDao.RenewAllProduct(storageProducts);
         }
 
+        public void reduceProduct(string nameProducts)
+        {
+            List<StorageProduct> storageProducts = productDao.getAllProducts();
+            string[] str = nameProducts.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (StorageProduct x in storageProducts)
+            {
+                foreach (string s in str)
+                {
+                    if (s == x.NameProduct)
+                    {
+                        x.Stock--;
+                    }
+                }
+
+            }
+            productDao.RenewAllProduct(storageProducts);
+        }
+
         public void deleteProduct(long id)
         {
             productDao.deleteProduct(id);

@@ -26,7 +26,7 @@ namespace Services
             productDao = ListProductDao.getInstance();
         }
 
-        public  List<Product> getProducts(ProductType type)
+        public List<Product> getProducts(ProductType type)
         {
             List<StorageProduct> products = productDao.getAllProducts();
             List<Product> clientProducts = new List<Product>();
@@ -45,15 +45,23 @@ namespace Services
             return clientProducts;
         }
 
-        public StorageProduct GetProduct(long id)
+        public Product GetProduct(long id)
         {
-            return productDao.GetProduct(id);
-        }
+            StorageProduct product = productDao.GetProduct(id);
+            Product clientProducts = new Product() {
+                IdProduct = product.IdProduct,
+                NameProduct = product.NameProduct,
+                WeightProduct = product.WeightProduct,
+                CostProduct = product.CostProduct,
+                CountryProduct = product.CountryProduct,
+                DescriptionProduct = product.DescriptionProduct,
 
-        public void deleteProduct(long id)
-        {
-            productDao.deleteProduct(id);
+            };
+            
+            return clientProducts;
         }
-
     }
+
 }
+
+

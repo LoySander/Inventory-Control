@@ -1026,11 +1026,11 @@ namespace WarehouseAccountingSystem
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.DeliverPanel);
             this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.ProfitPanel);
             this.Controls.Add(this.BidPanel);
             this.Controls.Add(this.MyOrderPanel);
+            this.Controls.Add(this.DeliverPanel);
             this.Name = "MainForm";
             this.Text = "Storage v1.0";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);

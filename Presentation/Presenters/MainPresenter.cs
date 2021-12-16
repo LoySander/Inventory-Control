@@ -20,7 +20,8 @@ namespace Presentation.Presenters
         private StorageService storageService;
         private OrderProviderService providerService;
         private ConsignmentService consignmentService;
-        private List<StorageProduct> orderCart;
+        private List<Product> orderCart;
+        //private List<StorageProduct> orderCart;
         private List<OrderProvider> providerOrder;
         private List<Сonsignment> consignments;
 
@@ -30,7 +31,8 @@ namespace Presentation.Presenters
             this._role = role;
             this.clientProductService = ClientProductService.getInstance();
             this.clientOrderService = ClientOrderService.getInstance();
-            this.orderCart = new List<StorageProduct>();
+            //this.orderCart = new List<StorageProduct>();
+            this.orderCart = new List<Product>();
             this.providerOrder = new List<OrderProvider>();
             this.consignmentService = ConsignmentService.getInstance();
             this.providerService = OrderProviderService.getInstance();
@@ -79,7 +81,7 @@ namespace Presentation.Presenters
             return clientProductService.getProducts(productType);
         }
 
-        public List<StorageProduct> AddToCart(long id)
+        public List<Product> AddToCart(long id)
         {
             orderCart.Add(clientProductService.GetProduct(id));
             return orderCart;
@@ -114,7 +116,7 @@ namespace Presentation.Presenters
             _view.CheckBid();
         }
 
-        public List<StorageProduct> makeOrder()
+        public List<Product> makeOrder()
         {
             String productNames = "";
             int totalCost = 0;
@@ -204,7 +206,7 @@ namespace Presentation.Presenters
             return orders;
         }
 
-        public List<StorageProduct> AddToCourier(long clientId)
+        public List<Product> AddToCourier(long clientId)
         {
             string productNames = "";
             foreach (StorageProduct x in orderCart)
@@ -217,6 +219,7 @@ namespace Presentation.Presenters
                 NamesProduct = productNames,
             };
             consignmentService.addConsignment(consignment);
+            ReduceStock(productNames);
             orderCart.Clear();
             return orderCart;
         }
@@ -229,6 +232,12 @@ namespace Presentation.Presenters
         public void RemoveConsignment(long id)
         {
              consignmentService.deleteConsigment(id);
+        }
+
+        // эксперимент (изменяем количество по именам)
+        public void ReduceStock(string nameProducts)
+        { 
+            storageService.reduceProduct(nameProducts);
         }
 
     }
