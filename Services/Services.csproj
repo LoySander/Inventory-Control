@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BookerService.cs" />
     <Compile Include="AuthorizationService.cs" />
     <Compile Include="BidService.cs" />
     <Compile Include="ClientOrderService.cs" />

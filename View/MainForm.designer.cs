@@ -96,23 +96,25 @@ namespace WarehouseAccountingSystem
             this.label1 = new System.Windows.Forms.Label();
             this.bidTextBox = new System.Windows.Forms.TextBox();
             this.BidClients = new System.Windows.Forms.Label();
-            this.clientsComboBox = new System.Windows.Forms.ComboBox();
+            this.bidsComboBox = new System.Windows.Forms.ComboBox();
             this.CloseButton3 = new System.Windows.Forms.Button();
             this.ProfitPanel = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.saveFileButton = new System.Windows.Forms.Button();
+            this.openFileButton = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.CostsTextBox = new System.Windows.Forms.TextBox();
+            this.calculateProfitButton = new System.Windows.Forms.Button();
+            this.profitTextBox = new System.Windows.Forms.TextBox();
             this.CostsLabel = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.ProfittextBox = new System.Windows.Forms.TextBox();
+            this.costsTextBox = new System.Windows.Forms.TextBox();
+            this.incomeTextBox = new System.Windows.Forms.TextBox();
             this.ExspensesLabel = new System.Windows.Forms.Label();
             this.ProfitLabel = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.CloseProfit = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ProductGridView1)).BeginInit();
             this.MainPanel.SuspendLayout();
@@ -319,7 +321,6 @@ namespace WarehouseAccountingSystem
             this.IdProductBox.ReadOnly = true;
             this.IdProductBox.Size = new System.Drawing.Size(152, 20);
             this.IdProductBox.TabIndex = 7;
-            this.IdProductBox.TextChanged += new System.EventHandler(this.IdProductBox_TextChanged);
             // 
             // SortButton
             // 
@@ -513,7 +514,6 @@ namespace WarehouseAccountingSystem
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "Продовольственные товары";
             this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
             // radioButton1
             // 
@@ -792,7 +792,7 @@ namespace WarehouseAccountingSystem
             this.BidPanel.Controls.Add(this.label1);
             this.BidPanel.Controls.Add(this.bidTextBox);
             this.BidPanel.Controls.Add(this.BidClients);
-            this.BidPanel.Controls.Add(this.clientsComboBox);
+            this.BidPanel.Controls.Add(this.bidsComboBox);
             this.BidPanel.Controls.Add(this.CloseButton3);
             this.BidPanel.Location = new System.Drawing.Point(4, 163);
             this.BidPanel.Name = "BidPanel";
@@ -829,14 +829,14 @@ namespace WarehouseAccountingSystem
             this.BidClients.Text = "Заявки клиентов";
             this.BidClients.Click += new System.EventHandler(this.label1_Click);
             // 
-            // clientsComboBox
+            // bidsComboBox
             // 
-            this.clientsComboBox.FormattingEnabled = true;
-            this.clientsComboBox.Location = new System.Drawing.Point(7, 40);
-            this.clientsComboBox.Name = "clientsComboBox";
-            this.clientsComboBox.Size = new System.Drawing.Size(252, 21);
-            this.clientsComboBox.TabIndex = 6;
-            this.clientsComboBox.SelectedIndexChanged += new System.EventHandler(this.clientsComboBox_SelectedIndexChanged);
+            this.bidsComboBox.FormattingEnabled = true;
+            this.bidsComboBox.Location = new System.Drawing.Point(7, 40);
+            this.bidsComboBox.Name = "bidsComboBox";
+            this.bidsComboBox.Size = new System.Drawing.Size(252, 21);
+            this.bidsComboBox.TabIndex = 6;
+            this.bidsComboBox.SelectedIndexChanged += new System.EventHandler(this.clientsComboBox_SelectedIndexChanged);
             // 
             // CloseButton3
             // 
@@ -853,14 +853,14 @@ namespace WarehouseAccountingSystem
             // ProfitPanel
             // 
             this.ProfitPanel.Controls.Add(this.label5);
-            this.ProfitPanel.Controls.Add(this.button3);
-            this.ProfitPanel.Controls.Add(this.button2);
+            this.ProfitPanel.Controls.Add(this.saveFileButton);
+            this.ProfitPanel.Controls.Add(this.openFileButton);
             this.ProfitPanel.Controls.Add(this.richTextBox1);
-            this.ProfitPanel.Controls.Add(this.button1);
-            this.ProfitPanel.Controls.Add(this.CostsTextBox);
+            this.ProfitPanel.Controls.Add(this.calculateProfitButton);
+            this.ProfitPanel.Controls.Add(this.profitTextBox);
             this.ProfitPanel.Controls.Add(this.CostsLabel);
-            this.ProfitPanel.Controls.Add(this.textBox2);
-            this.ProfitPanel.Controls.Add(this.ProfittextBox);
+            this.ProfitPanel.Controls.Add(this.costsTextBox);
+            this.ProfitPanel.Controls.Add(this.incomeTextBox);
             this.ProfitPanel.Controls.Add(this.ExspensesLabel);
             this.ProfitPanel.Controls.Add(this.ProfitLabel);
             this.ProfitPanel.Controls.Add(this.label4);
@@ -881,23 +881,25 @@ namespace WarehouseAccountingSystem
             this.label5.TabIndex = 21;
             this.label5.Text = "Отчёты";
             // 
-            // button3
+            // saveFileButton
             // 
-            this.button3.Location = new System.Drawing.Point(734, 237);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(96, 23);
-            this.button3.TabIndex = 20;
-            this.button3.Text = "Сохранить файл";
-            this.button3.UseVisualStyleBackColor = true;
+            this.saveFileButton.Location = new System.Drawing.Point(734, 237);
+            this.saveFileButton.Name = "saveFileButton";
+            this.saveFileButton.Size = new System.Drawing.Size(96, 23);
+            this.saveFileButton.TabIndex = 20;
+            this.saveFileButton.Text = "Сохранить файл";
+            this.saveFileButton.UseVisualStyleBackColor = true;
+            this.saveFileButton.Click += new System.EventHandler(this.saveFileButton_Click);
             // 
-            // button2
+            // openFileButton
             // 
-            this.button2.Location = new System.Drawing.Point(395, 237);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(96, 23);
-            this.button2.TabIndex = 19;
-            this.button2.Text = "Открыть файл";
-            this.button2.UseVisualStyleBackColor = true;
+            this.openFileButton.Location = new System.Drawing.Point(395, 237);
+            this.openFileButton.Name = "openFileButton";
+            this.openFileButton.Size = new System.Drawing.Size(96, 23);
+            this.openFileButton.TabIndex = 19;
+            this.openFileButton.Text = "Открыть файл";
+            this.openFileButton.UseVisualStyleBackColor = true;
+            this.openFileButton.Click += new System.EventHandler(this.openFileButton_Click);
             // 
             // richTextBox1
             // 
@@ -907,22 +909,23 @@ namespace WarehouseAccountingSystem
             this.richTextBox1.TabIndex = 18;
             this.richTextBox1.Text = "";
             // 
-            // button1
+            // calculateProfitButton
             // 
-            this.button1.Location = new System.Drawing.Point(70, 202);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(130, 29);
-            this.button1.TabIndex = 17;
-            this.button1.Text = "Рассчитать";
-            this.button1.UseVisualStyleBackColor = true;
+            this.calculateProfitButton.Location = new System.Drawing.Point(70, 202);
+            this.calculateProfitButton.Name = "calculateProfitButton";
+            this.calculateProfitButton.Size = new System.Drawing.Size(130, 29);
+            this.calculateProfitButton.TabIndex = 17;
+            this.calculateProfitButton.Text = "Рассчитать";
+            this.calculateProfitButton.UseVisualStyleBackColor = true;
+            this.calculateProfitButton.Click += new System.EventHandler(this.calculateProfitButton_Click);
             // 
-            // CostsTextBox
+            // profitTextBox
             // 
-            this.CostsTextBox.Location = new System.Drawing.Point(70, 155);
-            this.CostsTextBox.Name = "CostsTextBox";
-            this.CostsTextBox.ReadOnly = true;
-            this.CostsTextBox.Size = new System.Drawing.Size(130, 20);
-            this.CostsTextBox.TabIndex = 16;
+            this.profitTextBox.Location = new System.Drawing.Point(70, 155);
+            this.profitTextBox.Name = "profitTextBox";
+            this.profitTextBox.ReadOnly = true;
+            this.profitTextBox.Size = new System.Drawing.Size(130, 20);
+            this.profitTextBox.TabIndex = 16;
             // 
             // CostsLabel
             // 
@@ -934,21 +937,21 @@ namespace WarehouseAccountingSystem
             this.CostsLabel.TabIndex = 15;
             this.CostsLabel.Text = "Прибыль";
             // 
-            // textBox2
+            // costsTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(170, 79);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(89, 20);
-            this.textBox2.TabIndex = 13;
+            this.costsTextBox.Location = new System.Drawing.Point(170, 79);
+            this.costsTextBox.Name = "costsTextBox";
+            this.costsTextBox.ReadOnly = true;
+            this.costsTextBox.Size = new System.Drawing.Size(89, 20);
+            this.costsTextBox.TabIndex = 13;
             // 
-            // ProfittextBox
+            // incomeTextBox
             // 
-            this.ProfittextBox.Location = new System.Drawing.Point(19, 79);
-            this.ProfittextBox.Name = "ProfittextBox";
-            this.ProfittextBox.ReadOnly = true;
-            this.ProfittextBox.Size = new System.Drawing.Size(91, 20);
-            this.ProfittextBox.TabIndex = 12;
+            this.incomeTextBox.Location = new System.Drawing.Point(19, 79);
+            this.incomeTextBox.Name = "incomeTextBox";
+            this.incomeTextBox.ReadOnly = true;
+            this.incomeTextBox.Size = new System.Drawing.Size(91, 20);
+            this.incomeTextBox.TabIndex = 12;
             // 
             // ExspensesLabel
             // 
@@ -1001,6 +1004,10 @@ namespace WarehouseAccountingSystem
             this.statusStrip1.Text = "statusStrip1";
             this.statusStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.statusStrip1_ItemClicked);
             // 
+            // openFileDialog
+            // 
+            this.openFileDialog.FileName = "openFileDialog";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1010,11 +1017,11 @@ namespace WarehouseAccountingSystem
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.ProfitPanel);
+            this.Controls.Add(this.BidPanel);
             this.Controls.Add(this.MyOrderPanel);
             this.Controls.Add(this.DeliverPanel);
             this.Controls.Add(this.MainPanel);
-            this.Controls.Add(this.ProfitPanel);
-            this.Controls.Add(this.BidPanel);
             this.Name = "MainForm";
             this.Text = "Storage v1.0";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
@@ -1106,23 +1113,23 @@ namespace WarehouseAccountingSystem
         private System.Windows.Forms.Panel BidPanel;
         private System.Windows.Forms.Button CloseButton3;
         private System.Windows.Forms.Label BidClients;
-        private System.Windows.Forms.ComboBox clientsComboBox;
+        private System.Windows.Forms.ComboBox bidsComboBox;
         private System.Windows.Forms.TextBox bidTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripMenuItem EditingToolStripMenuItem;
         private System.Windows.Forms.Panel ProfitPanel;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button openFileButton;
         private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox CostsTextBox;
+        private System.Windows.Forms.Button calculateProfitButton;
+        private System.Windows.Forms.TextBox profitTextBox;
         private System.Windows.Forms.Label CostsLabel;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox ProfittextBox;
+        private System.Windows.Forms.TextBox costsTextBox;
+        private System.Windows.Forms.TextBox incomeTextBox;
         private System.Windows.Forms.Label ExspensesLabel;
         private System.Windows.Forms.Label ProfitLabel;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button CloseProfit;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button saveFileButton;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
@@ -1134,5 +1141,7 @@ namespace WarehouseAccountingSystem
         private System.Windows.Forms.Label idOrderLabel;
         private System.Windows.Forms.DataGridView myOrderProviderView;
         private System.Windows.Forms.Button deleteOrderButton;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
     }
 }

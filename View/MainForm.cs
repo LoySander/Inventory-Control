@@ -36,6 +36,8 @@ namespace WarehouseAccountingSystem
             this.inputWindow = inputWindow;
             presenter = new MainPresenter(this, new AuthorizationService());
             type = presenter.GetRoles();
+            openFileDialog.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
+            saveFileDialog.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
             SetWindowFromRole();
         }
         public void SetHeading(string heading)
@@ -45,41 +47,41 @@ namespace WarehouseAccountingSystem
         // здесь происходит установка ролей
         public void SetWindowFromRole()
         {
-            
-                if (type == UserType.PurchasingManager)
-                {
-                    // нужно с маленькой буквы прописать
-                    DeleviryToolStripMenuItem.Enabled = false;
-                    BidToolStripMenuItem.Enabled = false;
-                    ProfitToolStripMenuItem.Enabled = false;
-                    EditingToolStripMenuItem.Enabled = false;
-                    сatalogToolStripMenuItem.Enabled = false;
-                    MyOrdersToolStripMenuItem.Enabled = false;
-                    groupBox1.Hide();
-                    CatalogLabel.Text = " ";
-                }
-                else if (type == UserType.AccountManager)
-                {
-                    ProfitToolStripMenuItem.Enabled = false;
-                    BidToolStripMenuItem.Enabled = false;
-                    DeleviryToolStripMenuItem.Enabled = false;
-                    OrderProviderToolStripMenuItem.Enabled = false;
-                    groupBox1.Hide();
-                    CatalogLabel.Text = " ";
-                }
 
-                else if (type == UserType.Client)
-                {
+            if (type == UserType.PurchasingManager)
+            {
+                // нужно с маленькой буквы прописать
+                DeleviryToolStripMenuItem.Enabled = false;
+                BidToolStripMenuItem.Enabled = false;
+                ProfitToolStripMenuItem.Enabled = false;
+                EditingToolStripMenuItem.Enabled = false;
+                сatalogToolStripMenuItem.Enabled = false;
+                MyOrdersToolStripMenuItem.Enabled = false;
+                groupBox1.Hide();
+                CatalogLabel.Text = " ";
+            }
+            else if (type == UserType.AccountManager)
+            {
+                ProfitToolStripMenuItem.Enabled = false;
+                BidToolStripMenuItem.Enabled = false;
+                DeleviryToolStripMenuItem.Enabled = false;
+                OrderProviderToolStripMenuItem.Enabled = false;
+                groupBox1.Hide();
+                CatalogLabel.Text = " ";
+            }
+
+            else if (type == UserType.Client)
+            {
                 ProfitToolStripMenuItem.Enabled = false;
                 DeleviryToolStripMenuItem.Enabled = false;
                 OrderProviderToolStripMenuItem.Enabled = false;
                 storageToolStripMenuItem.Enabled = false;
-                
-                OpenCatalog();
-                }
 
-                else if(type == UserType.Storekeeper)
-               {
+                OpenCatalog();
+            }
+
+            else if (type == UserType.Storekeeper)
+            {
                 ProfitToolStripMenuItem.Enabled = false;
                 //DeleviryToolStripMenuItem.Enabled = false;
                 OrderProviderToolStripMenuItem.Enabled = false;
@@ -88,8 +90,17 @@ namespace WarehouseAccountingSystem
                 groupBox1.Hide();
                 CatalogLabel.Text = " ";
             }
-               
-            
+            else if (type == UserType.Booker)
+            {
+                DeleviryToolStripMenuItem.Enabled = false;
+                OrderProviderToolStripMenuItem.Enabled = false;
+                EditingToolStripMenuItem.Enabled = false;
+                BidToolStripMenuItem.Enabled = false;
+                ProfitToolStripMenuItem.Enabled = true;
+                сatalogToolStripMenuItem.Enabled = false;
+            }
+
+
 
         }
         public void ShowMessage(string message)
@@ -201,7 +212,6 @@ namespace WarehouseAccountingSystem
             }
             DeliverPanel.Show();
         }
-
         public void CheckEditing()
         {
             if (!MyOrderPanel.Visible)
@@ -243,7 +253,6 @@ namespace WarehouseAccountingSystem
                 deleteOrderButton.Show();
             }
         }
-
         public void CheckProfit()
         {
             if (!ProfitPanel.Visible)
@@ -261,7 +270,6 @@ namespace WarehouseAccountingSystem
             }
             CatalogLabel.Text = "Ведение отчётности";
         }
-
         public void CheckBid()
         {
             if (MyOrderPanel.Visible || DeliverPanel.Visible || MainPanel.Visible || groupBox1.Visible || ProfitPanel.Visible)
@@ -280,8 +288,6 @@ namespace WarehouseAccountingSystem
 
             CatalogLabel.Text = "Заявки";
         }
-      
-
         private void AddProduct_Click(object sender, EventArgs e)
         {
 
@@ -299,7 +305,6 @@ namespace WarehouseAccountingSystem
             }
            
         }
-
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var selectedProduct = ProductGridView1.SelectedRows[0].DataBoundItem as Product;
@@ -307,7 +312,6 @@ namespace WarehouseAccountingSystem
             AddProductButton.Enabled = true;
             OrderButton.Enabled = true;
         }
-
         private void dataGridView5_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var selectedOrder = myOrderClientView.SelectedRows[0].DataBoundItem as OrderProvider;
@@ -322,7 +326,6 @@ namespace WarehouseAccountingSystem
         //    AddProductButton.Enabled = true;
         //    OrderButton.Enabled = true;
         //}
-
         private void dataGridView4_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var selectedProduct = courierDataGridView.SelectedRows[0].DataBoundItem as Order;
@@ -342,16 +345,6 @@ namespace WarehouseAccountingSystem
             ProductGridView1.Show();
             MainPanel.Show();
         }
-
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void IdProductBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
 
         private void CourierToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -483,6 +476,9 @@ namespace WarehouseAccountingSystem
 
         private void BidToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //
+            bidsComboBox.Items.Clear();
+            bidsComboBox.Items.AddRange(presenter.GetBidsId());
             presenter.GetBid();
         }
         private void CloseButton3_Click(object sender, EventArgs e)
@@ -498,7 +494,25 @@ namespace WarehouseAccountingSystem
 
         private void ProfitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            presenter.GetProfit();
+            ////
+           
+            if (!ProfitPanel.Visible)
+            {
+                ProfitPanel.Show();
+            }
+            if (MainPanel.Visible || groupBox1.Visible || MyOrderPanel.Visible || BidPanel.Visible || DeliverPanel.Visible)
+            {
+                MainPanel.Hide();
+                groupBox1.Hide();
+                MyOrderPanel.Hide();
+                BidPanel.Hide();
+                DeliverPanel.Hide();
+
+            }
+            CatalogLabel.Text = "Ведение отчётности";
+
+            costsTextBox.Text = presenter.GetCosts().ToString();
+            incomeTextBox.Text = presenter.GetIncome().ToString();
         }
 
         private void CloseProfit_Click(object sender, EventArgs e)
@@ -563,7 +577,6 @@ namespace WarehouseAccountingSystem
         {
 
         }
-
         private void SortButton_Click(object sender, EventArgs e)
         {
             ProductGridView1.DataSource = presenter.GetSortedStorage(getProductType());
@@ -616,9 +629,8 @@ namespace WarehouseAccountingSystem
             {
                 MyOrderCartGridView.DataSource = presenter.AddProductToStorage((List<OrderProvider>)MyOrderCartGridView.DataSource);
             }
-        //    ProductGridView1.DataSource = presenter.AddNewProduct()
+        
         }
-
 
         private void transferToCourierButton_Click(object sender, EventArgs e)
         {
@@ -678,16 +690,54 @@ namespace WarehouseAccountingSystem
 
         private void LeaveBidButton_Click(object sender, EventArgs e)
         {
-            presenter.LeaveBid(bidText.Text);
-            // додумать
-            clientsComboBox.Items.Add("1");
+            if (bidText.Text != "")
+            {
+                presenter.LeaveBid(bidText.Text);
+                // додумать
+            }
+            else
+            {
+                ShowMessage("Ошибочка вышла, вы Саша Соболь");
+            }
             bidText.Text = "";
         }
+        
 
         private void clientsComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string selectedState = clientsComboBox.SelectedItem.ToString();
+            string selectedState = bidsComboBox.SelectedItem.ToString();
             bidTextBox.Text = presenter.GetBid(int.Parse(selectedState));
+        }
+
+        private void openFileButton_Click(object sender, EventArgs e)
+        {
+           // OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == DialogResult.Cancel)
+                return;
+            // получаем выбранный файл
+            string filename = openFileDialog.FileName;
+            // читаем файл в строку
+            string fileText = System.IO.File.ReadAllText(filename);
+            richTextBox1.Text = fileText;
+            MessageBox.Show("Файл открыт");
+        }
+
+        private void saveFileButton_Click(object sender, EventArgs e)
+        {
+      
+            if (saveFileDialog.ShowDialog() == DialogResult.Cancel)
+                return;
+            // получаем выбранный файл
+            string filename = saveFileDialog.FileName;
+            // сохраняем текст в файл
+            System.IO.File.WriteAllText(filename, richTextBox1.Text);
+            MessageBox.Show("Файл сохранен");
+            richTextBox1.Text = "";
+        }
+
+        private void calculateProfitButton_Click(object sender, EventArgs e)
+        {
+            profitTextBox.Text = presenter.CalculateProfit().ToString();
         }
     }
 }

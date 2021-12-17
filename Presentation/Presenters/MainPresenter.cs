@@ -25,6 +25,7 @@ namespace Presentation.Presenters
         private List<OrderProvider> providerOrder;
         private List<Сonsignment> consignments;
         private BidService bidService;
+        private BookerService bookerService;
 
         public MainPresenter(IMainView view, IAuthorizationUser role)
         {
@@ -39,6 +40,7 @@ namespace Presentation.Presenters
             this.providerService = OrderProviderService.getInstance();
             this.storageService = StorageService.getInstance();
             this.bidService = BidService.getInstance();
+            this.bookerService = new BookerService();
         }
         public void Start()
         {
@@ -118,6 +120,20 @@ namespace Presentation.Presenters
             _view.CheckBid();
         }
 
+        public int GetCosts()
+        {
+            return bookerService.calculateCosts();
+        }
+
+        public int GetIncome()
+        {
+            return bookerService.calculateIncome();
+        }
+
+        public int CalculateProfit()
+        {
+            return GetIncome() - GetCosts();
+        }
         public List<Product> makeOrder()
         {
             String productNames = "";
@@ -274,14 +290,18 @@ namespace Presentation.Presenters
             Bid bid = new Bid();
             bid.Text = Text;
             bid.ClientId = 1;
-            bid.Id = 1;
             bidService.addBid(bid);
         }
         
-        public string GetBid(int clientId)
+        public string GetBid(int Id)
         {
-            Bid bid = bidService.getBids(clientId);
+            Bid bid = bidService.getBid(Id);
             return bid.Text;
+        }
+        
+        public string[] GetBidsId()
+        {
+            return bidService.getAllBids().Select(bid=> bid.Id.ToString()).ToArray();
         }
     }
     

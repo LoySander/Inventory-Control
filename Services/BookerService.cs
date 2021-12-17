@@ -8,11 +8,11 @@ using WarehouseAccountingSystem;
 
 namespace Services
 {
-    public class AccountantService
+    public class BookerService
     {
         private IOrderDao orderDao;
 
-        public AccountantService()
+        public BookerService()
         {
             orderDao = ListOrderDao.getInstance();
         }

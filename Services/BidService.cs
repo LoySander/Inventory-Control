@@ -29,9 +29,13 @@ namespace Services
             bidDao.addBid(bid);
         }
 
-        public Bid getBids(int clientId)
+        public Bid getBid(int Id)
         {
-            return bidDao.getBid(clientId);
+            return bidDao.getBid(Id);
+        }
+        public List<Bid> getAllBids()
+        {
+            return bidDao.getAllBids();
         }
 
 
