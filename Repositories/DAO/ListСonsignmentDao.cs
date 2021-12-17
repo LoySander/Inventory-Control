@@ -39,7 +39,7 @@ namespace Repositories.DAO
         }
         public Сonsignment GetConsignment(long id)
         {
-            return consignmentList.Where(order => order.ClientId == id).First();
+            return consignmentList.Where(order => order.OrderId == id).First();
         }
     }
 }

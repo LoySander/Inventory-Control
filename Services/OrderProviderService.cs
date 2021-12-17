@@ -38,7 +38,7 @@ namespace Services
                 orderProvider.Id = order.Id;
                 orderProvider.NamesOfProducts = order.NamesOfProducts;
                 orderProvider.TotalCost = order.TotalCost;
-                orderProvider.PaymentProduct = order.PaymentProduct;
+                orderProvider.StatusOrder = order.StatusOrder;
                 ordersProvider.Add(orderProvider);
             });
             return ordersProvider;
@@ -61,7 +61,7 @@ namespace Services
             string str = "Оплачено";
             foreach(OrderProvider x in order)
             {
-                if (x.PaymentProduct == str)
+                if (x.StatusOrder == str)
                 {
                     return true;
                 }

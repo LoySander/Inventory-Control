@@ -12,6 +12,6 @@ namespace Model
         public long Id { get; set; }
         public string NamesOfProducts { get; set; }
         public int TotalCost { get; set; }
-        public string PaymentProduct { get; set; }
+        public string StatusOrder { get; set; }
     }
 }

@@ -158,19 +158,6 @@ namespace WarehouseAccountingSystem
             var list = new List<Order>();
             return list;
         }
-        //private List<Foodstuffs> GetItems2()
-        //{
-        //    var list = new List<Foodstuffs>();
-        //    list.Add(new Foodstuffs()
-        //    {
-        //        NameProduct = "Bread",
-        //        WeightProduct = 1,
-        //        CostProduct = 1,
-        //        CountryProduct = "Belarus",
-        //        IdProduct = 345678
-        //    });
-        //    return list;
-        //}
         private void Form1_Load(object sender, EventArgs e)
         {
             //dataGridView4.DataSource = Orders;
@@ -242,9 +229,9 @@ namespace WarehouseAccountingSystem
                 GiveStorageLabel.Show();
             }
 
-            if (CostProductBox.Visible && PayButton.Visible && CostProductBox.Visible)
+            if (costProductBox.Visible && PayButton.Visible && costProductBox.Visible)
             {
-                CostProductBox.Hide();
+                costProductBox.Hide();
                 PayButton.Hide();
                 CostProduct.Hide();
                 bidText.Hide();
@@ -325,7 +312,7 @@ namespace WarehouseAccountingSystem
         {
             var selectedOrder = myOrderClientView.SelectedRows[0].DataBoundItem as OrderProvider;
             idProductBox1.Text = selectedOrder.Id.ToString();
-            CostProductBox.Text = selectedOrder.TotalCost.ToString();
+            costProductBox.Text = selectedOrder.TotalCost.ToString();
             PayButton.Enabled = true;
         }
         //private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -339,7 +326,7 @@ namespace WarehouseAccountingSystem
         private void dataGridView4_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var selectedProduct = courierDataGridView.SelectedRows[0].DataBoundItem as Order;
-            idClientText.Text = selectedProduct.IdProduct.ToString();
+            idOrderText.Text = selectedProduct.IdProduct.ToString();
             deliverButton.Enabled = true;
         }
         private void ОкGroupBox1_Click(object sender, EventArgs e)
@@ -419,7 +406,7 @@ namespace WarehouseAccountingSystem
 
             if (deleteOrderButton.Visible)
             {
-                CostProductBox.Show();
+                costProductBox.Show();
                 PayButton.Show();
                 CostProduct.Show();
                
@@ -447,7 +434,7 @@ namespace WarehouseAccountingSystem
             GiveStorageButton.Show();
             MyOrderCartGridView.Show();
             GiveStorageLabel.Show();
-            CostProductBox.Show();
+            costProductBox.Show();
             CostProduct.Show();
             bidText.Hide();
             BidLabel.Hide();
@@ -479,9 +466,9 @@ namespace WarehouseAccountingSystem
             //}
             if (deleteOrderButton.Visible)
             {
-                CostProductBox.Show();
+                costProductBox.Show();
                 PayButton.Show();
-                CostProductBox.Show();
+                costProductBox.Show();
                 moveButton.Show();
                 deleteOrderButton.Hide();
             }
@@ -604,11 +591,11 @@ namespace WarehouseAccountingSystem
             long id = long.Parse(idProductBox1.Text);
             if (type == UserType.PurchasingManager)
             {
-               myOrderProviderView.DataSource = presenter.ChangeOrderStatus(id, "Оплачено");
+               myOrderProviderView.DataSource = presenter.ChangeOrderProviderStatus(id, "Оплачено");
             }
             else
             {
-                myOrderClientView.DataSource = presenter.changeOrderStatus(id, "Оплачено");
+                myOrderClientView.DataSource = presenter.ChangeOrderStatus(id, "Оплачено");
             }
         }
         private void moveButton_Click(object sender, EventArgs e)
@@ -618,6 +605,8 @@ namespace WarehouseAccountingSystem
             {
                 MyOrderCartGridView.DataSource = new List<OrderProvider>(presenter.AddToCartProvider(id));
                 myOrderProviderView.DataSource = presenter.RemoveOrderProvider(id);
+                idProductBox1.Text = "";
+                costProductBox.Text = "";
             }
           
         }
@@ -633,9 +622,9 @@ namespace WarehouseAccountingSystem
 
         private void transferToCourierButton_Click(object sender, EventArgs e)
         {
-            if(idClientBox.Text !="" && consignmentDataView.Rows.Count != 0)
+            if(idOrderBox.Text !="" && consignmentDataView.Rows.Count != 0)
             {
-                consignmentDataView.DataSource = presenter.AddToCourier(long.Parse(idClientBox.Text));
+                consignmentDataView.DataSource = presenter.AddToCourier(long.Parse(idOrderBox.Text));
                 ProductGridView1.DataSource = presenter.GetStorage(getProductType());
             }
             else
@@ -648,17 +637,19 @@ namespace WarehouseAccountingSystem
         private void courierDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var selectedId = courierDataGridView.SelectedRows[0].DataBoundItem as Сonsignment;
-            idClientText.Text = selectedId.ClientId.ToString();
+            idOrderText.Text = selectedId.OrderId.ToString();
             deliverButton.Enabled = true;
         }
 
         private void deliverButton_Click(object sender, EventArgs e)
         {
-            if (idClientText.Text != "")
+            if (idOrderText.Text != "")
             {
-                presenter.RemoveConsignment(long.Parse(idClientText.Text));
+                presenter.RemoveConsignment(long.Parse(idOrderText.Text));
                 courierDataGridView.DataSource = presenter.GetСonsignments();
+             
                 ShowMessage("Заказ успешно доставлен");
+                myOrderClientView.DataSource = presenter.ChangeOrderStatus(long.Parse(idOrderText.Text), "Доставлен");
             }
             else
             {
@@ -681,7 +672,7 @@ namespace WarehouseAccountingSystem
         {
             var selectedId = myOrderProviderView.SelectedRows[0].DataBoundItem as OrderProvider;
             idProductBox1.Text = selectedId.Id.ToString();
-            CostProductBox.Text = selectedId.TotalCost.ToString();
+            costProductBox.Text = selectedId.TotalCost.ToString();
             PayButton.Enabled = true;
         }
 

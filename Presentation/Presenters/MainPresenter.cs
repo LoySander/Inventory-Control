@@ -132,7 +132,7 @@ namespace Presentation.Presenters
                 ClientId = 1,
                 NamesOfProducts = productNames,
                 TotalCost = totalCost,
-                PaymentProduct = "Ожидает оплаты",
+                StatusOrder = "Ожидает оплаты",
             };
             switch (Employee.employeeType)
             {
@@ -158,16 +158,16 @@ namespace Presentation.Presenters
             return providerService.GetOrdersProvider();
         }
 
-        public List<Order> changeOrderStatus(long id, String newStatus)
+        public List<Order> ChangeOrderStatus(long id, string newStatus)
         {
-            clientOrderService.getOrder(id).PaymentProduct = newStatus;
+            clientOrderService.getOrder(id).StatusOrder = newStatus;
             return getClientsOrders();
         }
 
         // оптимизировать нужно
-        public List<OrderProvider> ChangeOrderStatus(long id, String newStatus)
+        public List<OrderProvider> ChangeOrderProviderStatus(long id, string newStatus)
         {
-            clientOrderService.getOrder(id).PaymentProduct = newStatus;
+            clientOrderService.getOrder(id).StatusOrder = newStatus;
             return GetOrderProvider();
         }
         public List<OrderProvider> AddToCartProvider(long id)
@@ -225,20 +225,30 @@ namespace Presentation.Presenters
             return providerOrder;
         }
 
-        public List<Product> AddToCourier(long clientId)
+        public List<Product> AddToCourier(long orderId)
         {
-            string productNames = "";
-            foreach (Product x in orderCart)
+            try
             {
-                productNames += x.NameProduct + " ";
+                clientOrderService.getOrder(orderId).StatusOrder = "Передан в службу доставки";
+                string productNames = "";
+                foreach (Product x in orderCart)
+                {
+                    productNames += x.NameProduct + " ";
+                }
+                Сonsignment consignment = new Сonsignment()
+                {
+                    OrderId = orderId,
+                    NamesProduct = productNames,
+                };
+
+                consignmentService.addConsignment(consignment);
+                ReduceStock(productNames);
+                
             }
-            Сonsignment consignment = new Сonsignment()
+            catch 
             {
-                ClientId = clientId,
-                NamesProduct = productNames,
-            };
-            consignmentService.addConsignment(consignment);
-            ReduceStock(productNames);
+                _view.ShowMessage("ТЫ ОШИБСЯ ДРУГ");
+            }
             orderCart.Clear();
             return orderCart;
         }

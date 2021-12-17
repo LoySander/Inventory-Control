@@ -55,8 +55,8 @@ namespace WarehouseAccountingSystem
             this.transferToCourierButton = new System.Windows.Forms.Button();
             this.MainPanel = new System.Windows.Forms.Panel();
             this.consignmentPanel = new System.Windows.Forms.Panel();
-            this.idClientLabel = new System.Windows.Forms.Label();
-            this.idClientBox = new System.Windows.Forms.TextBox();
+            this.idOrderLabel = new System.Windows.Forms.Label();
+            this.idOrderBox = new System.Windows.Forms.TextBox();
             this.consignmentDataView = new System.Windows.Forms.DataGridView();
             this.consignmentLabel = new System.Windows.Forms.Label();
             this.OrderButton = new System.Windows.Forms.Button();
@@ -71,7 +71,7 @@ namespace WarehouseAccountingSystem
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.DeliverPanel = new System.Windows.Forms.Panel();
             this.courierDataGridView = new System.Windows.Forms.DataGridView();
-            this.idClientText = new System.Windows.Forms.TextBox();
+            this.idOrderText = new System.Windows.Forms.TextBox();
             this.deliverButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.CloseButton = new System.Windows.Forms.Button();
@@ -82,7 +82,7 @@ namespace WarehouseAccountingSystem
             this.GiveStorageButton = new System.Windows.Forms.Button();
             this.GiveStorageLabel = new System.Windows.Forms.Label();
             this.MyOrderCartGridView = new System.Windows.Forms.DataGridView();
-            this.CostProductBox = new System.Windows.Forms.TextBox();
+            this.costProductBox = new System.Windows.Forms.TextBox();
             this.CostProduct = new System.Windows.Forms.Label();
             this.PayButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -316,6 +316,7 @@ namespace WarehouseAccountingSystem
             // 
             this.IdProductBox.Location = new System.Drawing.Point(485, 47);
             this.IdProductBox.Name = "IdProductBox";
+            this.IdProductBox.ReadOnly = true;
             this.IdProductBox.Size = new System.Drawing.Size(152, 20);
             this.IdProductBox.TabIndex = 7;
             this.IdProductBox.TextChanged += new System.EventHandler(this.IdProductBox_TextChanged);
@@ -365,8 +366,8 @@ namespace WarehouseAccountingSystem
             // 
             // consignmentPanel
             // 
-            this.consignmentPanel.Controls.Add(this.idClientLabel);
-            this.consignmentPanel.Controls.Add(this.idClientBox);
+            this.consignmentPanel.Controls.Add(this.idOrderLabel);
+            this.consignmentPanel.Controls.Add(this.idOrderBox);
             this.consignmentPanel.Controls.Add(this.consignmentDataView);
             this.consignmentPanel.Controls.Add(this.consignmentLabel);
             this.consignmentPanel.Controls.Add(this.transferToCourierButton);
@@ -376,22 +377,22 @@ namespace WarehouseAccountingSystem
             this.consignmentPanel.TabIndex = 15;
             this.consignmentPanel.Visible = false;
             // 
-            // idClientLabel
+            // idOrderLabel
             // 
-            this.idClientLabel.AutoSize = true;
-            this.idClientLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.idClientLabel.Location = new System.Drawing.Point(28, 206);
-            this.idClientLabel.Name = "idClientLabel";
-            this.idClientLabel.Size = new System.Drawing.Size(104, 24);
-            this.idClientLabel.TabIndex = 18;
-            this.idClientLabel.Text = "ID клиента";
+            this.idOrderLabel.AutoSize = true;
+            this.idOrderLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.idOrderLabel.Location = new System.Drawing.Point(28, 206);
+            this.idOrderLabel.Name = "idOrderLabel";
+            this.idOrderLabel.Size = new System.Drawing.Size(91, 24);
+            this.idOrderLabel.TabIndex = 18;
+            this.idOrderLabel.Text = "ID заказа";
             // 
-            // idClientBox
+            // idOrderBox
             // 
-            this.idClientBox.Location = new System.Drawing.Point(170, 211);
-            this.idClientBox.Name = "idClientBox";
-            this.idClientBox.Size = new System.Drawing.Size(100, 20);
-            this.idClientBox.TabIndex = 17;
+            this.idOrderBox.Location = new System.Drawing.Point(170, 211);
+            this.idOrderBox.Name = "idOrderBox";
+            this.idOrderBox.Size = new System.Drawing.Size(100, 20);
+            this.idOrderBox.TabIndex = 17;
             // 
             // consignmentDataView
             // 
@@ -528,7 +529,7 @@ namespace WarehouseAccountingSystem
             // DeliverPanel
             // 
             this.DeliverPanel.Controls.Add(this.courierDataGridView);
-            this.DeliverPanel.Controls.Add(this.idClientText);
+            this.DeliverPanel.Controls.Add(this.idOrderText);
             this.DeliverPanel.Controls.Add(this.deliverButton);
             this.DeliverPanel.Controls.Add(this.label2);
             this.DeliverPanel.Controls.Add(this.CloseButton);
@@ -550,13 +551,13 @@ namespace WarehouseAccountingSystem
             this.courierDataGridView.TabIndex = 17;
             this.courierDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.courierDataGridView_CellContentClick);
             // 
-            // idClientText
+            // idOrderText
             // 
-            this.idClientText.Location = new System.Drawing.Point(498, 47);
-            this.idClientText.Name = "idClientText";
-            this.idClientText.ReadOnly = true;
-            this.idClientText.Size = new System.Drawing.Size(152, 20);
-            this.idClientText.TabIndex = 24;
+            this.idOrderText.Location = new System.Drawing.Point(498, 47);
+            this.idOrderText.Name = "idOrderText";
+            this.idOrderText.ReadOnly = true;
+            this.idOrderText.Size = new System.Drawing.Size(152, 20);
+            this.idOrderText.TabIndex = 24;
             // 
             // deliverButton
             // 
@@ -600,7 +601,7 @@ namespace WarehouseAccountingSystem
             this.MyOrderPanel.Controls.Add(this.GiveStorageButton);
             this.MyOrderPanel.Controls.Add(this.GiveStorageLabel);
             this.MyOrderPanel.Controls.Add(this.MyOrderCartGridView);
-            this.MyOrderPanel.Controls.Add(this.CostProductBox);
+            this.MyOrderPanel.Controls.Add(this.costProductBox);
             this.MyOrderPanel.Controls.Add(this.CostProduct);
             this.MyOrderPanel.Controls.Add(this.PayButton);
             this.MyOrderPanel.Controls.Add(this.label3);
@@ -654,7 +655,7 @@ namespace WarehouseAccountingSystem
             // 
             // GiveStorageButton
             // 
-            this.GiveStorageButton.Location = new System.Drawing.Point(738, 230);
+            this.GiveStorageButton.Location = new System.Drawing.Point(738, 229);
             this.GiveStorageButton.Margin = new System.Windows.Forms.Padding(2);
             this.GiveStorageButton.Name = "GiveStorageButton";
             this.GiveStorageButton.Size = new System.Drawing.Size(104, 42);
@@ -683,13 +684,13 @@ namespace WarehouseAccountingSystem
             this.MyOrderCartGridView.Size = new System.Drawing.Size(279, 184);
             this.MyOrderCartGridView.TabIndex = 26;
             // 
-            // CostProductBox
+            // costProductBox
             // 
-            this.CostProductBox.Location = new System.Drawing.Point(489, 132);
-            this.CostProductBox.Name = "CostProductBox";
-            this.CostProductBox.ReadOnly = true;
-            this.CostProductBox.Size = new System.Drawing.Size(152, 20);
-            this.CostProductBox.TabIndex = 25;
+            this.costProductBox.Location = new System.Drawing.Point(489, 132);
+            this.costProductBox.Name = "costProductBox";
+            this.costProductBox.ReadOnly = true;
+            this.costProductBox.Size = new System.Drawing.Size(152, 20);
+            this.costProductBox.TabIndex = 25;
             // 
             // CostProduct
             // 
@@ -1009,11 +1010,11 @@ namespace WarehouseAccountingSystem
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.BidPanel);
             this.Controls.Add(this.MyOrderPanel);
             this.Controls.Add(this.DeliverPanel);
             this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.ProfitPanel);
+            this.Controls.Add(this.BidPanel);
             this.Name = "MainForm";
             this.Text = "Storage v1.0";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
@@ -1096,8 +1097,8 @@ namespace WarehouseAccountingSystem
         private System.Windows.Forms.TextBox idProductBox1;
         private System.Windows.Forms.ToolStripMenuItem BidToolStripMenuItem;
         private System.Windows.Forms.Label CostProduct;
-        private System.Windows.Forms.TextBox CostProductBox;
-        private System.Windows.Forms.TextBox idClientText;
+        private System.Windows.Forms.TextBox costProductBox;
+        private System.Windows.Forms.TextBox idOrderText;
         private System.Windows.Forms.ToolStripMenuItem ProfitToolStripMenuItem;
         private System.Windows.Forms.Button GiveStorageButton;
         private System.Windows.Forms.Label GiveStorageLabel;
@@ -1126,11 +1127,11 @@ namespace WarehouseAccountingSystem
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
         private System.Windows.Forms.Button moveButton;
-        private System.Windows.Forms.TextBox idClientBox;
+        private System.Windows.Forms.TextBox idOrderBox;
         private System.Windows.Forms.Panel consignmentPanel;
         private System.Windows.Forms.DataGridView consignmentDataView;
         private System.Windows.Forms.Label consignmentLabel;
-        private System.Windows.Forms.Label idClientLabel;
+        private System.Windows.Forms.Label idOrderLabel;
         private System.Windows.Forms.DataGridView myOrderProviderView;
         private System.Windows.Forms.Button deleteOrderButton;
     }

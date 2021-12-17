@@ -8,7 +8,8 @@ namespace Model
 {
    public class Сonsignment
     {
-        public long ClientId { get; set; }
+        //public long ClientId { get; set; }
+        public long OrderId { get; set; }
         public string NamesProduct { get; set; }
 
     }
