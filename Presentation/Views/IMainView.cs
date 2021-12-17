@@ -11,15 +11,8 @@ namespace Presentation.Views
     {
         void SetWindowFromRole();
         void ShowMessage(string message);
-        void OpenCatalog();
-        void CheckStorage();
         void ExitCatalog();
-        void CheckCourierOrder();
         //void CheckProviderOrder();
         //void CheckMyOrders();
-        void CheckEditing();
-        void CheckProfit();
-
-        void CheckBid();
     }
 }

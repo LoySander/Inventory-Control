@@ -46,27 +46,13 @@ namespace Presentation.Presenters
         {
             _view.Show();
         }
-
         public UserType GetRoles()
         {
             return Employee.employeeType;
         }
-
-        public void Help()
-        {
-            _view.ShowMessage("Номер телефона для связи: +375 228 1337");
-        }
-        // когда нажимаем на просмотреть каталог, должны подгрузить данные
-        public void GetCataloge()
-        {
-            // связь с датагрид, должны получить данные
-            _view.OpenCatalog();
-        }
         // когда нажимаем на просмотреть список товаров на складе, должны подгрузить данные
         public List<StorageProduct> GetStorage(ProductType type)
         {
-            // связь с датагрид
-            _view.CheckStorage();
             return storageService.getProducts(type);
         }
 
@@ -91,35 +77,11 @@ namespace Presentation.Presenters
             return orderCart;
         }
 
-
-        public void GetCourierOrder()
-        {
-            // необходимо поместить 
-            _view.CheckCourierOrder();
-        }
-
         public void CheckClientOrder()
         {
             // предоставить данные по заказам
             //_view.CheckMyOrders();
         }
-
-        public void GetEditing()
-        {
-            // предоставить данные по заказам
-            _view.CheckEditing();
-        }
-
-        public void GetProfit()
-        {
-            _view.CheckProfit();
-        }
-
-        public void GetBid()
-        {
-            _view.CheckBid();
-        }
-
         public int GetCosts()
         {
             return bookerService.calculateCosts();
@@ -204,7 +166,10 @@ namespace Presentation.Presenters
         // перегрузка методов, либо var либо List<t>
         public List<OrderProvider> RemoveOrderProvider(long id)
         {
-            providerService.deleteOrderProvider(id);
+            if (providerService.CheckPayment(id))
+            {
+                providerService.deleteOrderProvider(id);
+            }
             return GetOrderProvider();
         }
 

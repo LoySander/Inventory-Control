@@ -31,6 +31,7 @@ namespace Model
         new Employee{UserName = "AM",Password = "321"},
         new Employee{UserName = "S",Password = "111"},
         new Employee{UserName = "B",Password = "121"},
+        new Employee{UserName = "D",Password = "222"},
         };
 
         static public List<Employee> GetUsers()

@@ -41,12 +41,12 @@ namespace WarehouseAccountingSystem
             this.storageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.СheckStorage = new System.Windows.Forms.ToolStripMenuItem();
             this.сatalogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.CheckCatalog = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkCatalogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DeleviryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CourierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ProductGridView1 = new System.Windows.Forms.DataGridView();
+            this.productGridView1 = new System.Windows.Forms.DataGridView();
             this.ExitFromCatalog = new System.Windows.Forms.Button();
             this.AddProductButton = new System.Windows.Forms.Button();
             this.IdProductLabel = new System.Windows.Forms.Label();
@@ -60,7 +60,7 @@ namespace WarehouseAccountingSystem
             this.consignmentDataView = new System.Windows.Forms.DataGridView();
             this.consignmentLabel = new System.Windows.Forms.Label();
             this.OrderButton = new System.Windows.Forms.Button();
-            this.CartGridView = new System.Windows.Forms.DataGridView();
+            this.cartGridView = new System.Windows.Forms.DataGridView();
             this.Order = new System.Windows.Forms.Label();
             this.ProductGridView2 = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -81,7 +81,7 @@ namespace WarehouseAccountingSystem
             this.moveButton = new System.Windows.Forms.Button();
             this.GiveStorageButton = new System.Windows.Forms.Button();
             this.GiveStorageLabel = new System.Windows.Forms.Label();
-            this.MyOrderCartGridView = new System.Windows.Forms.DataGridView();
+            this.myOrderCartGridView = new System.Windows.Forms.DataGridView();
             this.costProductBox = new System.Windows.Forms.TextBox();
             this.CostProduct = new System.Windows.Forms.Label();
             this.PayButton = new System.Windows.Forms.Button();
@@ -116,11 +116,11 @@ namespace WarehouseAccountingSystem
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ProductGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productGridView1)).BeginInit();
             this.MainPanel.SuspendLayout();
             this.consignmentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.consignmentDataView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CartGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cartGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ProductGridView2)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -128,7 +128,7 @@ namespace WarehouseAccountingSystem
             ((System.ComponentModel.ISupportInitialize)(this.courierDataGridView)).BeginInit();
             this.MyOrderPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.myOrderProviderView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MyOrderCartGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.myOrderCartGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.myOrderClientView)).BeginInit();
             this.BidPanel.SuspendLayout();
             this.ProfitPanel.SuspendLayout();
@@ -168,7 +168,6 @@ namespace WarehouseAccountingSystem
             this.RequestToolStripMenuItem.Name = "RequestToolStripMenuItem";
             this.RequestToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
             this.RequestToolStripMenuItem.Text = "Заказы";
-            this.RequestToolStripMenuItem.Click += new System.EventHandler(this.RequestToolStripMenuItem_Click);
             // 
             // OrderProviderToolStripMenuItem
             // 
@@ -223,18 +222,17 @@ namespace WarehouseAccountingSystem
             // сatalogToolStripMenuItem
             // 
             this.сatalogToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CheckCatalog});
+            this.checkCatalogToolStripMenuItem});
             this.сatalogToolStripMenuItem.Name = "сatalogToolStripMenuItem";
             this.сatalogToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
             this.сatalogToolStripMenuItem.Text = "Каталог";
-            this.сatalogToolStripMenuItem.Click += new System.EventHandler(this.сatalogToolStripMenuItem_Click);
             // 
-            // CheckCatalog
+            // checkCatalogToolStripMenuItem
             // 
-            this.CheckCatalog.Name = "CheckCatalog";
-            this.CheckCatalog.Size = new System.Drawing.Size(193, 22);
-            this.CheckCatalog.Text = "Просмотреть каталог";
-            this.CheckCatalog.Click += new System.EventHandler(this.CheckCatalog_Click);
+            this.checkCatalogToolStripMenuItem.Name = "checkCatalogToolStripMenuItem";
+            this.checkCatalogToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.checkCatalogToolStripMenuItem.Text = "Просмотреть каталог";
+            this.checkCatalogToolStripMenuItem.Click += new System.EventHandler(this.CheckCatalog_Click);
             // 
             // DeleviryToolStripMenuItem
             // 
@@ -243,7 +241,6 @@ namespace WarehouseAccountingSystem
             this.DeleviryToolStripMenuItem.Name = "DeleviryToolStripMenuItem";
             this.DeleviryToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.DeleviryToolStripMenuItem.Text = "Доставка";
-            this.DeleviryToolStripMenuItem.Click += new System.EventHandler(this.DeleviryToolStripMenuItem_Click);
             // 
             // CourierToolStripMenuItem
             // 
@@ -268,17 +265,17 @@ namespace WarehouseAccountingSystem
             // 
             // ProductGridView1
             // 
-            this.ProductGridView1.BackgroundColor = System.Drawing.SystemColors.Info;
-            this.ProductGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ProductGridView1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.ProductGridView1.Location = new System.Drawing.Point(0, 0);
-            this.ProductGridView1.Name = "ProductGridView1";
-            this.ProductGridView1.RowHeadersWidth = 51;
-            this.ProductGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ProductGridView1.Size = new System.Drawing.Size(470, 248);
-            this.ProductGridView1.TabIndex = 3;
-            this.ProductGridView1.Visible = false;
-            this.ProductGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.productGridView1.BackgroundColor = System.Drawing.SystemColors.Info;
+            this.productGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.productGridView1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.productGridView1.Location = new System.Drawing.Point(0, 0);
+            this.productGridView1.Name = "ProductGridView1";
+            this.productGridView1.RowHeadersWidth = 51;
+            this.productGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.productGridView1.Size = new System.Drawing.Size(470, 248);
+            this.productGridView1.TabIndex = 3;
+            this.productGridView1.Visible = false;
+            this.productGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // ExitFromCatalog
             // 
@@ -350,13 +347,13 @@ namespace WarehouseAccountingSystem
             // 
             this.MainPanel.Controls.Add(this.consignmentPanel);
             this.MainPanel.Controls.Add(this.OrderButton);
-            this.MainPanel.Controls.Add(this.CartGridView);
+            this.MainPanel.Controls.Add(this.cartGridView);
             this.MainPanel.Controls.Add(this.Order);
             this.MainPanel.Controls.Add(this.ProductGridView2);
             this.MainPanel.Controls.Add(this.IdProductLabel);
             this.MainPanel.Controls.Add(this.ExitFromCatalog);
             this.MainPanel.Controls.Add(this.SortButton);
-            this.MainPanel.Controls.Add(this.ProductGridView1);
+            this.MainPanel.Controls.Add(this.productGridView1);
             this.MainPanel.Controls.Add(this.AddProductButton);
             this.MainPanel.Controls.Add(this.IdProductBox);
             this.MainPanel.Location = new System.Drawing.Point(4, 163);
@@ -429,13 +426,13 @@ namespace WarehouseAccountingSystem
             // 
             // CartGridView
             // 
-            this.CartGridView.BackgroundColor = System.Drawing.SystemColors.Info;
-            this.CartGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.CartGridView.Location = new System.Drawing.Point(677, 46);
-            this.CartGridView.Name = "CartGridView";
-            this.CartGridView.RowHeadersWidth = 51;
-            this.CartGridView.Size = new System.Drawing.Size(240, 150);
-            this.CartGridView.TabIndex = 13;
+            this.cartGridView.BackgroundColor = System.Drawing.SystemColors.Info;
+            this.cartGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.cartGridView.Location = new System.Drawing.Point(677, 46);
+            this.cartGridView.Name = "CartGridView";
+            this.cartGridView.RowHeadersWidth = 51;
+            this.cartGridView.Size = new System.Drawing.Size(240, 150);
+            this.cartGridView.TabIndex = 13;
             // 
             // Order
             // 
@@ -479,7 +476,6 @@ namespace WarehouseAccountingSystem
             this.CatalogLabel.TabIndex = 0;
             this.CatalogLabel.Text = "Каталог товаров";
             this.CatalogLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.CatalogLabel.Click += new System.EventHandler(this.CatalogLabel_Click);
             // 
             // groupBox1
             // 
@@ -600,7 +596,7 @@ namespace WarehouseAccountingSystem
             this.MyOrderPanel.Controls.Add(this.moveButton);
             this.MyOrderPanel.Controls.Add(this.GiveStorageButton);
             this.MyOrderPanel.Controls.Add(this.GiveStorageLabel);
-            this.MyOrderPanel.Controls.Add(this.MyOrderCartGridView);
+            this.MyOrderPanel.Controls.Add(this.myOrderCartGridView);
             this.MyOrderPanel.Controls.Add(this.costProductBox);
             this.MyOrderPanel.Controls.Add(this.CostProduct);
             this.MyOrderPanel.Controls.Add(this.PayButton);
@@ -616,7 +612,6 @@ namespace WarehouseAccountingSystem
             this.MyOrderPanel.Size = new System.Drawing.Size(938, 282);
             this.MyOrderPanel.TabIndex = 18;
             this.MyOrderPanel.Visible = false;
-            this.MyOrderPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.MyOrderPanel_Paint);
             // 
             // deleteOrderButton
             // 
@@ -676,13 +671,13 @@ namespace WarehouseAccountingSystem
             // 
             // MyOrderCartGridView
             // 
-            this.MyOrderCartGridView.BackgroundColor = System.Drawing.SystemColors.Info;
-            this.MyOrderCartGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.MyOrderCartGridView.Location = new System.Drawing.Point(656, 44);
-            this.MyOrderCartGridView.Name = "MyOrderCartGridView";
-            this.MyOrderCartGridView.RowHeadersWidth = 51;
-            this.MyOrderCartGridView.Size = new System.Drawing.Size(279, 184);
-            this.MyOrderCartGridView.TabIndex = 26;
+            this.myOrderCartGridView.BackgroundColor = System.Drawing.SystemColors.Info;
+            this.myOrderCartGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.myOrderCartGridView.Location = new System.Drawing.Point(656, 44);
+            this.myOrderCartGridView.Name = "MyOrderCartGridView";
+            this.myOrderCartGridView.RowHeadersWidth = 51;
+            this.myOrderCartGridView.Size = new System.Drawing.Size(279, 184);
+            this.myOrderCartGridView.TabIndex = 26;
             // 
             // costProductBox
             // 
@@ -827,7 +822,6 @@ namespace WarehouseAccountingSystem
             this.BidClients.Size = new System.Drawing.Size(154, 23);
             this.BidClients.TabIndex = 7;
             this.BidClients.Text = "Заявки клиентов";
-            this.BidClients.Click += new System.EventHandler(this.label1_Click);
             // 
             // bidsComboBox
             // 
@@ -1002,7 +996,6 @@ namespace WarehouseAccountingSystem
             this.statusStrip1.Size = new System.Drawing.Size(943, 22);
             this.statusStrip1.TabIndex = 31;
             this.statusStrip1.Text = "statusStrip1";
-            this.statusStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.statusStrip1_ItemClicked);
             // 
             // openFileDialog
             // 
@@ -1017,24 +1010,24 @@ namespace WarehouseAccountingSystem
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.ProfitPanel);
-            this.Controls.Add(this.BidPanel);
             this.Controls.Add(this.MyOrderPanel);
             this.Controls.Add(this.DeliverPanel);
             this.Controls.Add(this.MainPanel);
+            this.Controls.Add(this.ProfitPanel);
+            this.Controls.Add(this.BidPanel);
             this.Name = "MainForm";
             this.Text = "Storage v1.0";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ProductGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productGridView1)).EndInit();
             this.MainPanel.ResumeLayout(false);
             this.MainPanel.PerformLayout();
             this.consignmentPanel.ResumeLayout(false);
             this.consignmentPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.consignmentDataView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CartGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cartGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ProductGridView2)).EndInit();
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
@@ -1045,7 +1038,7 @@ namespace WarehouseAccountingSystem
             this.MyOrderPanel.ResumeLayout(false);
             this.MyOrderPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.myOrderProviderView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MyOrderCartGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.myOrderCartGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.myOrderClientView)).EndInit();
             this.BidPanel.ResumeLayout(false);
             this.BidPanel.PerformLayout();
@@ -1065,8 +1058,8 @@ namespace WarehouseAccountingSystem
         private System.Windows.Forms.ToolStripMenuItem OrderProviderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem сatalogToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem СheckStorage;
-        private System.Windows.Forms.ToolStripMenuItem CheckCatalog;
-        private System.Windows.Forms.DataGridView ProductGridView1;
+        private System.Windows.Forms.ToolStripMenuItem checkCatalogToolStripMenuItem;
+        private System.Windows.Forms.DataGridView productGridView1;
         private System.Windows.Forms.Button ExitFromCatalog;
         private System.Windows.Forms.Button AddProductButton;
         private System.Windows.Forms.Label IdProductLabel;
@@ -1083,7 +1076,7 @@ namespace WarehouseAccountingSystem
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.Button ОкGroupBox1;
         private System.Windows.Forms.DataGridView ProductGridView2;
-        private System.Windows.Forms.DataGridView CartGridView;
+        private System.Windows.Forms.DataGridView cartGridView;
         private System.Windows.Forms.Label Order;
         private System.Windows.Forms.Button OrderButton;
         private System.Windows.Forms.ToolStripMenuItem HelpToolStripMenuItem;
@@ -1109,7 +1102,7 @@ namespace WarehouseAccountingSystem
         private System.Windows.Forms.ToolStripMenuItem ProfitToolStripMenuItem;
         private System.Windows.Forms.Button GiveStorageButton;
         private System.Windows.Forms.Label GiveStorageLabel;
-        private System.Windows.Forms.DataGridView MyOrderCartGridView;
+        private System.Windows.Forms.DataGridView myOrderCartGridView;
         private System.Windows.Forms.Panel BidPanel;
         private System.Windows.Forms.Button CloseButton3;
         private System.Windows.Forms.Label BidClients;
